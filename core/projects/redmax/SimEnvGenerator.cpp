@@ -13,6 +13,7 @@
 #include "Joint/JointFree3DExp.h"
 #include "Force/ForceGroundContact.h"
 #include "Force/ForceCuboidCuboidContact.h"
+#include "Force/ForceSpring.h"
 #include "Force/ForceGeneralPrimitiveContact.h"
 #include "Actuator/Actuator.h"
 #include "Actuator/ActuatorMotor.h"
@@ -606,6 +607,10 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator) {
 
     ForceCuboidCuboidContact* force2 = new ForceCuboidCuboidContact(sim, body2, box, 1e4, 0.0);
     robot->add_force(force2);
+
+    // add spring force
+    ForceCuboidCuboidContact* forceS = new ForceSpring(sim, body0, box, 1, 1);
+    robot->add_force(forceS);
 
     sim->addRobot(robot);
     sim->init();
