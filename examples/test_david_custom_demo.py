@@ -41,7 +41,7 @@ if __name__ == '__main__':
         print(ui)
         #exit(0)
         
-        u[i * ndof_u:(i + 1) * ndof_u] = ui
+        #u[i * ndof_u:(i + 1) * ndof_u] = ui
 
         #sim.set_u(ui)
 
