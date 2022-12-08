@@ -52,14 +52,15 @@ void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
     MatrixX G1 = math::gamma(xl1);
     MatrixX G2 = math::gamma(xl2);
 
-    Vector3 dx = xw2 - xw1;
-    dtype l = dx.norm();
-    Vector3 f = _k * dx;
-
     dtype coeff = 1 - _l/l;
 
-    fm.segment(_cuboid1->_index[0], 6) += coeff * G1.transpose() * (R1.transpose() * f);
-    fm.segment(_cuboid2->_index[0], 6) -= coeff * G2.transpose() * (R2.transpose() * f);
+    Vector3 dx = xw2 - xw1;
+    dtype l = dx.norm();
+    Vector3 f = _k * coeff * dx;
+
+
+    fm.segment(_cuboid1->_index[0], 6) +=  G1.transpose() * (R1.transpose() * f);
+    fm.segment(_cuboid2->_index[0], 6) -=  G2.transpose() * (R2.transpose() * f);
 
     std::cout << "xw1 " << xw1 << std::endl;
     std::cout << "xw2 " << xw2 << std::endl;
