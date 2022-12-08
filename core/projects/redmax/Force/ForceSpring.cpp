@@ -49,16 +49,69 @@ void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
     Vector3 xw1 = R1 * xl1 + p1;
     Vector3 xw2 = R2 * xl2 + p2;
 
+    MatrixX G1 = math::gamma(xl1);
+    MatrixX G2 = math::gamma(xl2);
+
+    Vector3 dx = xw2 - xw1;
+    dtype l = dx.norm();
+    Vector3 f = _k * dx;
+
+    fm.segment(_cuboid1->_index[0], 6) += G1.transpose() * (R1.transpose() * f);
+    fm.segment(_cuboid2->_index[0], 6) -= G2.transpose() * (R2.transpose() * f);
+
     std::cout << "xw1 " << xw1 << std::endl;
     std::cout << "xw2 " << xw2 << std::endl;
     std::cout << "length " << (xw1 - xw2).norm() << std::endl;
     std::cout << "_l " << _l << std::endl;
+    std::cout << "force " << f << std::endl;
 
 }
 
 void ForceSpring::computeForceWithDerivative(
     VectorX& fm, VectorX& fr, MatrixX& Km, MatrixX& Dm, MatrixX& Kr, MatrixX& Dr, bool verbose) {
     std::cout << "Hello ComputeForceWithDerivative" << std::endl;
+
+    Matrix4 E1 = _cuboid1->_E_0i;
+    Matrix3 R1 = E1.topLeftCorner(3, 3);
+    Vector3 p1 = E1.topRightCorner(3, 1);
+    Matrix4 E2 = _cuboid2->_E_0i;
+    Matrix3 R2 = E2.topLeftCorner(3, 3);
+    Vector3 p2 = E2.topRightCorner(3, 1);
+
+    Vector3 xl1 = _cuboid1->get_contact_points()[_contact1];
+    Vector3 xl2 = _cuboid1->get_contact_points()[_contact2];
+
+    Vector3 xw1 = R1 * xl1 + p1;
+    Vector3 xw2 = R2 * xl2 + p2;
+
+    MatrixX G1 = math::gamma(xl1);
+    MatrixX G2 = math::gamma(xl2);
+
+    Matrix3 I = Matrix3::Identity();
+
+    Vector3 dx = xw2 - xw1;
+    dtype l = dx.norm();
+    Vector3 f = _k * dx;
+
+    fm.segment(_cuboid1->_index[0], 6) += G1.transpose() * (R1.transpose() * f);
+    fm.segment(_cuboid2->_index[0], 6) -= G2.transpose() * (R2.transpose() * f);
+
+    std::cout << "xw1 " << xw1 << std::endl;
+    std::cout << "xw2 " << xw2 << std::endl;
+    std::cout << "length " << (xw1 - xw2).norm() << std::endl;
+    std::cout << "_l " << _l << std::endl;
+    std::cout << "force " << f << std::endl;
+
+    dtype coeff = 1 - _l/l;
+
+    Km.block(_cuboid1->_index[0], _cuboid1->_index[0], 6, 6) += 
+            _k * G1.transpose() * (Matrix<dtype, 3, 6>() << coeff * math::skew(R1.transpose() * (xw2 - p1)), -I).finished();
+    Km.block(_cuboid2->_index[0], _cuboid2->_index[0], 6, 6) +=
+        _k * G2.transpose() * (Matrix<dtype, 3, 6>() << coeff * math::skew(R2.transpose() * (xw1 - p2)), -I).finished();
+    Km.block(_cuboid1->_index[0], _cuboid2->_index[0], 6, 6) +=
+        _k * G1.transpose() * (R1.transpose() * (R2 * (Matrix<dtype, 3, 6>() << -coeff * math::skew(xl2), I).finished()));
+    Km.block(_cuboid2->_index[0], _cuboid1->_index[0], 6, 6) += 
+        _k * G2.transpose() * (R2.transpose() * (R1 * (Matrix<dtype, 3, 6>() << -coeff * math::skew(xl1), I).finished()));
 }
 
 }
