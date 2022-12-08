@@ -562,14 +562,14 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator) {
     joint1->set_damping(1e4);
     BodyCuboid* body1 = new BodyCuboid(sim, joint1, Vector3(2, 1, 1), Matrix3::Identity(), Vector3(1., 0., 0.), 1.);
     Actuator* actuator1 = new ActuatorMotor(joint1, -1e5, 1e5);
-    //robot->add_actuator(actuator1);
+    robot->add_actuator(actuator1);
 
     // DIP
     Joint* joint2 = new JointRevolute(sim, 2, Vector3(0, 0, -1), joint1, Matrix3::Identity(), Vector3(2., 0., 0.));
     joint2->set_damping(1e4);
     BodyCuboid* body2 = new BodyCuboid(sim, joint2, Vector3(1, 1, 1), Matrix3::Identity(), Vector3(0.5, 0., 0.), 1.);
     Actuator* actuator2 = new ActuatorMotor(joint2, -1e5, 1e5);
-    //robot->add_actuator(actuator2);
+    robot->add_actuator(actuator2);
 
     // Box
     Joint* box_joint = new JointFree2D(sim, 0, nullptr, Matrix3::Identity(), Vector3(5.2, 0.5, 0.0));
