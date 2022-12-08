@@ -38,6 +38,7 @@ if __name__ == '__main__':
         print(error)
         ui = error * P_q
         print(ui)
+        exit(0)
         
         u[i * ndof_u:(i + 1) * ndof_u] = ui
 
