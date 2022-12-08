@@ -42,8 +42,8 @@ void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
     Matrix3 R2 = E2.topLeftCorner(3, 3);
     Vector3 p2 = E2.topRightCorner(3, 1);
 
-    Vector3 xl1 = _cuboid1->_get_contact_points()[_contact1];
-    Vector3 xl2 = _cuboid1->_get_contact_points()[_contact2];
+    Vector3 xl1 = _cuboid1->get_contact_points()[_contact1];
+    Vector3 xl2 = _cuboid1->get_contact_points()[_contact2];
 
     Vector3 xw1 = R1 * xl1 + p1;
     Vector3 xw2 = R2 * xl2 + p2;
