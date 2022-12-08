@@ -1,5 +1,7 @@
 #include "Force/ForceSpring.h"
 #include "Body/BodyCuboid.h"
+#include "CollisionDetection/CollisionDetection.h"
+#include "CollisionDetection/Contact.h"
 #include "Body/Body.h"
 #include "Simulation.h"
 #include "Joint/Joint.h"

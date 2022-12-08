@@ -1,6 +1,7 @@
 #pragma once
+#include "Common.h"
+#include "Utils.h"
 #include "Force/Force.h"
-#include "CollisionDetection/Contact.h"
 
 namespace redmax {
 
