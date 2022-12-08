@@ -36,7 +36,7 @@ void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
     std::cout << "Hello ComputeForce" << std::endl;
 }
 
-void ForceCuboidCuboidContact::computeForceWithDerivative(
+void ForceSpring::computeForceWithDerivative(
     VectorX& fm, VectorX& fr, MatrixX& Km, MatrixX& Dm, MatrixX& Kr, MatrixX& Dr, bool verbose) {
     std::cout << "Hello ComputeForceWithDerivative" << std::endl;
 }
