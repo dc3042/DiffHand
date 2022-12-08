@@ -6,7 +6,7 @@
 
 namespace redmax {
 
-class Body;
+class BodyCuboid;
 
 class ForceSpring : public Force {
 public:
