@@ -34,6 +34,26 @@ bool ForceSpring::on_cuboid(const BodyCuboid* cuboid, const Vector3& xw) {
 
 void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
     std::cout << "Hello ComputeForce" << std::endl;
+
+    Matrix4 E1 = _cuboid1->_E_0i;
+    Matrix3 R1 = E1.topLeftCorner(3, 3);
+    Vector3 p1 = E1.topRightCorner(3, 1);
+    Matrix4 E2 = _cuboid2->_E_0i;
+    Matrix3 R2 = E2.topLeftCorner(3, 3);
+    Vector3 p2 = E2.topRightCorner(3, 1);
+
+    Vector3 xl1 = _cuboid1->_get_contact_points()[_contact1];
+    Vector3 xl2 = _cuboid1->_get_contact_points()[_contact2];
+
+    Vector3 xw1 = R1 * xl1 + p1;
+    Vector3 xw2 = R2 * xl2 + p2;
+
+    std::cout << "xw1 " << xw1 << std::endl;
+    std::cout << "xw2 " << xw2 << std::endl;
+
+
+
+
 }
 
 void ForceSpring::computeForceWithDerivative(
