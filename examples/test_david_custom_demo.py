@@ -24,8 +24,8 @@ if __name__ == '__main__':
 
     x_goal = 10.5
 
-    q_goal = np.zeros(3)
-    P_q = np.array([10., 2., 3.])
+    q_goal = np.zeros(2)
+    P_q = np.array([10., 3.])
 
     sim.reset(False)
 
@@ -33,7 +33,8 @@ if __name__ == '__main__':
     u = np.zeros(ndof_u * num_steps)
     for i in range(num_steps):
         q = sim.get_q()
-        error = q_goal - q[:3]
+        print(q)
+        error = q_goal - q[:2]
         print(P_q)
         print(error)
         ui = error * P_q
