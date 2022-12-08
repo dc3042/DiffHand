@@ -24,7 +24,10 @@ Simulation* make_sim(std::string env_name, std::string integrator = "BDF2") {
         sim = SimEnvGenerator::createTorqueFingerFlickDemo(integrator);
     } else if (env_name == "TorqueFinger-Demo") {
         sim = SimEnvGenerator::createTorqueFingerDemo(integrator);
-    } else {
+    } else if(env_name == "DavidCustom-Demo") {
+        sim = SimEnvGenerator::createDavidCustomDemo(integrator);
+    } 
+    else {
         return NULL;
     }
     return sim;
