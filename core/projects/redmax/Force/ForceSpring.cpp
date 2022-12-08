@@ -11,7 +11,7 @@ namespace redmax {
 ForceSpring::ForceSpring(
     Simulation* sim,
     const BodyCuboid* cuboid1, const BodyCuboid* cuboid2,
-    dtype contact1, dtype contact2, dtype k) : Force(sim), _cuboid1(cuboid1), _cuboid2(cuboid2) {
+    dtype contact1, dtype contact2, dtype k, dtype l) : Force(sim), _cuboid1(cuboid1), _cuboid2(cuboid2) {
     _contact1 = contact1;
     _contact2 = contact2;
     _k = k;
