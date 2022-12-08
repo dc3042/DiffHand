@@ -18,7 +18,7 @@ if __name__ == '__main__':
     num_steps = 1000
 
     #q0 = np.array([0., 0., 0., 0., 0., 0.]) 
-    q0 = np.array([0., np.pi / 2., np.pi / 4., 0., 0., 0.])
+    #q0 = np.array([0., np.pi / 2., np.pi / 4., 0., 0., 0.])
     
     sim.set_q_init(q0)
 
@@ -34,6 +34,8 @@ if __name__ == '__main__':
     for i in range(num_steps):
         q = sim.get_q()
         error = q_goal - q[:3]
+        print(P_q)
+        print(error)
         ui = error * P_q
         
         u[i * ndof_u:(i + 1) * ndof_u] = ui
