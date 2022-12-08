@@ -56,8 +56,8 @@ void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
     dtype l = dx.norm();
     Vector3 f = _k * dx;
 
-    fm.segment(_cuboid1->_index[0], 6) += G1.transpose() * (R1.transpose() * f);
-    fm.segment(_cuboid2->_index[0], 6) -= G2.transpose() * (R2.transpose() * f);
+    fm.segment(_cuboid1->_index[0], 6) += coeff * G1.transpose() * (R1.transpose() * f);
+    fm.segment(_cuboid2->_index[0], 6) -= coeff * G2.transpose() * (R2.transpose() * f);
 
     std::cout << "xw1 " << xw1 << std::endl;
     std::cout << "xw2 " << xw2 << std::endl;
@@ -94,16 +94,16 @@ void ForceSpring::computeForceWithDerivative(
     dtype l = dx.norm();
     Vector3 f = _k * dx;
 
-    fm.segment(_cuboid1->_index[0], 6) += G1.transpose() * (R1.transpose() * f);
-    fm.segment(_cuboid2->_index[0], 6) -= G2.transpose() * (R2.transpose() * f);
+    dtype coeff = 1 - _l/l;
+
+    fm.segment(_cuboid1->_index[0], 6) += coeff * G1.transpose() * (R1.transpose() * f);
+    fm.segment(_cuboid2->_index[0], 6) -= coeff * G2.transpose() * (R2.transpose() * f);
 
     std::cout << "xw1 " << xw1 << std::endl;
     std::cout << "xw2 " << xw2 << std::endl;
     std::cout << "length " << (xw1 - xw2).norm() << std::endl;
     std::cout << "_l " << _l << std::endl;
     //std::cout << "force " << f << std::endl;
-
-    dtype coeff = 1 - _l/l;
 
     Km.block(_cuboid1->_index[0], _cuboid1->_index[0], 6, 6) += 
             _k * G1.transpose() * (Matrix<dtype, 3, 6>() << coeff * math::skew(R1.transpose() * (xw2 - p1)), -I).finished();
