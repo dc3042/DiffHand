@@ -65,7 +65,7 @@ void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
     std::cout << "xw2 " << xw2 << std::endl;
     std::cout << "length " << l << std::endl;
     std::cout << "_l " << _l << std::endl;
-    std::cout << "force " << f << std::endl;
+    std::cout << "force direction" << f * dx << std::endl;
     //exit(0);
 
 }
