@@ -2,6 +2,7 @@
 #include "Common.h"
 #include "Utils.h"
 #include "Force/Force.h"
+#include "CollisionDetection/Contact.h"
 
 namespace redmax {
 
@@ -18,7 +19,9 @@ public:
 
     ForceSpring(
         Simulation* sim,
-        const BodyCuboid* cuboid1, const BodyCuboid* cuboid2, dtype contact1, dtype contact2, dtype k = 1.);
+        const BodyCuboid* cuboid1, const BodyCuboid* cuboid2, 
+        dtype contact1, dtype contact2, 
+        dtype k = 1.);
 
     void set_k(dtype _k);
 
