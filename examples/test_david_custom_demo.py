@@ -43,7 +43,7 @@ if __name__ == '__main__':
         
         u[i * ndof_u:(i + 1) * ndof_u] = ui
 
-        sim.set_u(ui)
+        #sim.set_u(ui)
 
         sim.forward(1, False)
 
