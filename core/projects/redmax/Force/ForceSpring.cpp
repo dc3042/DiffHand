@@ -15,6 +15,7 @@ ForceSpring::ForceSpring(
     _contact1 = contact1;
     _contact2 = contact2;
     _k = k;
+    -l = l;
 }
 
 void ForceSpring::set_k(dtype k) {
