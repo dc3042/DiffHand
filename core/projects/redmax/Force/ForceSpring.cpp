@@ -34,7 +34,7 @@ bool ForceSpring::on_cuboid(const BodyCuboid* cuboid, const Vector3& xw) {
 }
 
 void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
-    std::cout << "Hello ComputeForce" << std::endl;
+    //std::cout << "Hello ComputeForce" << std::endl;
 
     Matrix4 E1 = _cuboid1->_E_0i;
     Matrix3 R1 = E1.topLeftCorner(3, 3);
@@ -72,7 +72,7 @@ void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
 
 void ForceSpring::computeForceWithDerivative(
     VectorX& fm, VectorX& fr, MatrixX& Km, MatrixX& Dm, MatrixX& Kr, MatrixX& Dr, bool verbose) {
-    std::cout << "Hello ComputeForceWithDerivative" << std::endl;
+    //std::cout << "Hello ComputeForceWithDerivative" << std::endl;
 
     Matrix4 E1 = _cuboid1->_E_0i;
     Matrix3 R1 = E1.topLeftCorner(3, 3);
