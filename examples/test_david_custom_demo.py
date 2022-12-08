@@ -33,12 +33,12 @@ if __name__ == '__main__':
     u = np.zeros(ndof_u * num_steps)
     for i in range(num_steps):
         q = sim.get_q()
-        print(q)
+        #print(q)
         error = q_goal - q[:2]
-        print(P_q)
-        print(error)
+        #print(P_q)
+        #print(error)
         ui = error * P_q
-        print(ui)
+        #print(ui)
         #exit(0)
         
         #u[i * ndof_u:(i + 1) * ndof_u] = ui
