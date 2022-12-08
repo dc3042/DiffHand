@@ -18,6 +18,8 @@ public:
     static Simulation* createTorqueFingerDemo(std::string integrator = "BDF2");
     static Simulation* createTorqueFingerFlickDemo(std::string integrator = "BDF2");
     static Simulation* createSphereGroundContactTest(std::string integrator = "BDF2");
+    static Simulation* createDavidCustomDemo(std::string integrator)
+
 };
 
 }
