@@ -63,8 +63,8 @@ void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
     std::cout << "xw2 " << xw2 << std::endl;
     std::cout << "length " << (xw1 - xw2).norm() << std::endl;
     std::cout << "_l " << _l << std::endl;
-    std::cout << "force " << f << std::endl;
-    exit(0);
+    //std::cout << "force " << f << std::endl;
+    //exit(0);
 
 }
 
@@ -101,7 +101,7 @@ void ForceSpring::computeForceWithDerivative(
     std::cout << "xw2 " << xw2 << std::endl;
     std::cout << "length " << (xw1 - xw2).norm() << std::endl;
     std::cout << "_l " << _l << std::endl;
-    std::cout << "force " << f << std::endl;
+    //std::cout << "force " << f << std::endl;
 
     dtype coeff = 1 - _l/l;
 
