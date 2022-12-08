@@ -56,6 +56,8 @@ void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
     dtype l = dx.norm();
     Vector3 f = _k * dx;
 
+    dtype coeff = 1 - _l/l;
+
     fm.segment(_cuboid1->_index[0], 6) += coeff * G1.transpose() * (R1.transpose() * f);
     fm.segment(_cuboid2->_index[0], 6) -= coeff * G2.transpose() * (R2.transpose() * f);
 
