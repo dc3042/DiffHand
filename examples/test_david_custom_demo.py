@@ -17,15 +17,14 @@ if __name__ == '__main__':
 
     num_steps = 1000
 
-    #q0 = np.array([0., 0., 0., 0., 0., 0.]) 
-    q0 = np.array([0., np.pi / 2., np.pi / 4., 0., 0., 0.])
-    
+    q0 = np.array([0., 0., 0., 0., 0., 0.]) 
+    #q0 = np.array([0., np.pi / 2., np.pi / 4., 0., 0., 0.])
     sim.set_q_init(q0)
 
     x_goal = 10.5
 
-    q_goal = np.zeros(2)
-    P_q = np.array([10., 3.])
+    q_goal = np.zeros(3)
+    P_q = np.array([10., 2., 3.])
 
     sim.reset(False)
 
@@ -33,17 +32,12 @@ if __name__ == '__main__':
     u = np.zeros(ndof_u * num_steps)
     for i in range(num_steps):
         q = sim.get_q()
-        #print(q)
-        error = q_goal - q[:2]
-        #print(P_q)
-        #print(error)
+        error = q_goal - q[:3]
         ui = error * P_q
-        #print(ui)
-        #exit(0)
         
-        #u[i * ndof_u:(i + 1) * ndof_u] = ui
+        u[i * ndof_u:(i + 1) * ndof_u] = ui
 
-        #sim.set_u(ui)
+        sim.set_u(ui)
 
         sim.forward(1, False)
 

@@ -105,9 +105,10 @@ void ForceSpring::computeForceWithDerivative(
 
     //std::cout << "xw1 " << xw1 << std::endl;
     //std::cout << "xw2 " << xw2 << std::endl;
-    //std::cout << "length " << (xw1 - xw2).norm() << std::endl;
-    //std::cout << "_l " << _l << std::endl;
-    //std::cout << "force " << f << std::endl;
+    std::cout << "length " << l << std::endl;
+    std::cout << "_l " << _l << std::endl;
+    std::cout << "force " << f << std::endl;
+    exit(0);
 
     Matrix3 nn = dx * dx.transpose();
     Matrix3 K = I - (_l/l) * (I - nn);
