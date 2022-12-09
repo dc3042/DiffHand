@@ -114,13 +114,13 @@ void ForceSpring::computeForceWithDerivative(
     Matrix3 K = I - (_l/l) * (I - nn);
 
     Km.block(_cuboid1->_index[0], _cuboid1->_index[0], 6, 6) += 
-            _k * G1.transpose() * (Matrix<dtype, 3, 6>() << K * math::skew(R1.transpose() * (xw2 - p1)), -K).finished();
+            _k * G1.transpose() * (Matrix<dtype, 3, 6>() << math::skew(R1.transpose() * K * (xw2 - p1)), -K).finished();
     Km.block(_cuboid2->_index[0], _cuboid2->_index[0], 6, 6) +=
-        _k * G2.transpose() * (Matrix<dtype, 3, 6>() << K * math::skew(R2.transpose() * (xw1 - p2)), -K).finished();
+        _k * G2.transpose() * (Matrix<dtype, 3, 6>() << math::skew(R2.transpose() * K * (xw1 - p2)), -K).finished();
     Km.block(_cuboid1->_index[0], _cuboid2->_index[0], 6, 6) +=
-        _k * G1.transpose() * (K * R1.transpose() * (R2 * (Matrix<dtype, 3, 6>() << -coeff * math::skew(xl2), K).finished()));
+        _k * G1.transpose() * (R1.transpose() * (R2 * (Matrix<dtype, 3, 6>() << K * math::skew(xl2), K).finished()));
     Km.block(_cuboid2->_index[0], _cuboid1->_index[0], 6, 6) += 
-        _k * G2.transpose() * (K * R2.transpose() * (R1 * (Matrix<dtype, 3, 6>() << -coeff * math::skew(xl1), K).finished()));
+        _k * G2.transpose() * (R2.transpose() * (R1 * (Matrix<dtype, 3, 6>() << K * math::skew(xl1), K).finished()));
 }
 
 }
