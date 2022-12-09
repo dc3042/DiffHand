@@ -100,8 +100,8 @@ void ForceSpring::computeForceWithDerivative(
     Vector3 f = _k * coeff * dx;
 
 
-    fm.segment(_cuboid1->_index[0], 6) += coeff * G1.transpose() * (R1.transpose() * f);
-    fm.segment(_cuboid2->_index[0], 6) -= coeff * G2.transpose() * (R2.transpose() * f);
+    fm.segment(_cuboid1->_index[0], 6) +=  G1.transpose() * (R1.transpose() * f);
+    fm.segment(_cuboid2->_index[0], 6) -=  G2.transpose() * (R2.transpose() * f);
 
     //std::cout << "xw1 " << xw1 << std::endl;
     //std::cout << "xw2 " << xw2 << std::endl;
