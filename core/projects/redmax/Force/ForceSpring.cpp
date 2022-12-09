@@ -52,10 +52,9 @@ void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
     MatrixX G1 = math::gamma(xl1);
     MatrixX G2 = math::gamma(xl2);
 
-    dtype coeff = 1 - _l/l;
-
     Vector3 dx = xw2 - xw1;
     dtype l = dx.norm();
+    dtype coeff = 1 - _l/l;
 
     Vector3 f = _k * coeff * dx;
 
