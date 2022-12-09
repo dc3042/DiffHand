@@ -22,7 +22,7 @@ if __name__ == '__main__':
     else:
         model_path = os.path.join(asset_folder, args.model + '.xml')
 
-    sim = redmax.Simulation(model_path)
+    sim = redmax.make_sim("DavidCustom-Demo", "BDF2")
 
     num_steps = 1000
 
