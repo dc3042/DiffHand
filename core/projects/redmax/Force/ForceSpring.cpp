@@ -110,7 +110,7 @@ void ForceSpring::computeForceWithDerivative(
     //std::cout << "force " << f << std::endl;
 
     Matrix3 nn = dx * dx.transpose();
-    Matrix K = I - (_l/l) * (I - nn);
+    Matrix3 K = I - (_l/l) * (I - nn);
 
     Km.block(_cuboid1->_index[0], _cuboid1->_index[0], 6, 6) += 
             _k * G1.transpose() * (Matrix<dtype, 3, 6>() << K * math::skew(R1.transpose() * (xw2 - p1)), -K).finished();
