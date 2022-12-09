@@ -565,11 +565,11 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator) {
     robot->add_actuator(actuator1);
 
     // DIP
-    Joint* joint2 = new JointRevolute(sim, 2, Vector3(0, 0, 1), joint1, Matrix3::Identity(), Vector3(2., 0., 0.));
+    Joint* joint2 = new JointRevolute(sim, 2, Vector3(0, 0, -1), joint1, Matrix3::Identity(), Vector3(2., 0., 0.));
     joint2->set_damping(1e4);
     BodyCuboid* body2 = new BodyCuboid(sim, joint2, Vector3(1, 1, 1), Matrix3::Identity(), Vector3(0.5, 0., 0.), 1.);
     Actuator* actuator2 = new ActuatorMotor(joint2, -1e5, 1e5);
-    robot->add_actuator(actuator2);
+    //robot->add_actuator(actuator2);
 
     // Box
     Joint* box_joint = new JointFree2D(sim, 0, nullptr, Matrix3::Identity(), Vector3(5.2, 0.5, 0.0));
@@ -611,8 +611,8 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator) {
     // add spring force
     ForceSpring* forceS1 = new ForceSpring(sim, body0, body1, 6, 2, 1, 0);
     ForceSpring* forceS2 = new ForceSpring(sim, body0, body1, 7, 3, 1, 0);
-    robot->add_force(forceS1);
-    robot->add_force(forceS2);
+    //robot->add_force(forceS1);
+    //robot->add_force(forceS2);
 
     ForceSpring* forceS3 = new ForceSpring(sim, body1, body2, 6, 2, 1, 0);
     ForceSpring* forceS4 = new ForceSpring(sim, body1, body2, 7, 3, 1, 0);
