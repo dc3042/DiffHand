@@ -56,6 +56,7 @@ void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
 
     Vector3 dx = xw2 - xw1;
     dtype l = dx.norm();
+
     Vector3 f = _k * coeff * dx;
 
 
@@ -95,9 +96,10 @@ void ForceSpring::computeForceWithDerivative(
 
     Vector3 dx = xw2 - xw1;
     dtype l = dx.norm();
-    Vector3 f = _k * dx;
-
     dtype coeff = 1 - _l/l;
+
+    Vector3 f = _k * coeff * dx;
+
 
     fm.segment(_cuboid1->_index[0], 6) += coeff * G1.transpose() * (R1.transpose() * f);
     fm.segment(_cuboid2->_index[0], 6) -= coeff * G2.transpose() * (R2.transpose() * f);
@@ -108,14 +110,17 @@ void ForceSpring::computeForceWithDerivative(
     //std::cout << "_l " << _l << std::endl;
     //std::cout << "force " << f << std::endl;
 
+    Matrix3 nn = dx * dx.transpose();
+    Matrix K = I - (_l/l) * (I - nn);
+
     Km.block(_cuboid1->_index[0], _cuboid1->_index[0], 6, 6) += 
-            _k * G1.transpose() * (Matrix<dtype, 3, 6>() << coeff * math::skew(R1.transpose() * (xw2 - p1)), -I).finished();
+            _k * G1.transpose() * (Matrix<dtype, 3, 6>() << K * math::skew(R1.transpose() * (xw2 - p1)), -K).finished();
     Km.block(_cuboid2->_index[0], _cuboid2->_index[0], 6, 6) +=
-        _k * G2.transpose() * (Matrix<dtype, 3, 6>() << coeff * math::skew(R2.transpose() * (xw1 - p2)), -I).finished();
+        _k * G2.transpose() * (Matrix<dtype, 3, 6>() << K * math::skew(R2.transpose() * (xw1 - p2)), -K).finished();
     Km.block(_cuboid1->_index[0], _cuboid2->_index[0], 6, 6) +=
-        _k * G1.transpose() * (R1.transpose() * (R2 * (Matrix<dtype, 3, 6>() << -coeff * math::skew(xl2), I).finished()));
+        _k * G1.transpose() * (K * R1.transpose() * (R2 * (Matrix<dtype, 3, 6>() << -coeff * math::skew(xl2), K).finished()));
     Km.block(_cuboid2->_index[0], _cuboid1->_index[0], 6, 6) += 
-        _k * G2.transpose() * (R2.transpose() * (R1 * (Matrix<dtype, 3, 6>() << -coeff * math::skew(xl1), I).finished()));
+        _k * G2.transpose() * (K * R2.transpose() * (R1 * (Matrix<dtype, 3, 6>() << -coeff * math::skew(xl1), K).finished()));
 }
 
 }
