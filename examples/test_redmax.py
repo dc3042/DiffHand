@@ -26,7 +26,7 @@ if __name__ == '__main__':
     q0 = np.array([0., np.pi / 2., np.pi / 4., 0., 0., 0.])
     #sim.set_q_init(q0)
 
-    num_steps = 1000
+    num_steps = 1
 
     sim.reset(backward_flag = args.gradient) # reset the simulation to start a new trajectory
 
