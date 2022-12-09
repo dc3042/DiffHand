@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     sim = redmax.make_sim("DavidCustom-Demo", "BDF2")
     q0 = np.array([0., np.pi / 2., np.pi / 4., 0., 0., 0.])
-    sim.set_q_init(q0)
+    #sim.set_q_init(q0)
 
     num_steps = 1000
 
