@@ -609,8 +609,8 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator) {
     robot->add_force(force2);
 
     // add spring force
-    ForceSpring* forceS1 = new ForceSpring(sim, body0, body1, 6, 2, 10, 0);
-    ForceSpring* forceS2 = new ForceSpring(sim, body0, body1, 7, 3, 10, 0);
+    ForceSpring* forceS1 = new ForceSpring(sim, body0, body1, 6, 2, 1, 0);
+    ForceSpring* forceS2 = new ForceSpring(sim, body0, body1, 7, 3, 1, 0);
     robot->add_force(forceS1);
     robot->add_force(forceS2);
 
