@@ -26,7 +26,7 @@ for i in range(args.num_seeds):
         cmd = 'python example_finger_flip.py '\
             '--seed {} '\
             '--save-dir {} '\
-            '--visualize False'\
+            '--visualize True'\
                 .format(seed, save_dir)
     elif args.method == 'control-only':
         cmd = 'python example_finger_flip.py '\
