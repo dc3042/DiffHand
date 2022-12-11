@@ -611,13 +611,21 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator) {
     // add spring force
     ForceSpring* forceS1 = new ForceSpring(sim, body0, body1, 6, 2, 5000, 0);
     ForceSpring* forceS2 = new ForceSpring(sim, body0, body1, 7, 3, 5000, 0);
+    ForceSpring* forceS3 = new ForceSpring(sim, body0, body1, 4, 0, 5000, 0);
+    ForceSpring* forceS4 = new ForceSpring(sim, body0, body1, 5, 1, 5000, 0);
     robot->add_force(forceS1);
     robot->add_force(forceS2);
-
-    ForceSpring* forceS3 = new ForceSpring(sim, body1, body2, 6, 2, 5000, 0);
-    ForceSpring* forceS4 = new ForceSpring(sim, body1, body2, 7, 3, 5000, 0);
     robot->add_force(forceS3);
     robot->add_force(forceS4);
+
+    ForceSpring* forceS5 = new ForceSpring(sim, body1, body2, 6, 2, 5000, 0);
+    ForceSpring* forceS6 = new ForceSpring(sim, body1, body2, 7, 3, 5000, 0);
+    ForceSpring* forceS7 = new ForceSpring(sim, body1, body2, 4, 0, 5000, 0);
+    ForceSpring* forceS8 = new ForceSpring(sim, body1, body2, 5, 1, 5000, 0);
+    robot->add_force(forceS5);
+    robot->add_force(forceS6);
+    robot->add_force(forceS7);
+    robot->add_force(forceS8);
 
     sim->addRobot(robot);
     sim->init();
