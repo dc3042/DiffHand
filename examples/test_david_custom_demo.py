@@ -18,7 +18,7 @@ if __name__ == '__main__':
     num_steps = 1000
 
     #q0 = np.array([0., 0., 0., 0., 0., 0.]) 
-    q0 = np.array([np.pi / 6., np.pi / 6., np.pi / 6, 0., 0., 0.])
+    q0 = np.array([np.pi / 4., np.pi / 6., np.pi / 6, 0., 0., 0.])
     sim.set_q_init(q0)
 
     x_goal = 10.5
