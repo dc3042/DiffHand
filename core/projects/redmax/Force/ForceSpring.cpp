@@ -54,19 +54,18 @@ void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
 
     Vector3 dx = xw2 - xw1;
     dtype l = dx.norm();
-    dtype coeff = 1 - _l/l;
 
-    Vector3 f = _k * coeff * dx;
+    dtype f =  - _k * (l - _l);
 
 
-    fm.segment(_cuboid1->_index[0], 6) +=  G1.transpose() * (R1.transpose() * f);
-    fm.segment(_cuboid2->_index[0], 6) -=  G2.transpose() * (R2.transpose() * f);
+    fm.segment(_cuboid1->_index[0], 6) +=  f/l * G1.transpose() * (R1.transpose() * dx);
+    fm.segment(_cuboid2->_index[0], 6) -=  f/l * G2.transpose() * (R2.transpose() * dx);
 
-    std::cout << "xw1 " << xw1 << std::endl;
-    std::cout << "xw2 " << xw2 << std::endl;
-    std::cout << "length " << l << std::endl;
-    std::cout << "_l " << _l << std::endl;
-    std::cout << "force direction" << f.dot(dx) << std::endl;
+    //std::cout << "xw1 " << xw1 << std::endl;
+    //std::cout << "xw2 " << xw2 << std::endl;
+    //std::cout << "length " << l << std::endl;
+    //std::cout << "_l " << _l << std::endl;
+    //std::cout << "force direction" << f.dot(dx) << std::endl;
     //exit(0);
 
 }
@@ -95,33 +94,59 @@ void ForceSpring::computeForceWithDerivative(
 
     Vector3 dx = xw2 - xw1;
     dtype l = dx.norm();
-    dtype coeff = 1 - _l/l;
 
-    Vector3 f = _k * coeff * dx;
+    dtype f =  - _k * (l - _l); // No dependence on l_dot
 
+    fm.segment(_cuboid1->_index[0], 6) +=  f/l * G1.transpose() * R1.transpose() * dx;
+    fm.segment(_cuboid2->_index[0], 6) -=  f/l * G2.transpose() * R2.transpose() * dx;
 
-    fm.segment(_cuboid1->_index[0], 6) +=  G1.transpose() * (R1.transpose() * f);
-    fm.segment(_cuboid2->_index[0], 6) -=  G2.transpose() * (R2.transpose() * f);
+    dtype df_dl = -_k;
 
-    //std::cout << "xw1 " << xw1 << std::endl;
-    //std::cout << "xw2 " << xw2 << std::endl;
-    //std::cout << "length " << l << std::endl;
-    //std::cout << "_l " << _l << std::endl;
-    //std::cout << "force " << f << std::endl;
-    //exit(0);
+    dl_dq = VectorX::Zero(12);
+    dl_dq.segment(0, 6) = - dx.transpose()/ l * R1 * G1;
+    dl_dq.segment(6, 6) = dx.transpose() / l * R2 * G2;
+    VectorX df_dq = df_dl * dl_dq;
+    VectorX dfl_dq =  1/l * df_dq - f/(l*l) * dl_dq;
 
-    Vector3 n = dx / l;
-    Matrix3 nn = n * n.transpose();
-    Matrix3 K = coeff * I + _l/l * nn;
+    /**
+    K1
+    */
 
-    Km.block(_cuboid1->_index[0], _cuboid1->_index[0], 6, 6) += 
-            _k * G1.transpose() * (Matrix<dtype, 3, 6>() << math::skew(R1.transpose() * (xw2 - p1)), -K).finished();
-    Km.block(_cuboid2->_index[0], _cuboid2->_index[0], 6, 6) +=
-        _k * G2.transpose() * (Matrix<dtype, 3, 6>() << math::skew(R1.transpose() * (xw2 - p1)), -K).finished();
-    Km.block(_cuboid1->_index[0], _cuboid2->_index[0], 6, 6) +=
-        _k * G1.transpose() * (R1.transpose() * (R2 * (Matrix<dtype, 3, 6>() <<  math::skew(xl2), K).finished()));
-    Km.block(_cuboid2->_index[0], _cuboid1->_index[0], 6, 6) += 
-        _k * G2.transpose() * (R2.transpose() * (R1 * (Matrix<dtype, 3, 6>() << math::skew(xl1), K).finished()));
+    VectorX f_vector = VectorX::Zero(12);
+    f_vector.segment(0, 6) = G1.tranpose() * R1.transpose() * dx;
+    f_vector.segment(6, 6) = - G2.tranpose() * R1.tranpose() * dx;
+
+    MatrixX K1 = dfl_dq * f_vector.transpose();
+
+    Km.block(_cuboid1->_index[0], _cuboid1->_index[0], 6, 6) += K1.block(0, 0, 6, 6);
+    Km.block(_cuboid1->_index[0], _cuboid2->_index[0], 6, 6) += K1.block(0, 6, 6, 6);
+    Km.block(_cuboid2->_index[0], _cuboid1->_index[0], 6, 6) += K1.block(6, 0, 6, 6);
+    Km.block(_cuboid2->_index[0], _cuboid2->_index[0], 6, 6) += K1.block(6, 6, 6, 6);
+
+    /**
+    K2
+    */
+
+    Km.block(_cuboid1->_index[0], _cuboid1->_index[0], 3,3) += f/l * math::skew(xl1) * math::skew(R1.transpose() * (p1 - xw2));
+    Km.block(_cuboid1->_index[0], _cuboid1->_index[3], 3,3) += f/l * math::skew(xl1);
+    Km.block(_cuboid1->_index[0], _cuboid2->_index[0], 3,3) += f/l * math::skew(xl1) * R1.transpose() * R2 * math::skew(xl2);
+    Km.block(_cuboid1->_index[0], _cuboid2->_index[3], 3,3) += f/l * -math::skew(xl1) * R1.transpose() * R2;
+
+    Km.block(_cuboid1->_index[3], _cuboid1->_index[0], 3,3) += f/l * math::skew(R1.transpose() * (p1 - xw2));
+    Km.block(_cuboid1->_index[3], _cuboid1->_index[3], 3,3) += f/l * I;
+    Km.block(_cuboid1->_index[3], _cuboid2->_index[0], 3,3) += f/l * R1.transpose() * R2 * math::skew(xl2);
+    Km.block(_cuboid1->_index[3], _cuboid2->_index[3], 3,3) += f/l * -R1.tranpose() * R2;
+
+    Km.block(_cuboid2->_index[0], _cuboid1->_index[0], 3,3) += f/l * math::skew(xl2) * R2.tranpose() * R1 * math::skew(xl1);
+    Km.block(_cuboid2->_index[0], _cuboid1->_index[3], 3,3) += f/l * -math::skew(xl2) * R2.tranpose() * R1;
+    Km.block(_cuboid2->_index[0], _cuboid2->_index[0], 3,3) += f/l * math::skew(xl2) * math::skew(R2.transpose() * (p2 - xw1));
+    Km.block(_cuboid2->_index[0], _cuboid2->_index[3], 3,3) += f/l * math::skew(xl2);
+
+    Km.block(_cuboid2->_index[3], _cuboid1->_index[0], 3,3) += f/l * R2.transpose() * R1 * math::skew(xl1);
+    Km.block(_cuboid2->_index[3], _cuboid1->_index[3], 3,3) += f/l * -R2.tranpose() * R1;
+    Km.block(_cuboid2->_index[3], _cuboid2->_index[0], 3,3) += f/l * math::skew(R2.transpose() * (p2 - xw1));
+    Km.block(_cuboid2->_index[3], _cuboid2->_index[3], 3,3) += f/l * I;
+
 }
 
 }
