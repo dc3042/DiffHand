@@ -559,7 +559,7 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator) {
 
     // PIP
     Joint* joint1 = new JointRevolute(sim, 1, Vector3(0, 0, -1), joint0, Matrix3::Identity(), Vector3(4., 0., 0.));
-    joint1->set_damping(1e4);
+    //joint1->set_damping(1e4);
     BodyCuboid* body1 = new BodyCuboid(sim, joint1, Vector3(2, 1, 1), Matrix3::Identity(), Vector3(1., 0., 0.), 1.);
     Actuator* actuator1 = new ActuatorMotor(joint1, -1e5, 1e5);
     //robot->add_actuator(actuator1);
