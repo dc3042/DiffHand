@@ -108,6 +108,12 @@ void ForceSpring::computeForceWithDerivative(
     VectorX df_dq = df_dl * dl_dq;
     VectorX dfl_dq =  1/l * df_dq - f/(l*l) * dl_dq;
 
+    std::cout << "xw1 " << xw1 << std::endl;
+    std::cout << "xw2 " << xw2 << std::endl;
+    std::cout << "length " << l << std::endl;
+    std::cout << "_l " << _l << std::endl;
+    std::cout << "force " << f << std::endl;
+
     /**
     K1
     */
