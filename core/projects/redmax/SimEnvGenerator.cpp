@@ -551,7 +551,7 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator) {
     Robot* robot = new Robot();
 
     // MCP
-    Joint* joint0 = new JointRevolute(sim, 0, Vector3(0, 0, -1), nullptr, Matrix3::Identity(), Vector3(0., 3.2, 0.));
+    Joint* joint0 = new JointRevolute(sim, 0, Vector3(0, 0, -1), nullptr, Matrix3::Identity(), Vector3(0., 3.5, 0.));
     joint0->set_damping(1e4);
     BodyCuboid* body0 = new BodyCuboid(sim, joint0, Vector3(4, 1, 1), Matrix3::Identity(), Vector3(2., 0., 0.), 1.);
     Actuator* actuator0 = new ActuatorMotor(joint0, -1e5, 1e5);
@@ -609,19 +609,19 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator) {
     robot->add_force(force2);
 
     // add spring force
-    ForceSpring* forceS1 = new ForceSpring(sim, body0, body1, 6, 6, 5000, 2);
-    ForceSpring* forceS2 = new ForceSpring(sim, body0, body1, 7, 7, 5000, 2);
-    ForceSpring* forceS3 = new ForceSpring(sim, body0, body1, 4, 4, 5000, 2);
-    ForceSpring* forceS4 = new ForceSpring(sim, body0, body1, 5, 5, 5000, 2);
+    ForceSpring* forceS1 = new ForceSpring(sim, body0, body1, 6, 6, 500, 2);
+    ForceSpring* forceS2 = new ForceSpring(sim, body0, body1, 7, 7, 500, 2);
+    ForceSpring* forceS3 = new ForceSpring(sim, body0, body1, 4, 4, 500, 2);
+    ForceSpring* forceS4 = new ForceSpring(sim, body0, body1, 5, 5, 500, 2);
     robot->add_force(forceS1);
     robot->add_force(forceS2);
     //robot->add_force(forceS3);
     //robot->add_force(forceS4);
 
-    ForceSpring* forceS5 = new ForceSpring(sim, body1, body2, 6, 6, 5000, 1);
-    ForceSpring* forceS6 = new ForceSpring(sim, body1, body2, 7, 7, 5000, 1);
-    ForceSpring* forceS7 = new ForceSpring(sim, body1, body2, 4, 4, 5000, 1);
-    ForceSpring* forceS8 = new ForceSpring(sim, body1, body2, 5, 5, 5000, 1);
+    ForceSpring* forceS5 = new ForceSpring(sim, body1, body2, 6, 6, 500, 1);
+    ForceSpring* forceS6 = new ForceSpring(sim, body1, body2, 7, 7, 500, 1);
+    ForceSpring* forceS7 = new ForceSpring(sim, body1, body2, 4, 4, 500, 1);
+    ForceSpring* forceS8 = new ForceSpring(sim, body1, body2, 5, 5, 500, 1);
     robot->add_force(forceS5);
     robot->add_force(forceS6);
     //robot->add_force(forceS7);
