@@ -21,7 +21,7 @@ class SimRenderer:
             images_path = os.path.join(record_folder, r"%d.png")
             os.system("ffmpeg -i {} -vf palettegen palette.png".format(images_path))
             os.system("ffmpeg -i {} -i palette.png -lavfi paletteuse {}".format(images_path, record_path))
-            os.remove("palette.png")
+            #os.remove("palette.png")
 
             shutil.rmtree(record_folder)
 
