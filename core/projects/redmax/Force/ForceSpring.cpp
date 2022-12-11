@@ -113,8 +113,8 @@ void ForceSpring::computeForceWithDerivative(
     */
 
     VectorX f_vector = VectorX::Zero(12);
-    f_vector.segment(0, 6) = G1.tranpose() * R1.transpose() * dx;
-    f_vector.segment(6, 6) = - G2.tranpose() * R1.tranpose() * dx;
+    f_vector.segment(0, 6) = G1.transpose() * R1.transpose() * dx;
+    f_vector.segment(6, 6) = - G2.transpose() * R1.transpose() * dx;
 
     MatrixX K1 = dfl_dq * f_vector.transpose();
 
@@ -135,15 +135,15 @@ void ForceSpring::computeForceWithDerivative(
     Km.block(_cuboid1->_index[3], _cuboid1->_index[0], 3,3) += f/l * math::skew(R1.transpose() * (p1 - xw2));
     Km.block(_cuboid1->_index[3], _cuboid1->_index[3], 3,3) += f/l * I;
     Km.block(_cuboid1->_index[3], _cuboid2->_index[0], 3,3) += f/l * R1.transpose() * R2 * math::skew(xl2);
-    Km.block(_cuboid1->_index[3], _cuboid2->_index[3], 3,3) += f/l * -R1.tranpose() * R2;
+    Km.block(_cuboid1->_index[3], _cuboid2->_index[3], 3,3) += f/l * -R1.transpose() * R2;
 
-    Km.block(_cuboid2->_index[0], _cuboid1->_index[0], 3,3) += f/l * math::skew(xl2) * R2.tranpose() * R1 * math::skew(xl1);
-    Km.block(_cuboid2->_index[0], _cuboid1->_index[3], 3,3) += f/l * -math::skew(xl2) * R2.tranpose() * R1;
+    Km.block(_cuboid2->_index[0], _cuboid1->_index[0], 3,3) += f/l * math::skew(xl2) * R2.transpose() * R1 * math::skew(xl1);
+    Km.block(_cuboid2->_index[0], _cuboid1->_index[3], 3,3) += f/l * -math::skew(xl2) * R2.transpose() * R1;
     Km.block(_cuboid2->_index[0], _cuboid2->_index[0], 3,3) += f/l * math::skew(xl2) * math::skew(R2.transpose() * (p2 - xw1));
     Km.block(_cuboid2->_index[0], _cuboid2->_index[3], 3,3) += f/l * math::skew(xl2);
 
     Km.block(_cuboid2->_index[3], _cuboid1->_index[0], 3,3) += f/l * R2.transpose() * R1 * math::skew(xl1);
-    Km.block(_cuboid2->_index[3], _cuboid1->_index[3], 3,3) += f/l * -R2.tranpose() * R1;
+    Km.block(_cuboid2->_index[3], _cuboid1->_index[3], 3,3) += f/l * -R2.transpose() * R1;
     Km.block(_cuboid2->_index[3], _cuboid2->_index[0], 3,3) += f/l * math::skew(R2.transpose() * (p2 - xw1));
     Km.block(_cuboid2->_index[3], _cuboid2->_index[3], 3,3) += f/l * I;
 
