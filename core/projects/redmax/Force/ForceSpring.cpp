@@ -100,14 +100,6 @@ void ForceSpring::computeForceWithDerivative(
     fm.segment(_cuboid1->_index[0], 6) +=  f/l * G1.transpose() * R1.transpose() * dx;
     fm.segment(_cuboid2->_index[0], 6) -=  f/l * G2.transpose() * R2.transpose() * dx;
 
-    dtype df_dl = -_k;
-
-    VectorX dl_dq = VectorX::Zero(12);
-    dl_dq.segment(0, 6) = - dx.transpose()/ l * R1 * G1;
-    dl_dq.segment(6, 6) = dx.transpose() / l * R2 * G2;
-    VectorX df_dq = df_dl * dl_dq;
-    VectorX dfl_dq =  1/l * df_dq - f/(l*l) * dl_dq;
-
     std::cout << "xw1 " << xw1 << std::endl;
     std::cout << "xw2 " << xw2 << std::endl;
     std::cout << "length " << l << std::endl;
@@ -117,6 +109,14 @@ void ForceSpring::computeForceWithDerivative(
     /**
     K1
     */
+
+    dtype df_dl = -_k;
+
+    VectorX dl_dq = VectorX::Zero(12);
+    dl_dq.segment(0, 6) = - dx.transpose()/ l * R1 * G1;
+    dl_dq.segment(6, 6) = dx.transpose() / l * R2 * G2;
+    VectorX df_dq = df_dl * dl_dq;
+    VectorX dfl_dq =  1/l * df_dq - f/(l*l) * dl_dq;
 
     VectorX f_vector = VectorX::Zero(12);
     f_vector.segment(0, 6) = G1.transpose() * R1.transpose() * dx;
