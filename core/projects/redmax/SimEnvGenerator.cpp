@@ -558,11 +558,12 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
 
     // construct simulation
     Simulation* sim = new Simulation(options, viewer_options, "Torque-driven finger flick box demo");
+    sim->_E_g.topRightCorner(3, 1) *= 10.;
 
     Robot* robot = new Robot();
 
     // MCP
-    Joint* joint0 = new JointRevolute(sim, 0, Vector3(0, 0, -1), nullptr, Matrix3::Identity(), Vector3(0., 3.2, 0.));
+    Joint* joint0 = new JointRevolute(sim, 0, Vector3(0, 0, -1), nullptr, Matrix3::Identity(), Vector3(0., 0, 4));
     joint0->set_damping(1e4);
     BodyCuboid* body0 = new BodyCuboid(sim, joint0, Vector3(4, 1, 1), Matrix3::Identity(), Vector3(2., 0., 0.), 1.);
     Actuator* actuator0 = new ActuatorMotor(joint0, -1e5, 1e5);
