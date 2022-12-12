@@ -542,7 +542,7 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
     // viewer_options->_camera_pos = Vector3(0.5, 0.45, 0.8);
     viewer_options->_camera_lookat = Vector3(0.3, 0.4, 0.);
     viewer_options->_ground = true;
-    Vector3 pos = Vector3(0,0,-980);
+    Vector3 pos = Vector3(0,0,-10);
     Vector3 normal = Vector3(0,0,1);
     Vector3 nz = normal.normalized();
     Eigen::Quaternion<dtype> quat;
