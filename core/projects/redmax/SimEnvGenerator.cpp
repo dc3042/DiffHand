@@ -535,12 +535,6 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
 
     // viewer options
     Simulation::ViewerOptions *viewer_options = new Simulation::ViewerOptions();
-    viewer_options->_fps = 30;
-    viewer_options->_speed = 0.5;
-    viewer_options->_camera_up = Vector3::UnitY();
-    viewer_options->_camera_pos = Vector3(0.8, 0.6, 2.0);
-    // viewer_options->_camera_pos = Vector3(0.5, 0.45, 0.8);
-    viewer_options->_camera_lookat = Vector3(0.3, 0.4, 0.);
     viewer_options->_ground = true;
     Vector3 pos = Vector3(0,0,-10);
     Vector3 normal = Vector3(0,0,1);
