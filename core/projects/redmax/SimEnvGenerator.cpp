@@ -538,8 +538,8 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
     Simulation* sim = new Simulation(options, "Robot Walk demo");
 
     // viewer options
-    Simulation::ViewerOptions *viewer_options = new Simulation::ViewerOptions();
-    viewer_options->_ground = true;
+    sim->_viewer_options = new Simulation::ViewerOptions();
+    sim->_viewer_options->_ground = true;
     Vector3 pos = Vector3(0,0,-10);
     Vector3 normal = Vector3(0,0,1);
     Vector3 nz = normal.normalized();
