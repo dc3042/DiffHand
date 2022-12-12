@@ -1,22 +1,26 @@
 #include "SimEnvGenerator.h"
 #include "Robot.h"
+#include "Body/Body.h"
+#include "Joint/Joint.h"
 #include "Body/BodyCuboid.h"
 #include "Body/BodyMeshObj.h"
 #include "Body/BodySphere.h"
+#include "Body/BodyAbstract.h"
 #include "Joint/JointFixed.h"
 #include "Joint/JointRevolute.h"
 #include "Joint/JointPrismatic.h"
 #include "Joint/JointFree2D.h"
-#include "Joint/JointTranslational.h"
-#include "Joint/JointSphericalEuler.h"
 #include "Joint/JointFree3DEuler.h"
 #include "Joint/JointFree3DExp.h"
+#include "Joint/JointPlanar.h"
 #include "Force/ForceGroundContact.h"
 #include "Force/ForceCuboidCuboidContact.h"
-#include "Force/ForceSpring.h"
 #include "Force/ForceGeneralPrimitiveContact.h"
 #include "Actuator/Actuator.h"
 #include "Actuator/ActuatorMotor.h"
+#include "EndEffector/EndEffector.h"
+#include "VirtualObject/VirtualObjectSphere.h"
+#include "SimViewer.h"
 #include "Utils.h"
 #include "Common.h"
 
@@ -587,7 +591,7 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
     box->set_color(Vector3(0., 0.2, 0.4));
 
     // virtual goal
-    JointFixed* goal_joint = new JointFixed(sim, 10, nullptr, math::quat2mat(Vector4(1,0,0,0)), Vector3(0, 0, -10));
+    JointFixed* goal_joint = new JointFixed(sim, 10, nullptr, math::quat2mat(Vector4(1,0,0,0)), Vector3(5, 0, -10));
     BodyCuboid* goal = new BodyCuboid(sim, goal_joint, Vector3(0.2, 0.2, 0.2), Matrix3::Identity(), Vector3::Zero(), 1.);
     goal->set_color(Vector3(0., 1., 0.));
 
