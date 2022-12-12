@@ -552,7 +552,7 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
     sim->_E_g.block(0, 0, 3, 1) = nx;
     sim->_E_g.block(0, 1, 3, 1) = ny;
     sim->_E_g.block(0, 2, 3, 1) = nz;
-    sim->_viewer_options = sim->_E_g;
+    sim->_viewer_options->_E_g = sim->_E_g;
     sim->_viewer_options->_E_g.topRightCorner(3, 1) /= 10.;
 
     sim->_E_g = sim->_viewer_options->_E_g;
