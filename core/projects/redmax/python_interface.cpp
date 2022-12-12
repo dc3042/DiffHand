@@ -8,7 +8,7 @@ using namespace redmax;
 
 namespace py = pybind11;
 
-Simulation* make_sim(std::string env_name, std::string integrator = "BDF2") {
+Simulation* make_sim(std::string env_name, std::string integrator = "BDF2", bool verbose=false) {
     Simulation* sim = nullptr;
     if (env_name == "SinglePendulum-Test") {
         sim = SimEnvGenerator::createSinglePendulumTest(integrator);
@@ -25,7 +25,7 @@ Simulation* make_sim(std::string env_name, std::string integrator = "BDF2") {
     } else if (env_name == "TorqueFinger-Demo") {
         sim = SimEnvGenerator::createTorqueFingerDemo(integrator);
     } else if(env_name == "DavidCustom-Demo") {
-        sim = SimEnvGenerator::createDavidCustomDemo(integrator);
+        sim = SimEnvGenerator::createDavidCustomDemo(integrator, verbose);
     } 
     else {
         return NULL;
