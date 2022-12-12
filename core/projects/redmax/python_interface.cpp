@@ -176,5 +176,5 @@ PYBIND11_MODULE(redmax_py, m) {
         .def("print_time_report", &Simulation::print_time_report,
                 "print time report of the simulation.");
 
-    m.def("make_sim", &make_sim, "initialize a simulation instance", py::arg("env_name"), py::arg("integrator") = "BDF2");
+    m.def("make_sim", &make_sim, "initialize a simulation instance", py::arg("env_name"), py::arg("integrator") = "BDF2", py::arg("verbose") = false);
 }
