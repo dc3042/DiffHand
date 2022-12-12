@@ -544,6 +544,7 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
     viewer_options->_ground = true;
     Vector3 pos = Vector3(0,0,-980);
     Vector3 normal = Vector3(0,0,1);
+    Vector3 nz = normal.normalized();
     Eigen::Quaternion<dtype> quat;
     quat.setFromTwoVectors(Vector3::UnitZ(), nz);
     Vector3 nx = quat * Vector3::UnitX();
@@ -553,8 +554,8 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
     viewer_options->_E_g.block(0, 0, 3, 1) = nx;
     viewer_options->_E_g.block(0, 1, 3, 1) = ny;
     viewer_options->_E_g.block(0, 2, 3, 1) = nz;
-    _viewer_options->_E_g.topRightCorner(3, 1) /= 10.;
-    
+    viewer_options->_E_g.topRightCorner(3, 1) /= 10.;
+
     // construct simulation
     Simulation* sim = new Simulation(options, viewer_options, "Torque-driven finger flick box demo");
 
