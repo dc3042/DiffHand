@@ -30,7 +30,6 @@ optimize_design_flag = True
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('')
-    parser.add_argument("--model", type = str, default = 'rss_two_finger_assemble')
     parser.add_argument('--record', action = 'store_true')
     parser.add_argument('--record-file-name', type = str, default = 'rss_two_finger_assemble')
     parser.add_argument('--seed', type = int, default = 0)
@@ -45,11 +44,6 @@ if __name__ == '__main__':
     asset_folder = os.path.abspath(os.path.join(example_base_dir, '..', 'assets'))
 
     args = parser.parse_args()
-
-    if args.model[-4:] == '.xml':
-        model_path = os.path.join(asset_folder, args.model)
-    else:
-        model_path = os.path.join(asset_folder, args.model + '.xml')
 
     optimize_design_flag = not args.no_design_optim
     os.makedirs(args.save_dir, exist_ok = True)
@@ -75,8 +69,8 @@ if __name__ == '__main__':
     ndof_p = sim.ndof_p
 
     # set up camera
-    #sim.viewer_options.camera_pos = np.array([2.5, -4, 1.8])
-    #sim.viewer_options.speed = 0.5
+    sim.viewer_options.camera_pos = np.array([2.5, -4, 1.8])
+    sim.viewer_options.speed = 0.5
 
     # init design params
     design = Design()

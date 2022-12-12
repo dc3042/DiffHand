@@ -529,8 +529,8 @@ Simulation* SimEnvGenerator::createTorqueFingerFlickDemo(std::string integrator)
 Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool verbose) {
     // simulation options
     Simulation::Options *options = new Simulation::Options();
-    options->_gravity = -980. * Vector3::UnitY();
-    options->_h = 5e-4;
+    options->_gravity = Vector3(0,0,-980);
+    options->_h = 1e-3;
     options->_integrator = integrator;
 
     // viewer options
@@ -542,9 +542,19 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
     // viewer_options->_camera_pos = Vector3(0.5, 0.45, 0.8);
     viewer_options->_camera_lookat = Vector3(0.3, 0.4, 0.);
     viewer_options->_ground = true;
-    viewer_options->_E_g.topLeftCorner(3, 3) = Eigen::AngleAxis<dtype>(-constants::pi / 2., Vector3::UnitX()).matrix();
-    viewer_options->_E_g.topRightCorner(3, 1).setZero();
-
+    Vector3 pos = Vector3(0,0,-980);
+    Vector3 normal = Vector3(0,0,1);
+    Eigen::Quaternion<dtype> quat;
+    quat.setFromTwoVectors(Vector3::UnitZ(), nz);
+    Vector3 nx = quat * Vector3::UnitX();
+    Vector3 ny = quat * Vector3::UnitY();
+    viewer_options->_E_g = Matrix4::Identity();
+    viewer_options->_E_g.topRightCorner(3, 1) = pos;
+    viewer_options->_E_g.block(0, 0, 3, 1) = nx;
+    viewer_options->_E_g.block(0, 1, 3, 1) = ny;
+    viewer_options->_E_g.block(0, 2, 3, 1) = nz;
+    _viewer_options->_E_g.topRightCorner(3, 1) /= 10.;
+    
     // construct simulation
     Simulation* sim = new Simulation(options, viewer_options, "Torque-driven finger flick box demo");
 
