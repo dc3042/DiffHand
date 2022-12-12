@@ -526,7 +526,7 @@ Simulation* SimEnvGenerator::createTorqueFingerFlickDemo(std::string integrator)
 // DavidCustomDemo
 // contains a torque-driven finger and a box with 2D free joint
 // goal: the finger to flick the box to target position
-Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator) {
+Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool verbose) {
     // simulation options
     Simulation::Options *options = new Simulation::Options();
     options->_gravity = -980. * Vector3::UnitY();
@@ -550,10 +550,66 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator) {
 
     Robot* robot = new Robot();
 
-    
+    // MCP
+    Joint* joint0 = new JointRevolute(sim, 0, Vector3(0, 0, -1), nullptr, Matrix3::Identity(), Vector3(0., 3.2, 0.));
+    joint0->set_damping(1e4);
+    BodyCuboid* body0 = new BodyCuboid(sim, joint0, Vector3(4, 1, 1), Matrix3::Identity(), Vector3(2., 0., 0.), 1.);
+    Actuator* actuator0 = new ActuatorMotor(joint0, -1e5, 1e5);
+    robot->add_actuator(actuator0);
+
+    // PIP
+    Joint* joint1 = new JointRevolute(sim, 1, Vector3(0, 0, -1), joint0, Matrix3::Identity(), Vector3(4., 0., 0.));
+    joint1->set_damping(1e4);
+    BodyCuboid* body1 = new BodyCuboid(sim, joint1, Vector3(2, 1, 1), Matrix3::Identity(), Vector3(1., 0., 0.), 1.);
+    Actuator* actuator1 = new ActuatorMotor(joint1, -1e5, 1e5);
+    robot->add_actuator(actuator1);
+
+    // DIP
+    Joint* joint2 = new JointRevolute(sim, 2, Vector3(0, 0, -1), joint1, Matrix3::Identity(), Vector3(2., 0., 0.));
+    joint2->set_damping(1e4);
+    BodyCuboid* body2 = new BodyCuboid(sim, joint2, Vector3(1, 1, 1), Matrix3::Identity(), Vector3(0.5, 0., 0.), 1.);
+    Actuator* actuator2 = new ActuatorMotor(joint2, -1e5, 1e5);
+    robot->add_actuator(actuator2);
+
+    // Box
+    Joint* box_joint = new JointFree2D(sim, 0, nullptr, Matrix3::Identity(), Vector3(5.2, 0.5, 0.0));
+    BodyCuboid* box = new BodyCuboid(sim, box_joint, Vector3(1, 1, 1), Matrix3::Identity(), Vector3::Zero(), 1.);
+    box->set_color(Vector3(0., 0.2, 0.4));
+
+    // virtual goal
+    JointFixed* goal_joint = new JointFixed(sim, 10, nullptr, Matrix3::Identity(), Vector3(5.2 + 10.5, 0.5, 0.));
+    BodyCuboid* goal = new BodyCuboid(sim, goal_joint, Vector3(0.2, 0.2, 0.2), Matrix3::Identity(), Vector3::Zero(), 1.);
+    goal->set_color(Vector3(0., 1., 0.));
+
+    robot->_root_joints.push_back(joint0);
+    robot->_root_joints.push_back(box_joint);
+    robot->_root_joints.push_back(goal_joint);
+
+    // add ground contact
+    Matrix3 R = Eigen::AngleAxis<dtype>(-constants::pi / 2., Vector3::UnitX()).matrix();
+    Matrix4 E_g = Matrix4::Identity();
+    E_g.topLeftCorner(3, 3) = R;
+    ForceGroundContact* force_ground_0 = new ForceGroundContact(sim, body0, E_g, 1e4, 1e2, 0.2, 3e1);
+    robot->add_force(force_ground_0);
+    ForceGroundContact* force_ground_1 = new ForceGroundContact(sim, body1, E_g, 1e4, 1e2, 0.2, 3e1);
+    robot->add_force(force_ground_1);
+    ForceGroundContact* force_ground_2 = new ForceGroundContact(sim, body2, E_g, 1e4, 1e2, 0.2, 3e1);
+    robot->add_force(force_ground_2);
+    ForceGroundContact* force_ground_3 = new ForceGroundContact(sim, box, E_g, 1e4, 1e2, 0.2, 3e1);
+    robot->add_force(force_ground_3);
+
+    // add box-box contact
+    ForceCuboidCuboidContact* force0 = new ForceCuboidCuboidContact(sim, body0, box, 1e4, 0.0);
+    robot->add_force(force0);
+
+    ForceCuboidCuboidContact* force1 = new ForceCuboidCuboidContact(sim, body1, box, 1e4, 0.0);
+    robot->add_force(force1);
+
+    ForceCuboidCuboidContact* force2 = new ForceCuboidCuboidContact(sim, body2, box, 1e4, 0.0);
+    robot->add_force(force2);
 
     sim->addRobot(robot);
-    sim->init();
+    sim->init(verbose);
 
     return sim;
 }
