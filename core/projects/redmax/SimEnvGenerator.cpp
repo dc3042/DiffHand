@@ -552,6 +552,7 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
 
     // construct simulation
     Simulation* sim = new Simulation(options, viewer_options, "Torque-driven finger flick box demo");
+    sim->_E_g = viewer_options->_E_g;
     sim->_E_g.topRightCorner(3, 1) *= 10.;
 
     Robot* robot = new Robot();
