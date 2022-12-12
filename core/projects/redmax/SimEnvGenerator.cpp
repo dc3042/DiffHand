@@ -586,8 +586,8 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
     robot->add_actuator(actuator2);
 
     // Box
-    Joint* box_joint = new JointFree2D(sim, 0, nullptr, math::quat2mat(Vector4(1,0,0,0)), Vector3(0, 0, -9));
-    BodyCuboid* box = new BodyCuboid(sim, box_joint, Vector3(1, 1, 1), Matrix3::Identity(), Vector3::Zero(), 1.);
+    Joint* box_joint = new JointFree2D(sim, 0, nullptr, math::quat2mat(Vector4(1,0,0,0)), Vector3(8, 2, -8.6));
+    BodyCuboid* box = new BodyCuboid(sim, box_joint, Vector3(2.8, 2.8, 2.8), math::quat2mat(Vector4(1,0,0,0)), Vector3::Zero(), 1.);
     box->set_color(Vector3(0., 0.2, 0.4));
 
     // virtual goal
