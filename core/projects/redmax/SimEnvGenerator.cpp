@@ -587,7 +587,7 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
     box->set_color(Vector3(0., 0.2, 0.4));
 
     // virtual goal
-    JointFixed* goal_joint = new JointFixed(sim, 10, nullptr, Matrix3::Identity(), Vector3(5.2 + 10.5, 0.5, -10));
+    JointFixed* goal_joint = new JointFixed(sim, 10, nullptr, math::quat2mat(Vector4(1,0,0,0)), Vector3(0, 0, -10));
     BodyCuboid* goal = new BodyCuboid(sim, goal_joint, Vector3(0.2, 0.2, 0.2), Matrix3::Identity(), Vector3::Zero(), 1.);
     goal->set_color(Vector3(0., 1., 0.));
 
