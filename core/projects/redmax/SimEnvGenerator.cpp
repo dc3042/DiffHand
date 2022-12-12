@@ -561,14 +561,14 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
     Robot* robot = new Robot();
 
     // MCP
-    Joint* joint0 = new JointRevolute(sim, 0, Vector3(0, 0, -1), nullptr, Matrix3::Identity(), Vector3(0., 0, 4));
+    Joint* joint0 = new JointRevolute(sim, 0, Vector3(0, 0, 1), nullptr, math::quat2mat(Vector4(0,1,0,0)), Vector3(0., 0, 4));
     joint0->set_damping(1e4);
     BodyCuboid* body0 = new BodyCuboid(sim, joint0, Vector3(4, 1, 1), Matrix3::Identity(), Vector3(2., 0., 0.), 1.);
     Actuator* actuator0 = new ActuatorMotor(joint0, -1e5, 1e5);
     robot->add_actuator(actuator0);
 
     // PIP
-    Joint* joint1 = new JointRevolute(sim, 1, Vector3(0, 0, -1), joint0, Matrix3::Identity(), Vector3(4., 0., 0.));
+    Joint* joint1 = new JointRevolute(sim, 1, Vector3(0, 0, -1), joint0, math::quat2mat(Vector4(1,0,0,0)), Vector3(4., 0., 0.));
     joint1->set_damping(1e4);
     BodyCuboid* body1 = new BodyCuboid(sim, joint1, Vector3(2, 1, 1), Matrix3::Identity(), Vector3(1., 0., 0.), 1.);
     Actuator* actuator1 = new ActuatorMotor(joint1, -1e5, 1e5);
@@ -582,7 +582,7 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
     robot->add_actuator(actuator2);
 
     // Box
-    Joint* box_joint = new JointFree2D(sim, 0, nullptr, Matrix3::Identity(), Vector3(0, 0, -7));
+    Joint* box_joint = new JointFree2D(sim, 0, nullptr, math::quat2mat(Vector4(1,0,0,0)), Vector3(0, 0, -9));
     BodyCuboid* box = new BodyCuboid(sim, box_joint, Vector3(1, 1, 1), Matrix3::Identity(), Vector3::Zero(), 1.);
     box->set_color(Vector3(0., 0.2, 0.4));
 
