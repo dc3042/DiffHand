@@ -5,9 +5,15 @@ input: cage parameters
 output: simulation related design parameters (joint transformation, body transformation, contact points, mass inertia, contact scale)
 
 cage layout:
-palm-k0-j0-p0-j1-p1-tip0
+palm-j0-p0-j1-p1-tip0
   |
-  ---k1-j2-p2-j3-p3-tip1
+  ---j2-p2-j3-p3-tip1
+  |
+  ---j2-p2-j3-p3-tip2
+  |
+  ---j2-p2-j3-p3-tip3
+
+
 cage parameters:
 0: palm length
 1: j1 y scale
