@@ -31,10 +31,6 @@
                                     <link name="link9" design_params="47">
                                         <joint name="joint9" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
                                         <body name="body9" type="abstract"  mesh="finger/meshes/tip.obj"  contacts="finger/contacts/tip.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
-                                        <link name="endeffector0" design_params="1">
-                                            <joint name="joint-endeffector0" type="fixed" pos="0.9 0.0 1.5" quat="1. 0. 0. 0."/>
-                                            <body name="body-endeffector0" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
-                                        </link>
                                     </link>
                                 </link>
                             </link>
@@ -63,10 +59,6 @@
                                     <link name="link18" design_params="47">
                                         <joint name="joint18" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
                                         <body name="body18" type="abstract"  mesh="finger/meshes/tip.obj"  contacts="finger/contacts/tip.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
-                                        <link name="endeffector1" design_params="1">
-                                            <joint name="joint-endeffector1" type="fixed" pos="0.9 0.0 1.5" quat="1. 0. 0. 0."/>
-                                            <body name="body-endeffector1" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
-                                        </link>
                                     </link>
                                 </link>
                             </link>
@@ -95,10 +87,6 @@
                                     <link name="link9b" design_params="47">
                                         <joint name="joint9b" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
                                         <body name="body9b" type="abstract"  mesh="finger/meshes/tip.obj"  contacts="finger/contacts/tip.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
-                                        <link name="endeffector0b" design_params="1">
-                                            <joint name="joint-endeffector0b" type="fixed" pos="0.9 0.0 1.5" quat="1. 0. 0. 0."/>
-                                            <body name="body-endeffector0b" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
-                                        </link>
                                     </link>
                                 </link>
                             </link>
@@ -127,10 +115,6 @@
                                     <link name="link18b" design_params="47">
                                         <joint name="joint18b" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
                                         <body name="body18b" type="abstract"  mesh="finger/meshes/tip.obj"  contacts="finger/contacts/tip.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
-                                        <link name="endeffector1b" design_params="1">
-                                            <joint name="joint-endeffector1b" type="fixed" pos="0.9 0.0 1.5" quat="1. 0. 0. 0."/>
-                                            <body name="body-endeffector1b" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
-                                        </link>
                                     </link>
                                 </link>
                             </link>
