@@ -64,6 +64,8 @@ if __name__ == '__main__':
         sim.print_design_params_info()
 
     q_init = sim.get_q_init().copy()
+
+    print(q_init)
     q_init[-1] = np.pi / 6.
     q_init[1] = np.pi / 6.
     sim.set_q_init(q_init)
