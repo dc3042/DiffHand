@@ -85,10 +85,7 @@ class PalmCage:
         self.length = self.length_init
     
     def load(self, name):
-        mesh_path = os.path.join(box_folder, 'meshes', name + '.obj')
-        cage_path = os.path.join(asset_folder, 'cages', name + '.txt')
-        weight_path = os.path.join(asset_folder, 'weights', name + '.npy')
-        contact_path = os.path.join(asset_folder, 'contacts', name + '_id.npy')
+        mesh_path = os.path.join(box_folder, name + '.obj')
 
         # load mesh
         mesh_pv = pv.read(mesh_path)
