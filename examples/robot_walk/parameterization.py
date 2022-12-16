@@ -93,7 +93,7 @@ class PalmCage:
         F = np.copy(mesh_pv.faces.reshape(-1, 4).T[1:4, :])
         mesh = TriMesh(V, F)
 
-        handles = np.zeros((3, n))
+        handles = np.zeros((3, 8))
         handle_id = 0
         for i in [-1,1]:
             for j in [-1,1]:
