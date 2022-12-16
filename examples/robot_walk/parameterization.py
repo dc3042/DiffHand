@@ -195,11 +195,6 @@ class PalmCage:
     def scale_length(self, scale):
         self.length *= scale
     
-    def E_jc(self):
-        E = np.eye(4)
-        E[0, 3] = self.length / 2.
-        return E
-    
     def E_jc_0(self):
         E = np.eye(4)
         E[0, 3] = self.length / 2.
@@ -448,7 +443,7 @@ class Cage:
                 + (self.side_parent.width + self.side_parent.height + self.side_child.width + self.side_child.height) * self.length
         return new_S / old_S
 
-palm_cage = Cage(3, 3.24, 3, 3.24, 7, False, 'palm')
+palm_cage = PalmCage(1.6, 3.24, 1.6, 3.24, 7, 'palm')
 knuckle_cage = Cage(1.6, 3.24, 2.6, 2.6, 2.75, True, 'knuckle_parent', 'knuckle_child', joint_axis_origin = np.array([1.15, 0., 0.]))
 joint_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.06, True, 'joint_parent', 'joint_child', joint_axis_origin = np.array([1.08, 0., 0.]))
 phalanx_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.34, False, 'phalanx')
@@ -456,7 +451,7 @@ tip_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.21, False, 'tip')
 
 class Design:
     def __init__(self):
-        self.structure = ['palm', 'j', 'p', 'j', 'p', 't', 'j', 'p', 'j', 'p', 't']
+        self.structure = ['palm', 'k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't']
         
         # build cages
         self.cages = []
