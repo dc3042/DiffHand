@@ -443,7 +443,7 @@ class Cage:
                 + (self.side_parent.width + self.side_parent.height + self.side_child.width + self.side_child.height) * self.length
         return new_S / old_S
 
-palm_cage = PalmCage(4, 3.24, 4, 3.24, 7, 'palm')
+palm_cage = PalmCage(6, 3.24, 6, 3.24, 7, 'palm')
 knuckle_cage = Cage(1.6, 3.24, 2.6, 2.6, 2.75, True, 'knuckle_parent', 'knuckle_child', joint_axis_origin = np.array([1.15, 0., 0.]))
 joint_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.06, True, 'joint_parent', 'joint_child', joint_axis_origin = np.array([1.08, 0., 0.]))
 phalanx_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.34, False, 'phalanx')
