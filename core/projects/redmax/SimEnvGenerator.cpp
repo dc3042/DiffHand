@@ -567,7 +567,7 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
     // Body
     Joint *joint0 = new JointFree3DEuler(sim, 0, nullptr, Eigen::Quaternion<dtype>(0, 1, 0, 0).toRotationMatrix(), Vector3(0, 0, 4), JointSphericalEuler::Chart::XYZ, Joint::Frame::LOCAL);
     joint0->set_damping(1e4);
-    BodyCuboid* body0 = new BodyCuboid(sim, joint0, Vector3(4, 4, 1), Eigen::Quaternion<dtype>(0, 1, 0, 0).toRotationMatrix(), Vector3(0, 0, 4), 1.);
+    BodyCuboid* body0 = new BodyCuboid(sim, joint0, Vector3(8, 4, 1), Eigen::Quaternion<dtype>(0, 1, 0, 0).toRotationMatrix(), Vector3(0, 0, 4), 1.);
 
 
 
