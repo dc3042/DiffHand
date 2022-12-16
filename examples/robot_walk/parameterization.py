@@ -95,9 +95,9 @@ class PalmCage:
 
         handles = np.zeros((3, 8))
         handle_id = 0
-        for i in [-1,1]:
-            for j in [-1,1]:
-                for k in [-1,1]:
+        for i in [-1/2,1/2]:
+            for j in [-1/2,1/2]:
+                for k in [-1/2,1/2]:
                     handles[0, handle_id], handles[1, handle_id], handles[2, handle_id] = i, j, k
                     handle_id += 1
 
