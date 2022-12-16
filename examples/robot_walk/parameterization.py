@@ -559,7 +559,7 @@ class Design:
             symbol = self.structure[i]
             if i not in [5, 6, 11, 12]: # not consider the contact points in the topper parts of the manipulator which are unneccesary
                 continue
-            if (symbol == 'p' or symbol == 't' or symbol == 'palm'):
+            if (symbol == 'p' or symbol == 't'):
                 design_params[param_id:param_id + self.cages[i].contact_id.shape[0] * 3] = self.cages[i].transform_contacts_whole().flat
                 param_id += self.cages[i].contact_id.shape[0] * 3
             elif (symbol == 'j' or symbol == 'k'):
@@ -574,7 +574,7 @@ class Design:
         idx = 0
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if (symbol == 'p' or symbol == 't' or symbol == 'palm'):
+            if (symbol == 'p' or symbol == 't'):
                 design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
                 idx += 1
             elif (symbol == 'j' or symbol == 'k'):
@@ -591,7 +591,7 @@ class Design:
             symbol = self.structure[i]
             if i not in [5, 6, 11, 12]: # not consider the contact points in the topper parts of the manipulator which are unneccesary
                 continue
-            if (symbol == 'p' or symbol == 't' or symbol == 'palm'):
+            if (symbol == 'p' or symbol == 't'):
                 design_params[param_id] = self.cages[i].contact_scale()
                 param_id += 1
             elif (symbol == 'j' or symbol == 'k'):
