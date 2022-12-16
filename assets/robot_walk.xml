@@ -90,6 +90,86 @@
                     </link>
                 </link>
             </link>
+            <link name="link1b" design_params="11">
+                <joint name="joint1b" type="fixed" pos="-3.50000 2.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                <body name="body1b" type="abstract"  mesh="finger/meshes/knuckle_parent.obj"  contacts="finger/contacts/knuckle_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.700000 0.700000 0.700000 1"/>
+                <link name="link2b" design_params="11">
+                    <joint name="joint2b" type="revolute" axis="0.000000 0.000000 1.000000" pos="1.150000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
+                    <body name="body2b" type="abstract"  mesh="finger/meshes/knuckle_child.obj"  contacts="finger/contacts/knuckle_child.txt"  pos="-1.150000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
+                    <link name="link3b" design_params="11">
+                        <joint name="joint3b" type="fixed" pos="1.600000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                        <body name="body3b" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
+                        <link name="link4b" design_params="11">
+                            <joint name="joint4b" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
+                            <body name="body4b" type="abstract"  mesh="finger/meshes/joint_child.obj"  contacts="finger/contacts/joint_child.txt"  pos="-1.080000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.500000 0.500000 0.500000 1"/>
+                            <link name="link5b" design_params="11">
+                                <joint name="joint5b" type="fixed" pos="0.980000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                                <body name="body5b" type="abstract"  mesh="finger/meshes/phalanx.obj"  contacts="finger/contacts/phalanx.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.500000 0.500000 0.500000 1"/>
+                                <link name="link6b" design_params="11">
+                                    <joint name="joint6b" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                                    <body name="body6b" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.500000 0.500000 0.500000 1"/>
+                                    <link name="link7b" design_params="11">
+                                        <joint name="joint7b" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
+                                        <body name="body7b" type="abstract"  mesh="finger/meshes/joint_child.obj"  contacts="finger/contacts/joint_child.txt"  pos="-1.080000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
+                                        <link name="link8b" design_params="47">
+                                            <joint name="joint8b" type="fixed" pos="0.980000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                                            <body name="body8b" type="abstract"  mesh="finger/meshes/phalanx.obj"  contacts="finger/contacts/phalanx.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
+                                            <link name="link9b" design_params="47">
+                                                <joint name="joint9b" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                                                <body name="body9b" type="abstract"  mesh="finger/meshes/tip.obj"  contacts="finger/contacts/tip.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
+                                                <link name="endeffector0b" design_params="1">
+                                                    <joint name="joint-endeffector0b" type="fixed" pos="0.9 0.0 1.5" quat="1. 0. 0. 0."/>
+                                                    <body name="body-endeffector0b" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
+                                                </link>
+                                            </link>
+                                        </link>
+                                    </link>
+                                </link>
+                            </link>
+                        </link>
+                    </link>
+                </link>
+            </link>
+            <link name="link10b" design_params="11">
+                <joint name="joint10b" type="fixed" pos="-3.50000 -2.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                <body name="body10b" type="abstract"  mesh="finger/meshes/knuckle_parent.obj"  contacts="finger/contacts/knuckle_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.700000 0.700000 0.700000 1"/>
+                <link name="link11b" design_params="11">
+                    <joint name="joint11b" type="revolute" axis="0.000000 0.000000 1.000000" pos="1.150000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
+                    <body name="body11b" type="abstract"  mesh="finger/meshes/knuckle_child.obj"  contacts="finger/contacts/knuckle_child.txt"  pos="-1.150000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
+                    <link name="link12b" design_params="11">
+                        <joint name="joint12b" type="fixed" pos="1.600000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                        <body name="body12b" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
+                        <link name="link13b" design_params="11">
+                            <joint name="joint13b" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
+                            <body name="body13b" type="abstract"  mesh="finger/meshes/joint_child.obj"  contacts="finger/contacts/joint_child.txt"  pos="-1.080000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.500000 0.500000 0.500000 1"/>
+                            <link name="link14b" design_params="11">
+                                <joint name="joint14b" type="fixed" pos="0.980000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                                <body name="body14b" type="abstract"  mesh="finger/meshes/phalanx.obj"  contacts="finger/contacts/phalanx.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.500000 0.500000 0.500000 1"/>
+                                <link name="link15b" design_params="11">
+                                    <joint name="joint15b" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                                    <body name="body15b" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.500000 0.500000 0.500000 1"/>
+                                    <link name="link16b" design_params="11">
+                                        <joint name="joint16b" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
+                                        <body name="body16b" type="abstract"  mesh="finger/meshes/joint_child.obj"  contacts="finger/contacts/joint_child.txt"  pos="-1.080000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
+                                        <link name="link17b" design_params="47">
+                                            <joint name="joint17b" type="fixed" pos="0.980000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                                            <body name="body17b" type="abstract"  mesh="finger/meshes/phalanx.obj"  contacts="finger/contacts/phalanx.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
+                                            <link name="link18b" design_params="47">
+                                                <joint name="joint18b" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                                                <body name="body18b" type="abstract"  mesh="finger/meshes/tip.obj"  contacts="finger/contacts/tip.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
+                                                <link name="endeffector1b" design_params="1">
+                                                    <joint name="joint-endeffector1b" type="fixed" pos="0.9 0.0 1.5" quat="1. 0. 0. 0."/>
+                                                    <body name="body-endeffector1b" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
+                                                </link>
+                                            </link>
+                                        </link>
+                                    </link>
+                                </link>
+                            </link>
+                        </link>
+                    </link>
+                </link>
+            </link>
         </link>
     </robot>
 
