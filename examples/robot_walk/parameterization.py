@@ -99,6 +99,7 @@ class PalmCage:
             for j in [-1,1]:
                 for k in [-1,1]:
                     handles[0, handle_id], handles[1, handle_id], handles[2, handle_id] = i, j, k
+                    handle_id += 1
 
 
         return mesh, handles
