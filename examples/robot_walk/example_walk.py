@@ -46,6 +46,11 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+    if args.model[-4:] == '.xml':
+        model_path = os.path.join(asset_folder, args.model)
+    else:
+        model_path = os.path.join(asset_folder, args.model + '.xml')
+
     optimize_design_flag = not args.no_design_optim
     os.makedirs(args.save_dir, exist_ok = True)
     visualize = (args.visualize == 'True')
