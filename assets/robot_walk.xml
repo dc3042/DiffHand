@@ -42,6 +42,38 @@
                     </link>
                 </link>
             </link>
+            <link name="link11" design_params="11">
+                <joint name="joint1_rf" type="fixed" pos="3.00000 -1.000000 1.000000" quat="0.000000 0.000000 0.000000 1.000000"/>
+                <body name="body1_rf" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.700000 0.700000 0.700000 1"/>
+                <link name="link12" design_params="11">
+                    <joint name="joint2_rf" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
+                    <body name="body2_rf" type="abstract"  mesh="finger/meshes/joint_child.obj"  contacts="finger/contacts/joint_child.txt"  pos="-1.080000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.500000 0.500000 0.500000 1"/>
+                    <link name="link13" design_params="11">
+                        <joint name="joint3_rf" type="fixed" pos="0.980000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                        <body name="body3_rf" type="abstract"  mesh="finger/meshes/phalanx.obj"  contacts="finger/contacts/phalanx.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.500000 0.500000 0.500000 1"/>
+                        <link name="link14" design_params="11">
+                            <joint name="joint4_rf" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                            <body name="body4_rf" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.500000 0.500000 0.500000 1"/>
+                            <link name="link15" design_params="11">
+                                <joint name="joint5_rf" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
+                                <body name="body5_rf" type="abstract"  mesh="finger/meshes/joint_child.obj"  contacts="finger/contacts/joint_child.txt"  pos="-1.080000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
+                                <link name="link16" design_params="47">
+                                    <joint name="joint6_rf" type="fixed" pos="0.980000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                                    <body name="body6_rf" type="abstract"  mesh="finger/meshes/phalanx.obj"  contacts="finger/contacts/phalanx.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
+                                    <link name="link17" design_params="47">
+                                        <joint name="joint7_rf" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                                        <body name="body7_rf" type="abstract"  mesh="finger/meshes/tip.obj"  contacts="finger/contacts/tip.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
+                                        <link name="endeffector1_rf" design_params="1">
+                                            <joint name="joint-endeffector1_rf" type="fixed" pos="0.9 0.0 1.5" quat="1. 0. 0. 0."/>
+                                            <body name="body-endeffector1_rf" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
+                                        </link>
+                                    </link>
+                                </link>
+                            </link>
+                        </link>
+                    </link>
+                </link>
+            </link>
         </link>
     </robot>
 
