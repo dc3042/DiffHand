@@ -11,7 +11,7 @@
             <joint name="joint0" type="planar" axis0="1 0 0" axis1="0 1 0" pos="0.000000 0.000000 4.000000" quat="0.000000 1.000000 0.000000 0.000000" damping="1e4"/>
             <body name="body0" type="abstract"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.700000 0.700000 0.700000 1"/>
             <link name="link1" design_params="11">
-                <joint name="joint1_lf" type="fixed" pos="3.00000 -1.000000 1.000000" quat="0.7071068 0.000000 0.7071068 0.000000"/>
+                <joint name="joint1_lf" type="fixed" pos="3.00000 -1.000000 1.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
                 <body name="body1_lf" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
                 <link name="link2" design_params="11">
                     <joint name="joint2_lf" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
