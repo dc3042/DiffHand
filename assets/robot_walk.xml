@@ -9,7 +9,7 @@
     <robot>
         <link name="link0" design_params="0">
             <joint name="joint0" type="free3d"  pos="0.000000 0.000000 4.000000" quat="0.000000 1.000000 0.000000 0.000000" damping="1e4"/>
-            <body name="body0" type="cuboid"  size="7.000000 5.000000 2.000000" pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" density="1"  rgba="0.700000 0.700000 0.700000 1"/>
+            <body name="body0" type="cuboid"  size="7.000000 5.000000 3.000000" pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" density="1"  rgba="0.700000 0.700000 0.700000 1"/>
             <link name="link1" design_params="11">
                 <joint name="joint1" type="fixed" pos="3.50000 2.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
                 <body name="body1" type="abstract"  mesh="finger/meshes/knuckle_parent.obj"  contacts="finger/contacts/knuckle_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.700000 0.700000 0.700000 1"/>
