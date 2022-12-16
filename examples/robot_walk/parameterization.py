@@ -405,7 +405,7 @@ tip_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.21, False, 'tip')
 
 class Design:
     def __init__(self):
-        self.structure = ['palm', 'k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't']
+        self.structure = ['palm', 'k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't']
         
         # build cages
         self.cages = []
@@ -439,12 +439,12 @@ class Design:
                 self.sub_ndof_p3.append(self.cages[i].contact_id.shape[0] * 3)
                 self.ndof_p6 += 1
 
-        self.n_link = 37                      # number of sublinks (a joint is composed from two sublinks)
+        self.n_link = 19                      # number of sublinks (a joint is composed from two sublinks)
         self.ndof_p1 = (self.n_link + 2) * 12 # one extra joint for two end effectors
         self.ndof_p2 = self.n_link * 12
 
     def parameterize(self, cage_parameters, generate_mesh = False):
-        assert(len(cage_parameters) == 35)
+        assert(len(cage_parameters) == 17)
 
         for i in range(len(self.cages)):
             self.cages[i].reset()
