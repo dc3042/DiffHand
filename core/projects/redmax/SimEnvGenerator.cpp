@@ -29,7 +29,7 @@ namespace redmax {
 std::vector<Vector3> parse_contact_points(std::string str) {
     std::vector<Vector3> contacts; 
     contacts.clear();
-    std::string _asset_folder = directory_of("../assets")
+    std::string _asset_folder = "../assets/";
     std::string filename = _asset_folder + "../assets/" + str;
     FILE* fp = fopen(filename.c_str(), "r");
     int n;
