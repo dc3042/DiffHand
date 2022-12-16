@@ -81,7 +81,7 @@ if __name__ == '__main__':
     # init design params
     design = Design()
     design_np = Design_np()
-    cage_params = np.ones(17)
+    cage_params = np.ones(35)
     ndof_cage = len(cage_params)
 
     design_params, meshes = design_np.parameterize(cage_params, True)
