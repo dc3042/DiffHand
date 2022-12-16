@@ -29,8 +29,7 @@ namespace redmax {
 std::vector<Vector3> parse_contact_points(std::string str) {
     std::vector<Vector3> contacts; 
     contacts.clear();
-    std::string _asset_folder = "../assets/";
-    std::string filename =  _asset_folder + str;
+    std::string filename =  str;
     FILE* fp = fopen(filename.c_str(), "r");
     int n;
     int res = fscanf(fp, "%d", &n);
@@ -591,12 +590,12 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
     // Front Leg Right
     Joint *joint1_lf = new JointFixed(sim, joint_cnt ++, joint0, Eigen::Quaternion<dtype>(0.7071068, 0, 0.7071068, 0).toRotationMatrix(), Vector3(2.5, 2, 0));
     Body *body1_lf = new BodyAbstract(sim, joint1_lf, Eigen::Quaternion<dtype>(1,0,0,0).toRotationMatrix(), Vector3(0, 0, 0), 1, Vector3(1, 1, 1), "finger/meshes/joint_parent.obj");
-    std::vector<Vector3> contacts1_lf = parse_contact_points("finger/contacts/joint_parent.txt");
+    std::vector<Vector3> contacts1_lf = parse_contact_points("../assets/finger/contacts/joint_parent.txt");
     body1_lf->set_contacts(contacts1_lf);
 
     Joint *joint2_lf = new JointRevolute(sim, joint_cnt ++,  Vector3(0, 1, 0), joint1_lf, Eigen::Quaternion<dtype>(1,0,0,0).toRotationMatrix(),  Vector3(1.08, 0, 0));
     Body *body2_lf = new BodyAbstract(sim, joint2_lf, Eigen::Quaternion<dtype>(1,0,0,0).toRotationMatrix(), Vector3(-1.08, 0, 0), 1, Vector3(1, 1, 1), "finger/meshes/joint_child.obj");
-    std::vector<Vector3> contacts2_lf = parse_contact_points("finger/contacts/joint_child.txt");
+    std::vector<Vector3> contacts2_lf = parse_contact_points("../assets/finger/contacts/joint_child.txt");
     body2_lf->set_contacts(contacts2_lf);
 
 
