@@ -11,7 +11,7 @@
             <joint name="joint0" type="free3d"  pos="0.000000 0.000000 4.000000" quat="0.000000 1.000000 0.000000 0.000000" damping="1e4"/>
             <body name="body0" type="cuboid"  size="10.000000 7.000000 3.000000" pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" density="1"  rgba="0.700000 0.700000 0.700000 1"/>
             <link name="link3" design_params="11">
-                <joint name="joint3" type="fixed" pos="5.00000 3.000000 1.500000" quat="0.7071068 0.000000 0.7071068 0.000000"/>
+                <joint name="joint3" type="fixed" pos="5.00000 3.000000 1.500000" quat="-0.7071068 0.000000 0.7071068 0.000000"/>
                 <body name="body3" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
                 <link name="link4" design_params="11">
                     <joint name="joint4" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
