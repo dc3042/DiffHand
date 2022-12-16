@@ -77,6 +77,7 @@ Simulation::Simulation(Simulation::Options *options, Simulation::ViewerOptions *
 
 Simulation::Simulation(std::string xml_file_path, bool verbose) {
     _asset_folder = directory_of(xml_file_path);
+    std::cout<<"asset folder: " << _asset_folder<<std::endl;
 
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(xml_file_path.c_str());
