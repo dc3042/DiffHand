@@ -197,7 +197,7 @@ class PalmCage:
     
     def E_jc(self):
         E = np.eye(4)
-        E[0, 3] = self.length
+        E[0, 3] = self.length / 2.
         return E
     
     def E_jc_0(self):
