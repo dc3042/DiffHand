@@ -76,11 +76,11 @@ if __name__ == '__main__':
     
     q_init[-7] = -np.pi / 6.
     q_init[-8] = -np.pi / 6.
-    q_init[-9] = np.pi / 6.
+    q_init[-9] = -np.pi / 6.
     
     q_init[-10] = -np.pi / 6.
     q_init[-11] = -np.pi / 6.
-    q_init[-12] = -np.pi / 6.
+    q_init[-12] = np.pi / 6.
     sim.set_q_init(q_init)
 
     num_steps = 500
