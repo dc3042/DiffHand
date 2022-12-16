@@ -30,8 +30,9 @@ optimize_design_flag = True
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser('')
+    parser.add_argument("--model", type = str, default = 'robot_walk')
     parser.add_argument('--record', action = 'store_true')
-    parser.add_argument('--record-file-name', type = str, default = 'rss_two_finger_assemble')
+    parser.add_argument('--record-file-name', type = str, default = 'robot_walk')
     parser.add_argument('--seed', type = int, default = 0)
     parser.add_argument('--save-dir', type = str, default = './results/tmp/')
     parser.add_argument('--no-design-optim', action='store_true', help = 'whether control-only')
@@ -51,7 +52,7 @@ if __name__ == '__main__':
     play_mode = (args.load_dir is not None)
 
     '''init sim and task'''
-    sim = redmax.make_sim("DavidCustom-Demo", "BDF2", args.verbose)
+    sim = redmax.Simulation(model_path, args.verbose)
     
     if args.verbose:
         sim.print_ctrl_info()
