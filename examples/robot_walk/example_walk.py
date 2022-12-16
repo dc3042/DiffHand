@@ -65,8 +65,11 @@ if __name__ == '__main__':
 
     q_init = sim.get_q_init().copy()
 
-    print(len(q_init))
-    exit(0)
+    print(q_init)
+    q_init[-1] = -np.pi / 6.
+    q_init[-4] = -np.pi / 6.
+    q_init[-7] = -np.pi / 6.
+    q_init[-10] = -np.pi / 6.
     sim.set_q_init(q_init)
 
     num_steps = 500
