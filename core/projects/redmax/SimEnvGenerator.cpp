@@ -564,7 +564,7 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
 
     Robot* robot = new Robot();
 
-    joint_cnt = 0;
+    int joint_cnt = 0;
 
     // Body
     Joint *joint0 = new JointFree3DEuler(sim, joint_cnt ++, nullptr, Eigen::Quaternion<dtype>(0, 1, 0, 0).toRotationMatrix(), Vector3(0, 0, 5), JointSphericalEuler::Chart::XYZ, Joint::Frame::LOCAL);
