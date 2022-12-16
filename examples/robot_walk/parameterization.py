@@ -471,6 +471,8 @@ class Design:
         self.sub_ndof_p3 = []
         for i in range(len(self.cages)):
             symbol = self.structure[i]
+            if i in [0, 1, 2, 3, 4, 7, 8, 9, 10, 13, 14, 15,16, 19,20,21,22]:
+                continue
             if i <= 3:
                 continue
             if i >= 7 and i <= 9:
