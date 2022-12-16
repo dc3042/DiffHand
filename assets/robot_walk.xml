@@ -9,9 +9,9 @@
         <robot>
         <link name="link0" design_params="11">
             <joint name="joint0" type="free3d"  pos="0.000000 0.000000 4.000000" quat="0.000000 1.000000 0.000000 0.000000" damping="1e4"/>
-            <body name="body0" type="abstract"  mesh="finger/meshes/palm.obj"  contacts="finger/contacts/palm.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.700000 0.700000 0.700000 1"/>
+            <body name="body0" type="abstract"  mesh="finger/meshes/palm.obj"  contacts="finger/contacts/palm.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="10"  inertia="1. 1. 1."  rgba="0.700000 0.700000 0.700000 1"/>
             <link name="link1" design_params="11">
-                <joint name="joint1" type="fixed" pos="0.350000 2.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
+                <joint name="joint1" type="fixed" pos="0.350000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
                 <body name="body1" type="abstract"  mesh="finger/meshes/knuckle_parent.obj"  contacts="finger/contacts/knuckle_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.700000 0.700000 0.700000 1"/>
                 <link name="link2" design_params="11">
                     <joint name="joint2" type="revolute" axis="0.000000 0.000000 1.000000" pos="1.150000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
@@ -51,7 +51,7 @@
                 </link>
             </link>
             <link name="link10" design_params="11">
-                <joint name="joint10" type="fixed" pos="-0.350000 -2.000000 0.000000" quat="0.000000 0.000000 0.000000 1.000000"/>
+                <joint name="joint10" type="fixed" pos="-0.350000 0.000000 0.000000" quat="0.000000 0.000000 0.000000 1.000000"/>
                 <body name="body10" type="abstract"  mesh="finger/meshes/knuckle_parent.obj"  contacts="finger/contacts/knuckle_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.700000 0.700000 0.700000 1"/>
                 <link name="link11" design_params="11">
                     <joint name="joint11" type="revolute" axis="0.000000 0.000000 1.000000" pos="1.150000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
