@@ -489,7 +489,7 @@ class Design:
                 self.sub_ndof_p3.append(self.cages[i].contact_id.shape[0] * 3)
                 self.ndof_p6 += 1
 
-        self.n_link = 19                      # number of sublinks (a joint is composed from two sublinks)
+        self.n_link = 37                      # number of sublinks (a joint is composed from two sublinks)
         self.ndof_p1 = (self.n_link + 2) * 12 # one extra joint for two end effectors
         self.ndof_p2 = self.n_link * 12
 
