@@ -473,12 +473,6 @@ class Design:
             symbol = self.structure[i]
             if i in [0, 1, 2, 3, 4, 7, 8, 9, 10, 13, 14, 15,16, 19,20,21,22]:
                 continue
-            if i <= 3:
-                continue
-            if i >= 7 and i <= 9:
-                continue
-            if i == 4 or i == 10:
-                continue
             if symbol == 'j' or symbol == 'k':
                 self.ndof_p3 += self.cages[i].contact_id_parent.shape[0] * 3
                 self.sub_ndof_p3.append(self.cages[i].contact_id_parent.shape[0] * 3)
