@@ -38,7 +38,7 @@ from copy import deepcopy
 import pyvista as pv
 
 asset_folder = os.path.abspath(os.path.join(example_base_dir, '..', 'assets/finger'))
-box_folder = os.path.abspath(os.path.join(example_base_dir, 'resources/meshes'))
+box_folder = os.path.abspath(os.path.join(example_base_dir, '../core/resources/meshes'))
 
 def flatten_E(E):
     flat_E = np.zeros(12)
