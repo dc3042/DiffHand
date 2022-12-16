@@ -564,10 +564,23 @@ Simulation* SimEnvGenerator::createDavidCustomDemo(std::string integrator, bool 
 
     Robot* robot = new Robot();
 
+    joint_cnt = 0;
+
     // Body
-    Joint *joint0 = new JointFree3DEuler(sim, 0, nullptr, Eigen::Quaternion<dtype>(0, 1, 0, 0).toRotationMatrix(), Vector3(0, 0, 4), JointSphericalEuler::Chart::XYZ, Joint::Frame::LOCAL);
+    Joint *joint0 = new JointFree3DEuler(sim, joint_cnt ++, nullptr, Eigen::Quaternion<dtype>(0, 1, 0, 0).toRotationMatrix(), Vector3(0, 0, 5), JointSphericalEuler::Chart::XYZ, Joint::Frame::LOCAL);
     joint0->set_damping(1e4);
     BodyCuboid* body0 = new BodyCuboid(sim, joint0, Vector3(8, 4, 1), Eigen::Quaternion<dtype>(0, 1, 0, 0).toRotationMatrix(), Vector3(0, 0, 4), 1.);
+
+    // Front Leg Right
+    Joint *joint1_lf = new JointFixed(sim, joint_cnt ++, joint0, Eigen::Quaternion<dtype>(0.7071068, 0, 0.7071068, 0).toRotationMatrix(), Vector3(2.5, 2, 0));
+    Body *body1_lf = new BodyAbstract(sim, joint1_lf, Eigen::Quaternion<dtype>(1,0,0,0).toRotationMatrix(), Vector3(0, 0, 0), 1, Vector3(1, 1, 1), "finger/meshes/joint_parent.obj");
+    std::vector<Vector3> contacts1_lf = parse_contact_points("finger/contacts/joint_parent.txt");
+    body1_lf->set_contacts(contacts1_lf);
+
+    Join *joint2_lf = new JointRevolute(sim, joint_cnt ++,  Vector3(0, 1, 0), joint1_lf, Eigen::Quaternion<dtype>(1,0,0,0).toRotationMatrix(),  Vector3(1.08, 0, 0));
+    Body *body2_lf = new BodyAbstract(sim, joint2_lf, Eigen::Quaternion<dtype>(1,0,0,0).toRotationMatrix(), Vector3(-1.08, 0, 0), 1, Vector3(1, 1, 1), "finger/meshes/joint_child.obj");
+    std::vector<Vector3> contacts2_lf = parse_contact_points("finger/contacts/joint_child.txt");
+    body2_lf->set_contacts(contacts2_lf);
 
 
 
