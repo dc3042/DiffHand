@@ -604,7 +604,7 @@ class Design:
             meshes = []
             for i in range(len(self.cages)):
                 symbol = self.structure[i]
-                if (symbol == 'p' or symbol == 't' or symbol == 'palm'):
+                if (symbol == 'p' or symbol == 't'):
                     meshes.append(self.cages[i].transform_mesh_whole())
                 elif (symbol == 'j' or symbol == 'k'):
                     # joint parent part
