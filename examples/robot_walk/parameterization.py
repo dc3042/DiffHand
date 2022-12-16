@@ -451,7 +451,7 @@ tip_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.21, False, 'tip')
 
 class Design:
     def __init__(self):
-        self.structure = ['palm', 'k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't']
+        self.structure = ['palm', 'j', 'p', 'j', 'p', 't', 'j', 'p', 'j', 'p', 't']
         
         # build cages
         self.cages = []
