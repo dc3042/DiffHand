@@ -460,7 +460,7 @@ class Design:
         design_params = np.zeros(ndof_p)
 
         # apply cage parameters into cages
-        self.cages[0].scale_length(cage_parameters[0])
+        #self.cages[0].scale_length(cage_parameters[0])
         parameter_idx = 1
         for i in range(len(self.cages)):
             symbol = self.structure[i]
