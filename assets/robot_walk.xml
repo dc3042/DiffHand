@@ -75,7 +75,7 @@
                 </link>
             </link>
             <link name="link1b" design_params="11">
-                <joint name="joint3b" type="fixed" pos="-5.00000 3.000000 1.500000" quat="-0.1843469  0 0.4395489 0.8790978"/>
+                <joint name="joint3b" type="fixed" pos="-5.00000 3.000000 1.500000" quat="-0.2353829  0.7607049 -0.3812674 0.4696361"/>
                 <body name="body3b" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
                 <link name="link4b" design_params="11">
                     <joint name="joint4b" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
