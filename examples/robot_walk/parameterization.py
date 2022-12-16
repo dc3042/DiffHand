@@ -38,7 +38,6 @@ from copy import deepcopy
 import pyvista as pv
 
 asset_folder = os.path.abspath(os.path.join(example_base_dir, '..', 'assets/finger'))
-box_folder = os.path.abspath(os.path.join(example_base_dir, '../core/resources/meshes'))
 
 def flatten_E(E):
     flat_E = np.zeros(12)
@@ -77,7 +76,8 @@ class PalmCage:
         self.side_child_init = Interface(width1, height1)
         self.length_init = length
         self.name = name
-        self.mesh, self.handles = self.load(self.name)
+        self.mesh, self.handles, self.lbs_mat, \
+            self.contact_id, self.contact_lbs_mat = self.load(self.name)
     
     def reset(self):
         self.side_parent = deepcopy(self.side_parent_init)
@@ -85,7 +85,10 @@ class PalmCage:
         self.length = self.length_init
     
     def load(self, name):
-        mesh_path = os.path.join(box_folder, name + '.obj')
+        mesh_path = os.path.join(asset_folder, 'meshes', name + '.obj')
+        cage_path = os.path.join(asset_folder, 'cages', name + '.txt')
+        weight_path = os.path.join(asset_folder, 'weights', name + '.npy')
+        contact_path = os.path.join(asset_folder, 'contacts', name + '_id.npy')
 
         # load mesh
         mesh_pv = pv.read(mesh_path)
@@ -93,42 +96,85 @@ class PalmCage:
         F = np.copy(mesh_pv.faces.reshape(-1, 4).T[1:4, :])
         mesh = TriMesh(V, F)
 
-        handles = np.zeros((3, 8))
-        handle_id = 0
-        for i in [-1/2,1/2]:
-            for j in [-1/2,1/2]:
-                for k in [-1/2,1/2]:
-                    handles[0, handle_id], handles[1, handle_id], handles[2, handle_id] = i, j, k
-                    handle_id += 1
+        # load cage
+        with open(cage_path, 'r') as fp:
+            n = int(fp.readline())
+            handles = np.zeros((3, n))
+            for i in range(n):
+                data = fp.readline().split()
+                x, y, z = float(data[0]), float(data[1]), float(data[2])
+                handles[0, i], handles[1, i], handles[2, i] = x, y, z
+            fp.close()
 
+        # load weight
+        lbs_mat = np.load(open(weight_path, 'rb'))
 
-        return mesh, handles
+        # load contact id
+        with open(contact_path, 'rb') as fp:
+            contact_id = np.load(fp)
+            fp.close()
+            contact_lbs_mat = deepcopy(lbs_mat[:, contact_id])
 
+        return mesh, handles, lbs_mat, contact_id, contact_lbs_mat
+    
+    def get_handle_positions(self):
+        handle_positions = np.zeros((3, 14))
+        handle_positions[:, 0] = np.array([-self.length / 2., -self.side_parent.width / 2., -self.side_parent.height / 2.])
+        handle_positions[:, 1] = np.array([-self.length / 2., -self.side_parent.width / 2., self.side_parent.height / 2.])
+        handle_positions[:, 2] = np.array([-self.length / 2, self.side_parent.width / 2., -self.side_parent.height / 2.])
+        handle_positions[:, 3] = np.array([-self.length / 2, self.side_parent.width / 2., self.side_parent.height / 2.])
+        handle_positions[:, 4] = np.array([self.length / 2., -self.side_child.width / 2., -self.side_child.height / 2.])
+        handle_positions[:, 5] = np.array([self.length / 2., -self.side_child.width / 2., self.side_child.height / 2.])
+        handle_positions[:, 6] = np.array([self.length / 2., self.side_child.width / 2., -self.side_child.height / 2.])
+        handle_positions[:, 7] = np.array([self.length / 2., self.side_child.width / 2., self.side_child.height / 2.])
+        handle_positions[:, 8] = (handle_positions[:, 1] + handle_positions[:, 5] + handle_positions[:, 7] + handle_positions[:, 3]) / 4.
+        handle_positions[:, 9] = (handle_positions[:, 5] + handle_positions[:, 4] + handle_positions[:, 6] + handle_positions[:, 7]) / 4.
+        handle_positions[:, 10] = (handle_positions[:, 3] + handle_positions[:, 7] + handle_positions[:, 6] + handle_positions[:, 2]) / 4.
+        handle_positions[:, 11] = (handle_positions[:, 1] + handle_positions[:, 3] + handle_positions[:, 2] + handle_positions[:, 0]) / 4.
+        handle_positions[:, 12] = (handle_positions[:, 0] + handle_positions[:, 2] + handle_positions[:, 6] + handle_positions[:, 4]) / 4.
+        handle_positions[:, 13] = (handle_positions[:, 1] + handle_positions[:, 0] + handle_positions[:, 4] + handle_positions[:, 5]) / 4.
 
-    def transform_mesh(self, mesh):
+        return handle_positions
+
+    def transform_mesh(self, mesh, handle_old_positions, lbs_mat):
         transformed_mesh = deepcopy(mesh)
+        
+        n_handles = handle_old_positions.shape[1]
+        n_verts = mesh.V.shape[1]
 
-        transformed_mesh.V[0,:] *= self.length
-        transformed_mesh.V[1,:] *= self.side_parent.width
-        transformed_mesh.V[2,:] *= self.side_parent.height
+        handle_positions = self.get_handle_positions()
+
+        handle_transform = np.zeros((3, 4 * n_handles))
+        for i in range(n_handles):
+            for j in range(3):
+                handle_transform[j, i * 4 + j] = 1.
+            handle_transform[0:3, i * 4 + 3] = handle_positions[:, i] - handle_old_positions[:, i]
+
+        transformed_mesh.V = handle_transform @ lbs_mat
 
         return transformed_mesh
     
     def transform_mesh_whole(self):
-        return self.transform_mesh(self.mesh)
+        return self.transform_mesh(self.mesh, self.handles, self.lbs_mat)
     
-    def transform_contacts(self,):
+    def transform_contacts(self, mesh, handle_old_positions, contact_lbs_mat):
+        n_handles = handle_old_positions.shape[1]
+        n_verts = mesh.V.shape[1]
 
-        handle_positions = self.handles
+        handle_positions = self.get_handle_positions()
 
-        handle_positions[0,:] *= self.length
-        handle_positions[1,:] *= self.side_parent.width
-        handle_positions[2,:] *= self.side_parent.height
+        handle_transform = np.zeros((3, 4 * n_handles))
+        for i in range(n_handles):
+            for j in range(3):
+                handle_transform[j, i * 4 + j] = 1.
+            handle_transform[0:3, i * 4 + 3] = handle_positions[:, i] - handle_old_positions[:, i]
 
-        return handle_positions.T
+        contact_points = handle_transform @ contact_lbs_mat
+
+        return contact_points.T
     
     def transform_contacts_whole(self):
-        return self.transform_contacts()
+        return self.transform_contacts(self.mesh, self.handles, self.contact_lbs_mat)
 
     def scale_child_z(self, scale):
         self.side_child.height *= scale
@@ -397,7 +443,7 @@ class Cage:
                 + (self.side_parent.width + self.side_parent.height + self.side_child.width + self.side_child.height) * self.length
         return new_S / old_S
 
-palm_cage = PalmCage(5, 2, 5, 2, 7, 'cube')
+palm_cage = PalmCage(1.6, 3.24, 1.6, 3.24, 0.7, 'palm')
 knuckle_cage = Cage(1.6, 3.24, 2.6, 2.6, 2.75, True, 'knuckle_parent', 'knuckle_child', joint_axis_origin = np.array([1.15, 0., 0.]))
 joint_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.06, True, 'joint_parent', 'joint_child', joint_axis_origin = np.array([1.08, 0., 0.]))
 phalanx_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.34, False, 'phalanx')
@@ -425,7 +471,11 @@ class Design:
         self.sub_ndof_p3 = []
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if i in [0, 1, 2, 3, 4, 7, 8, 9, 10, 13, 14, 15,16, 19,20,21,22]:
+            if i <= 3:
+                continue
+            if i >= 7 and i <= 9:
+                continue
+            if i == 4 or i == 10:
                 continue
             if symbol == 'j' or symbol == 'k':
                 self.ndof_p3 += self.cages[i].contact_id_parent.shape[0] * 3
@@ -460,7 +510,7 @@ class Design:
         design_params = np.zeros(ndof_p)
 
         # apply cage parameters into cages
-        #self.cages[0].scale_length(cage_parameters[0])
+        self.cages[0].scale_length(cage_parameters[0])
         parameter_idx = 1
         for i in range(len(self.cages)):
             symbol = self.structure[i]
@@ -559,7 +609,7 @@ class Design:
             symbol = self.structure[i]
             if i not in [5, 6, 11, 12]: # not consider the contact points in the topper parts of the manipulator which are unneccesary
                 continue
-            if (symbol == 'p' or symbol == 't'):
+            if (symbol == 'p' or symbol == 't' or symbol == 'palm'):
                 design_params[param_id:param_id + self.cages[i].contact_id.shape[0] * 3] = self.cages[i].transform_contacts_whole().flat
                 param_id += self.cages[i].contact_id.shape[0] * 3
             elif (symbol == 'j' or symbol == 'k'):
@@ -574,7 +624,7 @@ class Design:
         idx = 0
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if (symbol == 'p' or symbol == 't'):
+            if (symbol == 'p' or symbol == 't' or symbol == 'palm'):
                 design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
                 idx += 1
             elif (symbol == 'j' or symbol == 'k'):
@@ -591,7 +641,7 @@ class Design:
             symbol = self.structure[i]
             if i not in [5, 6, 11, 12]: # not consider the contact points in the topper parts of the manipulator which are unneccesary
                 continue
-            if (symbol == 'p' or symbol == 't'):
+            if (symbol == 'p' or symbol == 't' or symbol == 'palm'):
                 design_params[param_id] = self.cages[i].contact_scale()
                 param_id += 1
             elif (symbol == 'j' or symbol == 'k'):
@@ -604,7 +654,7 @@ class Design:
             meshes = []
             for i in range(len(self.cages)):
                 symbol = self.structure[i]
-                if (symbol == 'p' or symbol == 't'):
+                if (symbol == 'p' or symbol == 't' or symbol == 'palm'):
                     meshes.append(self.cages[i].transform_mesh_whole())
                 elif (symbol == 'j' or symbol == 'k'):
                     # joint parent part

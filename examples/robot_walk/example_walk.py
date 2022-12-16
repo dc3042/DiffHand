@@ -89,7 +89,7 @@ if __name__ == '__main__':
     Vs = []
     for i in range(len(meshes)):
         Vs.append(meshes[i].V)
-    #sim.set_rendering_mesh_vertices(Vs)
+    sim.set_rendering_mesh_vertices(Vs)
 
     # init control sequence
     sub_steps = 5
