@@ -455,7 +455,7 @@ class Design:
         # build cages
         self.cages = []
         for symbol in self.structure:
-            elif (symbol == 'k'):
+            if (symbol == 'k'):
                 self.cages.append(deepcopy(knuckle_cage))
             elif (symbol == 'j'):
                 self.cages.append(deepcopy(joint_cage))
