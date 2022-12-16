@@ -68,7 +68,7 @@ if __name__ == '__main__':
     print(q_init)
     q_init[-1] = -np.pi / 6.
     q_init[-2] = -np.pi / 6.
-    q_init[-3] = -np.pi / 6.
+    q_init[-3] = np.pi / 6.
     
     q_init[-4] = -np.pi / 6.
     q_init[-5] = -np.pi / 6.
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     
     q_init[-7] = -np.pi / 6.
     q_init[-8] = -np.pi / 6.
-    q_init[-9] = -np.pi / 6.
+    q_init[-9] = np.pi / 6.
     
     q_init[-10] = -np.pi / 6.
     q_init[-11] = -np.pi / 6.
