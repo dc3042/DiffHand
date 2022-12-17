@@ -418,13 +418,12 @@ class Design:
                 param_id += self.cages[i].contact_id.shape[0] * 3
 
         print(param_id - tmp)
-        exit(0)
 
         # design param 4
         idx = 0
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if (symbol == 'p' or symbol == 't' or symbol == 'palm'):
+            if (symbol == 'p' or symbol == 't'):
                 design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
                 idx += 1
             elif (symbol == 'j' or symbol == 'k'):
@@ -434,6 +433,9 @@ class Design:
                 # joint child part
                 design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
                 idx += 1
+
+        print(idx)
+        exit(0)
 
         # design param 6
         param_id = ndof_p1 + ndof_p2 + ndof_p3 + ndof_p4
