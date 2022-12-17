@@ -411,8 +411,6 @@ class Design:
         tmp = param_id
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if symbol == 'j': # not consider the contact points in the topper parts of the manipulator which are unneccesary
-                continue
             if (symbol == 'p' or symbol == 't'):
                 design_params[param_id:param_id + self.cages[i].contact_id.shape[0] * 3] = self.cages[i].transform_contacts_whole().flat
                 param_id += self.cages[i].contact_id.shape[0] * 3
@@ -441,8 +439,6 @@ class Design:
         tmp = param_id
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if symbol == 'j': # not consider the contact points in the topper parts of the manipulator which are unneccesary
-                continue
             if (symbol == 'p' or symbol == 't'):
                 design_params[param_id] = self.cages[i].contact_scale()
                 param_id += 1
@@ -454,13 +450,8 @@ class Design:
             meshes = []
             for i in range(len(self.cages)):
                 symbol = self.structure[i]
-                if (symbol == 'p' or symbol == 't' or symbol == 'palm'):
+                if (symbol == 'p' or symbol == 't'):
                     meshes.append(self.cages[i].transform_mesh_whole())
-                elif (symbol == 'j' or symbol == 'k'):
-                    # joint parent part
-                    meshes.append(self.cages[i].transform_mesh_parent())
-                    # joint child part
-                    meshes.append(self.cages[i].transform_mesh_child())
             return design_params, meshes
         else:
             return design_params
