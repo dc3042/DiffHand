@@ -243,7 +243,7 @@ class Cage:
     
     def E_ji(self):
         E = np.eye(4)
-        #E[0, 3] = self.length / 2.
+        E[0, 3] = self.length / 2.
         return E
     
     def E_i_mesh(self):
@@ -262,7 +262,7 @@ class Cage:
 
     def joint_E_ji(self):
         E = np.eye(4)
-        E[0:3, 3] = - self.joint_axis_origin
+        E[0:3, 3] = np.array([self.length / 2., 0., 0.]) - self.joint_axis_origin
         return E
 
     def joint_E_i_mesh(self):
@@ -321,7 +321,7 @@ class Design:
                 self.sub_ndof_p3.append(self.cages[i].contact_id.shape[0] * 3)
                 self.ndof_p6 += 1
 
-        self.n_link = 24
+        self.n_link = 28
         self.ndof_p1 = self.n_link * 12 
         self.ndof_p2 = self.n_link * 12
 
@@ -381,7 +381,30 @@ class Design:
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
                 idx += 1
             elif(symbol == 'j'):
+                # joint parent part
+                print(i)
                 
+                E = np.eye(4)
+                E[0,0] = 0
+                E[2,0] = 1
+                E[2,2] = 0
+                E[0,2] = -1
+                E[0,3] = 5
+                E[1,3] = 3
+                E[2,3] = 1.5
+                
+                if(i == 5):
+                    E[1,3] *= -1
+                elif(i == 10):
+                    E[0,3] *= -1
+                elif(i == 15):
+                    E[0,3] *= -1
+                    E[1,3] *= -1
+                
+                print(E)
+
+                design_params[idx * 12:(idx + 1) * 12] = flatten_E(E)
+                idx += 1
                 # joint child part
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
                 idx += 1
@@ -401,14 +424,10 @@ class Design:
             if (symbol == 'p' or symbol == 't'):
                 design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].E_ji())
                 idx += 1
-            elif (symbol == 'j' and i - 1 >= 0 and self.structure[i-1] != 't'):
+            elif (symbol == 'j'):
                 # joint parent part
                 design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].E_ji())
                 idx += 1
-                # joint child part
-                design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].joint_E_ji())
-                idx += 1
-            elif (symbol == 'j'):
                 # joint child part
                 design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].joint_E_ji())
                 idx += 1
@@ -433,14 +452,11 @@ class Design:
             if (symbol == 'p' or symbol == 't'):
                 design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
                 idx += 1
-            elif (symbol == 'j' and i - 1 >= 0 and self.structure[i-1] != 't'):
+            elif (symbol == 'j'):
                 # joint parent part
                 design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
                 idx += 1
                 # joint child part
-                design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
-                idx += 1
-            elif (symbol == 'j'):
                 design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
                 idx += 1
 
