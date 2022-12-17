@@ -138,7 +138,11 @@ if __name__ == '__main__':
     global num_sim
     num_sim = 0
 
+    # objectives coefficients
+    coef_u = 0
+    coef_task = 10
     coef_design = 0.
+    
 
     '''compute the objectives by forward pass'''
     def forward(params, backward_flag = False):
@@ -155,10 +159,6 @@ if __name__ == '__main__':
             sim.set_design_params(design_params)
 
         sim.reset(backward_flag = backward_flag, backward_design_params_flag = optimize_design_flag)
-
-        # objectives coefficients
-        coef_u = 1
-        coef_task = 10
         
         f_u = 0.
         f_task = 0.
