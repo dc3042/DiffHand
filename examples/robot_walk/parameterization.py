@@ -326,7 +326,7 @@ class Design:
         self.ndof_p2 = self.n_link * 12
 
     def parameterize(self, cage_parameters, generate_mesh = False):
-        assert(len(cage_parameters) == 17)
+        assert(len(cage_parameters) == 28)
 
         for i in range(len(self.cages)):
             self.cages[i].reset()
