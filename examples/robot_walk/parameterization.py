@@ -382,7 +382,8 @@ class Design:
                 idx += 1
             elif(symbol == 'j'):
                 # joint parent part
-
+                print(i)
+                
                 E = np.eye(4)
                 E[0,0] = 0
                 E[2,0] = 1
