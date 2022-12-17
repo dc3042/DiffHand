@@ -202,7 +202,7 @@ if __name__ == '__main__':
 
             # backward info
             if backward_flag:
-               
+               continue
 
         if backward_flag:
             sim.backward_info.set_flags(False, False, optimize_design_flag, True)
