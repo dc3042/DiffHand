@@ -98,7 +98,7 @@ if __name__ == '__main__':
     cage_params = np.ones(28)
     ndof_cage = len(cage_params)
 
-    design_params, meshes = design_np.parameterize(cage_params, True)
+    #design_params, meshes = design_np.parameterize(cage_params, True)
     #sim.set_design_params(design_params)
     #Vs = []
     #for i in range(len(meshes)):
