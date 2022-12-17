@@ -92,6 +92,13 @@ if __name__ == '__main__':
     sim.viewer_options.camera_pos = np.array([0, -4, 1.8])
     sim.viewer_options.speed = 0.5
 
+    # set task
+    target_pos =[15, 0, 1.7]
+
+    leftFront_traj = [np.array([5, -3, -9.5]), np.array([5, -3, -9.5]), np.array([10, -3, -9.5]), np.array([10, -3, -9.5]), np.array([15, -3, -9.5]), np.array([15, -3, -9.5])]
+    rightFront_traj = [np.array([3.5, 3, -9.5]), np.array([8, 3, -9.5]), np.array([8, 3, -9.5]), np.array([13, 3, -9.5]), np.array([13, 3, -9.5]), np.array([18, 3, -9.5])]
+    num_task_steps = num_steps // len(leftFront_traj)
+
     # init design params
     design = Design()
     design_np = Design_np()
@@ -173,17 +180,24 @@ if __name__ == '__main__':
                 df_dp = np.zeros(ndof_p)
 
         for i in range(num_ctrl_steps):
+
+            traj_idx = i * sub_steps // num_task_steps
+            #target_pos = target_traj[traj_idx]
+            leftFrontTarget_pos = leftFront_traj[traj_idx]
+            rightFrontTarget_pos = rightFront_traj[traj_idx]
+
             sim.set_u(u[i * ndof_u:(i + 1) * ndof_u])
             sim.forward(sub_steps, verbose = args.verbose)
             
             variables = sim.get_variables()
 
             box_pos = variables[0:3]
-            target_pos =[15, 0, 1.7]
+            leftFront_pos = variables[3:6]
+            rightFront_pos = variables[6:9]
 
             # compute objective f
             f_u_i = np.sum(u[i * ndof_u:(i + 1) * ndof_u] ** 2)
-            f_task_i = np.linalg.norm(box_pos - target_pos)
+            f_task_i = np.linalg.norm(box_pos - target_pos) + np.linalg.norm(leftFront_pos - leftFrontTarget_pos) + np.linalg.norm(rightFront_pos - rightFrontTarget_pos)
 
             f_u += f_u_i * coef_u
             f_task += f_task_i * coef_task
@@ -195,7 +209,8 @@ if __name__ == '__main__':
                 df_du[i * sub_steps * ndof_u:(i * sub_steps + 1) * ndof_u] = \
                     coef_u * 2. * u[i * ndof_u:(i + 1) * ndof_u]
                 df_dvar[((i + 1) * sub_steps - 1) * ndof_var:(i + 1) * sub_steps * ndof_var] = \
-                    coef_task * (box_pos - target_pos) / max(1e-5, np.linalg.norm(box_pos - target_pos)) # L2-norm
+                    coef_task * (leftFront_pos - leftFrontTarget_pos) / max(1e-5, np.linalg.norm(leftFront_pos - leftFrontTarget_pos)) # L2-norm \
+                    + coef_task * (rightFront_pos - rightFrontTarget_pos) / max(1e-5, np.linalg.norm(rightFront_pos - rightFrontTarget_pos))
 
         if backward_flag:
             sim.backward_info.set_flags(False, False, optimize_design_flag, True)
