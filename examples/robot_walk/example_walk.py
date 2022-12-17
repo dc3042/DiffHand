@@ -89,7 +89,7 @@ if __name__ == '__main__':
     ndof_p = sim.ndof_p
 
     # set up camera
-    sim.viewer_options.camera_pos = np.array([7, -4, 1.8])
+    sim.viewer_options.camera_pos = np.array([0, -4, 1.8])
     sim.viewer_options.speed = 0.5
 
     # init design params
