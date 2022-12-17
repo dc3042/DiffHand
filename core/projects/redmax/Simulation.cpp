@@ -28,12 +28,12 @@ void Simulation::init(bool verbose) {
     _ndof_p5 = _robot->_ndof_p5;
     _ndof_p6 = _robot->_ndof_p6;
 
-    std::cout << "ndop 1: " <<  _ndop_p1 << std::cout;
-    std::cout << "ndop 2: " <<  _ndop_p2 << std::cout;
-    std::cout << "ndop 3: " <<  _ndop_p3 << std::cout;
-    std::cout << "ndop 4: " <<  _ndop_p4 << std::cout;
-    std::cout << "ndop 5: " <<  _ndop_p5 << std::cout;
-    std::cout << "ndop 6: " <<  _ndop_p6 << std::cout;
+    std::cout << "ndof 1: " <<  _ndof_p1 << std::cout;
+    std::cout << "ndof 2: " <<  _ndof_p2 << std::cout;
+    std::cout << "ndof 3: " <<  _ndof_p3 << std::cout;
+    std::cout << "ndof 4: " <<  _ndof_p4 << std::cout;
+    std::cout << "ndof 5: " <<  _ndof_p5 << std::cout;
+    std::cout << "ndof 6: " <<  _ndof_p6 << std::cout;
 
     _dM_dp = JacobianMatrixVector(_ndof_r, _ndof_r, _ndof_p);
     _df_dp = MatrixX::Zero(_ndof_r, _ndof_p);
