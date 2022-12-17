@@ -157,8 +157,8 @@ if __name__ == '__main__':
         sim.reset(backward_flag = backward_flag, backward_design_params_flag = optimize_design_flag)
 
         # objectives coefficients
-        coef_u = 0.
-        coef_task = 5
+        coef_u = 1
+        coef_task = 10
         
         f_u = 0.
         f_task = 0.
