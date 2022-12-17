@@ -330,7 +330,7 @@ class Design:
                 self.ndof_p6 += 1
 
         self.n_link = 28
-        self.ndof_p1 = self.n_link * 12 
+        self.ndof_p1 = (self.n_link + 2) * 12 
         self.ndof_p2 = self.n_link * 12
 
     def parameterize(self, cage_parameters, generate_mesh = False):
