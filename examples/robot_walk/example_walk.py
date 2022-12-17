@@ -191,7 +191,7 @@ if __name__ == '__main__':
                 df_du[i * sub_steps * ndof_u:(i * sub_steps + 1) * ndof_u] = \
                     coef_u * 2. * u[i * ndof_u:(i + 1) * ndof_u]
                 df_dvar[((i + 1) * sub_steps - 1) * ndof_var:(i + 1) * sub_steps * ndof_var] = \
-                    coef_task * (variables - target_pos) / max(1e-5, np.linalg.norm(variables - target_pos)) # L2-norm
+                    coef_task * (box_pos - target_pos) / max(1e-5, np.linalg.norm(box_pos - target_pos)) # L2-norm
 
         if backward_flag:
             sim.backward_info.set_flags(False, False, optimize_design_flag, True)
