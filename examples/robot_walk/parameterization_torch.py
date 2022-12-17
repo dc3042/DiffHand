@@ -346,7 +346,7 @@ class Design:
         ndof_p6 = self.ndof_p6
         ndof_p = ndof_p1 + ndof_p2 + ndof_p3 + ndof_p4 + ndof_p6
 
-        design_params = np.zeros(ndof_p)
+        design_params = torch.zeros(ndof_p)
 
         # apply cage parameters into cages
         parameter_idx = 0
