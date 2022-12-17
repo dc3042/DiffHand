@@ -31,6 +31,10 @@
                                     <link name="link9" design_params="47">
                                         <joint name="joint9" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
                                         <body name="body9" type="abstract"  mesh="finger/meshes/tip.obj"  contacts="finger/contacts/tip.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
+                                        <link name="endeffector0" design_params="1">
+                                            <joint name="joint-endeffector0" type="fixed" pos="0.9 0.0 1.5" quat="1. 0. 0. 0."/>
+                                            <body name="body-endeffector0" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
+                                        </link>
                                     </link>
                                 </link>
                             </link>
@@ -151,5 +155,9 @@
         <ground_contact body="body17b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body18b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
     </contact>
+
+    <variable>
+		<endeffector joint="joint-endeffector0" pos="0 0 0" radius="0.2"/>
+	</variable>
 
 </redmax>

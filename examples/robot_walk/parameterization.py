@@ -370,6 +370,7 @@ class Design:
         
         # convert from cages to design params
         # design params 1
+        done = False
         idx = 0
         for i in range(len(self.cages)):
             symbol = self.structure[i]
@@ -414,6 +415,12 @@ class Design:
             elif (symbol == 't'):
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
                 idx += 1
+
+                if not done:
+                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].endeffector_E_pj())
+                    idx += 1
+                    done = True
+
         
         print(idx)
         
