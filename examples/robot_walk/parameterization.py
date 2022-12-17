@@ -339,21 +339,13 @@ class Design:
         ndof_p6 = self.ndof_p6
         ndof_p = ndof_p1 + ndof_p2 + ndof_p3 + ndof_p4 + ndof_p6
 
-        print(ndof_p)
-        exit(0)
-
         design_params = np.zeros(ndof_p)
 
         # apply cage parameters into cages
-        parameter_idx = 1
+        parameter_idx = 0
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if (symbol == 'j' and self.structure[i + 1] == 'p' and self.structure[i - 1] == 'p'):
-                self.cages[i - 1].scale_child_y(cage_parameters[parameter_idx])
-                self.cages[i].scale_y(cage_parameters[parameter_idx])
-                self.cages[i + 1].scale_parent_y(cage_parameters[parameter_idx])
-                parameter_idx += 1
-            elif (symbol == 'p' and self.structure[i + 1] != 'j' and self.structure[i + 1] != 'k'):
+            if (symbol == 'p' and self.structure[i + 1] == 't'):
                 self.cages[i].scale_child_z(cage_parameters[parameter_idx])
                 self.cages[i + 1].scale_parent_z(cage_parameters[parameter_idx])
                 parameter_idx += 1
@@ -374,6 +366,9 @@ class Design:
             elif (symbol == 't'):
                 self.cages[i].scale_length(cage_parameters[parameter_idx])
                 parameter_idx += 1
+        
+        print(parameter_idx)
+        exit(0)
         
         # convert from cages to design params
         # design params 1
