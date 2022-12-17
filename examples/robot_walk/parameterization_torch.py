@@ -334,7 +334,6 @@ class Design:
         self.ndof_p2 = self.n_link * 12
 
     def parameterize(self, cage_parameters, generate_mesh = False):
-        assert(len(cage_parameters) == 28)
 
         for i in range(len(self.cages)):
             self.cages[i].reset()
@@ -383,7 +382,7 @@ class Design:
             symbol = self.structure[i]
             if (symbol == 'j' and i - 1 >= 0 and self.structure[i-1] != 't'):
                 # joint parent part
-                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc()).detach()
+                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
                 idx += 1
                 # joint child part
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
@@ -420,7 +419,7 @@ class Design:
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].joint_E_jc())
                 idx += 1
             elif (symbol == 't'):
-                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc()).detach()
+                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
                 idx += 1
         
         #print(idx)
@@ -430,7 +429,7 @@ class Design:
         for i in range(len(self.cages)):
             symbol = self.structure[i]
             if (symbol == 'p' or symbol == 't'):
-                design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].E_ji()).detach()
+                design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].E_ji())
                 idx += 1
             elif (symbol == 'j'):
                 # joint parent part
@@ -448,7 +447,7 @@ class Design:
         for i in range(len(self.cages)):
             symbol = self.structure[i]
             if (symbol == 'p' or symbol == 't'):
-                design_params[param_id:param_id + self.cages[i].contact_id.shape[0] * 3] = self.cages[i].transform_contacts_whole().flatten().detach()
+                design_params[param_id:param_id + self.cages[i].contact_id.shape[0] * 3] = self.cages[i].transform_contacts_whole().flatten()
                 param_id += self.cages[i].contact_id.shape[0] * 3
 
         #print(param_id - tmp)
@@ -458,7 +457,7 @@ class Design:
         for i in range(len(self.cages)):
             symbol = self.structure[i]
             if (symbol == 'p' or symbol == 't'):
-                design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia().detach()
+                design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
                 idx += 1
             elif (symbol == 'j'):
                 # joint parent part
