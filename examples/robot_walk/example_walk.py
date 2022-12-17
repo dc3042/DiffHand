@@ -208,9 +208,12 @@ if __name__ == '__main__':
             if backward_flag:
                 df_du[i * sub_steps * ndof_u:(i * sub_steps + 1) * ndof_u] = \
                     coef_u * 2. * u[i * ndof_u:(i + 1) * ndof_u]
-                df_dvar[((i + 1) * sub_steps - 1) * ndof_var:(i + 1) * sub_steps * ndof_var] = \
-                    coef_task * (leftFront_pos - leftFrontTarget_pos) / max(1e-5, np.linalg.norm(leftFront_pos - leftFrontTarget_pos)) # L2-norm \
-                    + coef_task * (rightFront_pos - rightFrontTarget_pos) / max(1e-5, np.linalg.norm(rightFront_pos - rightFrontTarget_pos))
+                df_dvar[((i + 1) * sub_steps - 1) * ndof_var:(i + 1) * sub_steps * ndof_var][0:3] = \
+                    coef_task * (box_pos - target_pos) / max(1e-5, np.linalg.norm(box_pos - target_pos))
+                df_dvar[((i + 1) * sub_steps - 1) * ndof_var:(i + 1) * sub_steps * ndof_var][3:6] = \
+                    coef_task * (leftFront_pos - leftFrontTarget_pos) / max(1e-5, np.linalg.norm(leftFront_pos - leftFrontTarget_pos))
+                df_dvar[((i + 1) * sub_steps - 1) * ndof_var:(i + 1) * sub_steps * ndof_var][6:9] = \
+                    coef_task * (rightFront_pos - rightFrontTarget_pos) / max(1e-5, np.linalg.norm(rightFront_pos - rightFrontTarget_pos))
 
         if backward_flag:
             sim.backward_info.set_flags(False, False, optimize_design_flag, True)
