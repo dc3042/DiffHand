@@ -1,6 +1,6 @@
 '''
 description:
-define the parameterization for a two-finger configuration with contact points
+define the parameterization for a walking robot
 input: cage parameters
 output: simulation related design parameters (joint transformation, body transformation, contact points, mass inertia, contact scale)
 
@@ -382,7 +382,7 @@ class Design:
                 idx += 1
             elif(symbol == 'j'):
                 # joint parent part
-                print(i)
+                #print(i)
                 
                 E = np.eye(4)
                 E[0,0] = 0
@@ -401,7 +401,7 @@ class Design:
                     E[0,3] *= -1
                     E[1,3] *= -1
                 
-                print(E)
+                #print(E)
 
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(E)
                 idx += 1
@@ -415,7 +415,7 @@ class Design:
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
                 idx += 1
         
-        print(idx)
+        #print(idx)
         
         # design param 2
         idx = 0
@@ -432,7 +432,7 @@ class Design:
                 design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].joint_E_ji())
                 idx += 1
         
-        print(idx)
+        #print(idx)
 
         # design param 3
         param_id = ndof_p1 + ndof_p2
@@ -443,7 +443,7 @@ class Design:
                 design_params[param_id:param_id + self.cages[i].contact_id.shape[0] * 3] = self.cages[i].transform_contacts_whole().flat
                 param_id += self.cages[i].contact_id.shape[0] * 3
 
-        print(param_id - tmp)
+        #print(param_id - tmp)
 
         # design param 4
         idx = 0
@@ -460,7 +460,7 @@ class Design:
                 design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
                 idx += 1
 
-        print(idx)
+        #print(idx)
 
         # design param 6
         param_id = ndof_p1 + ndof_p2 + ndof_p3 + ndof_p4
@@ -471,7 +471,7 @@ class Design:
                 design_params[param_id] = self.cages[i].contact_scale()
                 param_id += 1
         
-        print(param_id - tmp)
+        #print(param_id - tmp)
 
         if generate_mesh:
             meshes = []
