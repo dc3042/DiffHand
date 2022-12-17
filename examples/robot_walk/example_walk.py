@@ -272,8 +272,7 @@ if __name__ == '__main__':
         for i in range(num_ctrl_steps * ndof_u):
             bounds.append((-1., 1.))
         if optimize_design_flag:
-            bounds.append((0.5, 6.))
-            for i in range(ndof_cage - 1):
+            for i in range(ndof_cage):
                 bounds.append((0.5, 3.))
 
         if args.continuation:
