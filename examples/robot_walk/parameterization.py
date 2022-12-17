@@ -5,33 +5,45 @@ input: cage parameters
 output: simulation related design parameters (joint transformation, body transformation, contact points, mass inertia, contact scale)
 
 cage layout:
-palm-j0-p0-j1-p1-tip0
+  ---p0-j1-p1-tip0  -- front right
   |
-  ---j2-p2-j3-p3-tip1
+  ---p2-j2-p3-tip1 -- front left
   |
-  ---j2-p2-j3-p3-tip2
+  ---p4-j3-p5-tip2 -- back right
   |
-  ---j2-p2-j3-p3-tip3
+  ---p6-j4-p7-tip3 -- back left
 
 
 cage parameters:
-0: palm length
-1: j1 y scale
-2: p1-tip0 interface z scale
-3: p1-tip0 interface y scale
-4: tip0 end interface z scale
-5: tip0 end interface y scale
-6: j3 y scale
-7: p3-tip1 interface z scale
-8: p3-tip1 interface y scale
-9: tip1 end interface z scale
-10: tip1 end interface y scale
-11: p0 length scale
-12: p1 length scale
-13: tip0 length scale
-14: p2 length scale
-15: p3 length scale
-16: tip1 length scale
+0: p1-tip0 interface z scale
+1: p1-tip0 interface y scale
+2: tip0-end interface z scale
+3: tip0-end interface z scale
+4: p3-tip1 interface z scale
+5: p3-tip1 interface y scale
+6: tip1-end interface z scale
+7: tip1-end interface z scale
+8: p5-tip2 interface z scale
+9: p5-tip2 interface y scale
+10: tip2-end interface z scale
+11: tip2-end interface z scale
+12: p7-tip3 interface z scale
+13: p7-tip3 interface y scale
+14: tip3-end interface z scale
+15: tip3-end interface z scale
+16: p0 length scale
+17: p1 length scale
+18: tip0 length scale
+19: p2 length scale
+20: p3 length scale
+21: tip1 length scale
+22: p4 length scale
+23: p5 length scale
+24: tip2 length scale
+25: p6 length scale
+26: p7 length scale
+27: tip3 length scale
+
 '''
 import os
 import sys
@@ -72,173 +84,6 @@ class TriMesh:
     def __init__(self, V, F):
         self.V = V
         self.F = F
-
-class PalmCage:
-    def __init__(self, width0, height0, width1, height1, length, name):
-        self.side_parent = Interface(width0, height0)
-        self.side_child = Interface(width1, height1)
-        self.length = length
-        self.side_parent_init = Interface(width0, height0)
-        self.side_child_init = Interface(width1, height1)
-        self.length_init = length
-        self.name = name
-        self.mesh, self.handles, self.lbs_mat, \
-            self.contact_id, self.contact_lbs_mat = self.load(self.name)
-    
-    def reset(self):
-        self.side_parent = deepcopy(self.side_parent_init)
-        self.side_child = deepcopy(self.side_child_init)
-        self.length = self.length_init
-    
-    def load(self, name):
-        mesh_path = os.path.join(asset_folder, 'meshes', name + '.obj')
-        cage_path = os.path.join(asset_folder, 'cages', name + '.txt')
-        weight_path = os.path.join(asset_folder, 'weights', name + '.npy')
-        contact_path = os.path.join(asset_folder, 'contacts', name + '_id.npy')
-
-        # load mesh
-        mesh_pv = pv.read(mesh_path)
-        V = np.copy(mesh_pv.points.T)
-        F = np.copy(mesh_pv.faces.reshape(-1, 4).T[1:4, :])
-        mesh = TriMesh(V, F)
-
-        # load cage
-        with open(cage_path, 'r') as fp:
-            n = int(fp.readline())
-            handles = np.zeros((3, n))
-            for i in range(n):
-                data = fp.readline().split()
-                x, y, z = float(data[0]), float(data[1]), float(data[2])
-                handles[0, i], handles[1, i], handles[2, i] = x, y, z
-            fp.close()
-
-        # load weight
-        lbs_mat = np.load(open(weight_path, 'rb'))
-
-        # load contact id
-        with open(contact_path, 'rb') as fp:
-            contact_id = np.load(fp)
-            fp.close()
-            contact_lbs_mat = deepcopy(lbs_mat[:, contact_id])
-
-        return mesh, handles, lbs_mat, contact_id, contact_lbs_mat
-    
-    def get_handle_positions(self):
-        handle_positions = np.zeros((3, 14))
-        handle_positions[:, 0] = np.array([-self.length / 2., -self.side_parent.width / 2., -self.side_parent.height / 2.])
-        handle_positions[:, 1] = np.array([-self.length / 2., -self.side_parent.width / 2., self.side_parent.height / 2.])
-        handle_positions[:, 2] = np.array([-self.length / 2, self.side_parent.width / 2., -self.side_parent.height / 2.])
-        handle_positions[:, 3] = np.array([-self.length / 2, self.side_parent.width / 2., self.side_parent.height / 2.])
-        handle_positions[:, 4] = np.array([self.length / 2., -self.side_child.width / 2., -self.side_child.height / 2.])
-        handle_positions[:, 5] = np.array([self.length / 2., -self.side_child.width / 2., self.side_child.height / 2.])
-        handle_positions[:, 6] = np.array([self.length / 2., self.side_child.width / 2., -self.side_child.height / 2.])
-        handle_positions[:, 7] = np.array([self.length / 2., self.side_child.width / 2., self.side_child.height / 2.])
-        handle_positions[:, 8] = (handle_positions[:, 1] + handle_positions[:, 5] + handle_positions[:, 7] + handle_positions[:, 3]) / 4.
-        handle_positions[:, 9] = (handle_positions[:, 5] + handle_positions[:, 4] + handle_positions[:, 6] + handle_positions[:, 7]) / 4.
-        handle_positions[:, 10] = (handle_positions[:, 3] + handle_positions[:, 7] + handle_positions[:, 6] + handle_positions[:, 2]) / 4.
-        handle_positions[:, 11] = (handle_positions[:, 1] + handle_positions[:, 3] + handle_positions[:, 2] + handle_positions[:, 0]) / 4.
-        handle_positions[:, 12] = (handle_positions[:, 0] + handle_positions[:, 2] + handle_positions[:, 6] + handle_positions[:, 4]) / 4.
-        handle_positions[:, 13] = (handle_positions[:, 1] + handle_positions[:, 0] + handle_positions[:, 4] + handle_positions[:, 5]) / 4.
-
-        return handle_positions
-
-    def transform_mesh(self, mesh, handle_old_positions, lbs_mat):
-        transformed_mesh = deepcopy(mesh)
-        
-        n_handles = handle_old_positions.shape[1]
-        n_verts = mesh.V.shape[1]
-
-        handle_positions = self.get_handle_positions()
-
-        handle_transform = np.zeros((3, 4 * n_handles))
-        for i in range(n_handles):
-            for j in range(3):
-                handle_transform[j, i * 4 + j] = 1.
-            handle_transform[0:3, i * 4 + 3] = handle_positions[:, i] - handle_old_positions[:, i]
-
-        transformed_mesh.V = handle_transform @ lbs_mat
-
-        return transformed_mesh
-    
-    def transform_mesh_whole(self):
-        return self.transform_mesh(self.mesh, self.handles, self.lbs_mat)
-    
-    def transform_contacts(self, mesh, handle_old_positions, contact_lbs_mat):
-        n_handles = handle_old_positions.shape[1]
-        n_verts = mesh.V.shape[1]
-
-        handle_positions = self.get_handle_positions()
-
-        handle_transform = np.zeros((3, 4 * n_handles))
-        for i in range(n_handles):
-            for j in range(3):
-                handle_transform[j, i * 4 + j] = 1.
-            handle_transform[0:3, i * 4 + 3] = handle_positions[:, i] - handle_old_positions[:, i]
-
-        contact_points = handle_transform @ contact_lbs_mat
-
-        return contact_points.T
-    
-    def transform_contacts_whole(self):
-        return self.transform_contacts(self.mesh, self.handles, self.contact_lbs_mat)
-
-    def scale_child_z(self, scale):
-        self.side_child.height *= scale
-    
-    def scale_parent_z(self, scale):
-        self.side_parent.height *= scale
-
-    def scale_child_y(self, scale):
-        self.side_child.width *= scale
-    
-    def scale_parent_y(self, scale):
-        self.side_parent.width *= scale
-    
-    def scale_y(self, scale):
-        self.scale_child_y(scale)
-        self.scale_parent_y(scale)
-    
-    def scale_length(self, scale):
-        self.length *= scale
-    
-    def E_jc_0(self):
-        E = np.eye(4)
-        E[0, 3] = self.length / 2.
-        return E
-    
-    def E_jc_1(self):
-        E = np.eye(4)
-        E[0, 0] = -1
-        E[1, 1] = -1
-        E[0, 3] = -self.length / 2.
-        return E
-
-    def E_ji(self):
-        E = np.eye(4)
-        return E
-    
-    def E_i_mesh(self):
-        E = np.eye(4)
-        return E
-    
-    def inertia(self):
-        h = (self.side_parent.height + self.side_child.height) / 2.
-        w = (self.side_parent.width + self.side_child.width) / 2.
-        length = self.length
-        mass = h * w * length * 0.1
-        I = np.zeros(4)
-        I[0] = mass
-        I[1] = mass / 12. * (w * w + h * h)
-        I[2] = mass / 12. * (h * h + length * length)
-        I[3] = mass / 12. * (w * w + length * length)
-        return I
-    
-    def contact_scale(self):
-        old_S = self.side_parent_init.width * self.side_parent_init.height + self.side_child_init.width * self.side_child_init.height \
-                + (self.side_parent_init.width + self.side_parent_init.height + self.side_child_init.width + self.side_child_init.height) * self.length_init
-        new_S = self.side_parent.width * self.side_parent.height + self.side_child.width * self.side_child.height \
-                + (self.side_parent.width + self.side_parent.height + self.side_child.width + self.side_child.height) * self.length
-        return new_S / old_S
 
 class Cage:
     def __init__(self, width0, height0, width1, height1, length, is_joint, name_parent, name_child = None, joint_axis_origin = None):
@@ -449,24 +294,18 @@ class Cage:
                 + (self.side_parent.width + self.side_parent.height + self.side_child.width + self.side_child.height) * self.length
         return new_S / old_S
 
-palm_cage = PalmCage(1.6, 3.24, 1.6, 3.24, 0.7, 'palm')
-knuckle_cage = Cage(1.6, 3.24, 2.6, 2.6, 2.75, True, 'knuckle_parent', 'knuckle_child', joint_axis_origin = np.array([1.15, 0., 0.]))
 joint_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.06, True, 'joint_parent', 'joint_child', joint_axis_origin = np.array([1.08, 0., 0.]))
 phalanx_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.34, False, 'phalanx')
 tip_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.21, False, 'tip')
 
 class Design:
     def __init__(self):
-        self.structure = ['palm', 'k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't']
+        self.structure = ['p', 'j', 'p', 't', 'p', 'j', 'p', 't', 'p', 'j', 'p', 't', 'p', 'j', 'p', 't']
         
         # build cages
         self.cages = []
         for symbol in self.structure:
-            if (symbol == 'palm'):
-                self.cages.append(deepcopy(palm_cage))
-            elif (symbol == 'k'):
-                self.cages.append(deepcopy(knuckle_cage))
-            elif (symbol == 'j'):
+            if (symbol == 'j'):
                 self.cages.append(deepcopy(joint_cage))
             elif (symbol == 'p'):
                 self.cages.append(deepcopy(phalanx_cage))
@@ -477,26 +316,13 @@ class Design:
         self.sub_ndof_p3 = []
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if i <= 3:
-                continue
-            if i >= 7 and i <= 9:
-                continue
-            if i == 4 or i == 10:
-                continue
-            if symbol == 'j' or symbol == 'k':
-                self.ndof_p3 += self.cages[i].contact_id_parent.shape[0] * 3
-                self.sub_ndof_p3.append(self.cages[i].contact_id_parent.shape[0] * 3)
-                self.ndof_p6 += 1
-                self.ndof_p3 += self.cages[i].contact_id_child.shape[0] * 3
-                self.sub_ndof_p3.append(self.cages[i].contact_id_child.shape[0] * 3)
-                self.ndof_p6 += 1
-            elif symbol == 'p' or symbol == 't' or symbol == 'palm':
+            if symbol == 'p' or symbol == 't':
                 self.ndof_p3 += self.cages[i].contact_id.shape[0] * 3
                 self.sub_ndof_p3.append(self.cages[i].contact_id.shape[0] * 3)
                 self.ndof_p6 += 1
 
-        self.n_link = 19                      # number of sublinks (a joint is composed from two sublinks)
-        self.ndof_p1 = (self.n_link + 2) * 12 # one extra joint for two end effectors
+        self.n_link = 16
+        self.ndof_p1 = self.n_link * 12 # one extra joint for two end effectors
         self.ndof_p2 = self.n_link * 12
 
     def parameterize(self, cage_parameters, generate_mesh = False):
@@ -509,9 +335,12 @@ class Design:
         ndof_p1 = self.ndof_p1
         ndof_p2 = self.ndof_p2
         ndof_p3 = self.ndof_p3
-        ndof_p4 = n_link * 4
+        ndof_p4 = (n_link  + 4) * 4 
         ndof_p6 = self.ndof_p6
         ndof_p = ndof_p1 + ndof_p2 + ndof_p3 + ndof_p4 + ndof_p6
+
+        print(ndof_p)
+        exit(0)
 
         design_params = np.zeros(ndof_p)
 
