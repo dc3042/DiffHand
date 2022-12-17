@@ -139,9 +139,8 @@ if __name__ == '__main__':
     num_sim = 0
 
     # objectives coefficients
-    coef_u = 0
-    coef_task = 10
-    coef_design = 0.
+    coef_u = 1
+    coef_task = 50
     
 
     '''compute the objectives by forward pass'''
@@ -172,10 +171,6 @@ if __name__ == '__main__':
             df_dvar = np.zeros(ndof_var * num_steps)
             if optimize_design_flag:
                 df_dp = np.zeros(ndof_p)
-        
-        if optimize_design_flag:
-            f_design = np.sum(cage_params ** 2) * num_ctrl_steps
-            f += coef_design * f_design
 
         for i in range(num_ctrl_steps):
             sim.set_u(u[i * ndof_u:(i + 1) * ndof_u])
