@@ -373,25 +373,18 @@ class Design:
         idx = 0
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if (symbol == 'j'):
+            if (symbol == 'j' and i - 1 >= 0 and self.structure[i - 1] == 'p'):
                 # joint parent part
-                if (i - 1 >= 0 and self.structure[i - 1] == 'p'):
-                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
-                    idx += 1
-                    # joint child part
-                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
-                    idx += 1
-            elif (symbol == 'p'):
-                if (self.structure[i - 1] == 'j'):
-                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].joint_E_jc())
-                else:
-                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
+                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
+                idx += 1
+                # joint child part
+                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
+                idx += 1
+            elif (symbol == 'p' and i - 2 >= 0 and self.structure[i - 2] != 't'):
+                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].joint_E_jc())
                 idx += 1
             elif (symbol == 't'):
-                if (self.structure[i - 1] == 'j'):
-                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].joint_E_jc())
-                else:
-                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
+                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
                 idx += 1
         
         print(idx)
