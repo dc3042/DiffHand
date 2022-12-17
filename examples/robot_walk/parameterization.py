@@ -373,31 +373,27 @@ class Design:
         idx = 0
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if (symbol == 'j' and i - 1 >= 0 and self.structure[i - 1] == 'p'):
+            if (symbol == 'j'):
                 # joint parent part
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
                 idx += 1
                 # joint child part
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
                 idx += 1
-            elif (symbol == 'p' and i - 1 >= 0 and self.structure[i - 1] != 't'):
+            elif ((symbol == 'p' or symbol == 't') and i - 1 >= 0 and self.structure[i-1] != 't'):
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].joint_E_jc())
-                idx += 1
-            elif (symbol == 't'):
-                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
                 idx += 1
         
         print(idx)
-        exit(0)
         
         # design param 2
         idx = 0
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if (symbol == 'p' or symbol == 't' or symbol == 'palm'):
+            if ((symbol == 'p' or symbol == 't') and i - 1 >= 0 and self.structure[i-1] != 't'):
                 design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].E_ji())
                 idx += 1
-            elif (symbol == 'j' or symbol == 'k'):
+            elif (symbol == 'j'):
                 # joint parent part
                 design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].E_ji())
                 idx += 1
@@ -405,6 +401,9 @@ class Design:
                 design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].joint_E_ji())
                 idx += 1
         
+        print(idx)
+        exit(0)
+
         # design param 3
         param_id = ndof_p1 + ndof_p2
         for i in range(len(self.cages)):
