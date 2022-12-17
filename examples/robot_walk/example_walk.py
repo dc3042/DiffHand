@@ -106,7 +106,6 @@ if __name__ == '__main__':
     for i in range(len(meshes)):
         Vs.append(meshes[i].V)
     sim.set_rendering_mesh_vertices(Vs)
-    exit(0)
 
     # init control sequence
     sub_steps = 5
@@ -184,25 +183,14 @@ if __name__ == '__main__':
             sim.set_u(u[i * ndof_u:(i + 1) * ndof_u])
             sim.forward(sub_steps, verbose = args.verbose)
             
-            variables = sim.get_variables()
-            q = sim.get_q()
-
-            finger_pos0 = variables[0:3]
-            finger_pos1 = variables[3:6]
-            box0_center_pos = variables[6:9]
-            box0_touch_pos = variables[9:12]
-            box0_hole_pos = variables[12:15]
-            box1_center_pos = variables[15:18]
-            box1_touch_pos = variables[18:21]
-            box0_rot = q[-4]
-            box1_rot = q[-1]
+            
 
             # compute objective f
-            f_u_i = np.sum(u[i * ndof_u:(i + 1) * ndof_u] ** 2)
-            f_touch_i = np.sum((finger_pos0 - box1_touch_pos) ** 2) + np.sum((finger_pos1 - box0_touch_pos) ** 2) - 6 ** 2 - 2.8 ** 2 # subtract the cube size
-            f_box0_pos_i = np.sum(box0_center_pos[0:2] ** 2)
-            f_task_i = np.sum((box0_hole_pos - box1_center_pos) ** 2)
-            f_rot_i = (box0_rot - box1_rot) ** 2
+            f_u_i = 0
+            f_touch_i = 0 # subtract the cube size
+            f_box0_pos_i = 0
+            f_task_i = 0
+            f_rot_i = 0
 
             f_u += f_u_i * coef_u
             f_touch += f_touch_i * coef_touch
@@ -214,33 +202,7 @@ if __name__ == '__main__':
 
             # backward info
             if backward_flag:
-                ''' f_u '''
-                df_du[i * sub_steps * ndof_u:(i * sub_steps + 1) * ndof_u] += \
-                    coef_u * 2. * u[i * ndof_u:(i + 1) * ndof_u]
-
-                ''' f_touch '''
-                df_dvar[((i + 1) * sub_steps - 1) * ndof_var + 0:((i + 1) * sub_steps - 1) * ndof_var + 3] += \
-                    coef_touch * 2. * (finger_pos0 - box1_touch_pos)
-                df_dvar[((i + 1) * sub_steps - 1) * ndof_var + 18:((i + 1) * sub_steps - 1) * ndof_var + 21] += \
-                    -coef_touch * 2. * (finger_pos0 - box1_touch_pos)
-                df_dvar[((i + 1) * sub_steps - 1) * ndof_var + 3:((i + 1) * sub_steps - 1) * ndof_var + 6] += \
-                    coef_touch * 2. * (finger_pos1 - box0_touch_pos)
-                df_dvar[((i + 1) * sub_steps - 1) * ndof_var + 9:((i + 1) * sub_steps - 1) * ndof_var + 12] += \
-                    -coef_touch * 2. * (finger_pos1 - box0_touch_pos)
-
-                ''' f_box0_pos '''
-                df_dvar[((i + 1) * sub_steps - 1) * ndof_var + 6:((i + 1) * sub_steps - 1) * ndof_var + 8] += \
-                    coef_box0_pos * 2. * box0_center_pos[0:2]
-
-                ''' f_task '''
-                df_dvar[((i + 1) * sub_steps - 1) * ndof_var + 12:((i + 1) * sub_steps - 1) * ndof_var + 15] += \
-                    coef_task * 2. * (box0_hole_pos - box1_center_pos)
-                df_dvar[((i + 1) * sub_steps - 1) * ndof_var + 15:((i + 1) * sub_steps - 1) * ndof_var + 18] += \
-                    -coef_task * 2. * (box0_hole_pos - box1_center_pos)
-
-                ''' f_rot '''
-                df_dq[(i + 1) * sub_steps * ndof_r - 4] += coef_rot * 2. * (box0_rot - box1_rot)
-                df_dq[(i + 1) * sub_steps * ndof_r - 1] += -coef_rot * 2. * (box0_rot - box1_rot)
+               
 
         if backward_flag:
             sim.backward_info.set_flags(False, False, optimize_design_flag, True)
