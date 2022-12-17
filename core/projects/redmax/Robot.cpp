@@ -401,7 +401,7 @@ void Robot::set_contact_scale(dtype scale) {
 void Robot::set_rendering_mesh_vertices(const std::vector<Matrix3X> &Vs) {
     int idx = 0;
     for (auto body : _bodies) {
-        if (dynamic_cast<BodyAbstract*>(body) != nullptr && body._design_params_3._active) {
+        if (dynamic_cast<BodyAbstract*>(body) != nullptr && body->_design_params_3._active) {
             dynamic_cast<BodyAbstract*>(body)->set_rendering_mesh_vertices(Vs[idx]);
             idx += 1;
         }
