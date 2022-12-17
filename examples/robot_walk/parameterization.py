@@ -321,7 +321,7 @@ class Design:
                 self.sub_ndof_p3.append(self.cages[i].contact_id.shape[0] * 3)
                 self.ndof_p6 += 1
 
-        self.n_link = 16
+        self.n_link = 20
         self.ndof_p1 = self.n_link * 12 
         self.ndof_p2 = self.n_link * 12
 
@@ -335,7 +335,7 @@ class Design:
         ndof_p1 = self.ndof_p1
         ndof_p2 = self.ndof_p2
         ndof_p3 = self.ndof_p3
-        ndof_p4 = (n_link  + 4) * 4 
+        ndof_p4 = n_link  * 4 
         ndof_p6 = self.ndof_p6
         ndof_p = ndof_p1 + ndof_p2 + ndof_p3 + ndof_p4 + ndof_p6
 

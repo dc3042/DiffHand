@@ -125,6 +125,18 @@
         </link>
     </robot>
 
+    <actuator>
+        <motor joint="joint4"  ctrl="force"  ctrl_range="-6e5 6e5"/>
+        <motor joint="joint7"  ctrl="force"  ctrl_range="-6e5 6e5"/>
+        <motor joint="joint13"  ctrl="force"  ctrl_range="-6e5 6e5"/>
+        <motor joint="joint16"  ctrl="force"  ctrl_range="-6e5 6e5"/>
+        <motor joint="joint4b"  ctrl="force"  ctrl_range="-6e5 6e5"/>
+        <motor joint="joint7b"  ctrl="force"  ctrl_range="-6e5 6e5"/>
+        <motor joint="joint13b"  ctrl="force"  ctrl_range="-6e5 6e5"/>
+        <motor joint="joint16b"  ctrl="force"  ctrl_range="-6e5 6e5"/>
+    </actuator>
+
+
     <contact>
         <ground_contact body="body7" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body8" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
