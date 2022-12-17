@@ -367,8 +367,6 @@ class Design:
                 self.cages[i].scale_length(cage_parameters[parameter_idx])
                 parameter_idx += 1
         
-        print(parameter_idx)
-        exit(0)
         
         # convert from cages to design params
         # design params 1
@@ -377,24 +375,12 @@ class Design:
             symbol = self.structure[i]
             if (symbol == 'j'):
                 # joint parent part
-                if (self.structure[i - 1] == 'k'):
-                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].joint_E_jc())
-                else:
+                if (i - 1 >= 0 and self.structure[i - 1] == 'p'):
                     design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
-                idx += 1
-                # joint child part
-                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
-                idx += 1
-            elif (symbol == 'k'):
-                # knuckle parent part
-                if i == 1:
-                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[0].E_jc_0())
-                else:
-                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[0].E_jc_1())
-                idx += 1
-                # knuckle child part
-                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
-                idx += 1
+                    idx += 1
+                    # joint child part
+                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
+                    idx += 1
             elif (symbol == 'p'):
                 if (self.structure[i - 1] == 'j'):
                     design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].joint_E_jc())
@@ -407,15 +393,9 @@ class Design:
                 else:
                     design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
                 idx += 1
-                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].endeffector_E_pj())
-                idx += 1
-            elif (symbol == 'palm'):
-                E = np.eye(4)
-                E[1, 1] = -1
-                E[2, 2] = -1
-                E[2, 3] = 4.
-                design_params[idx * 12:(idx + 1) * 12] = flatten_E(E)
-                idx += 1
+        
+        print(idx)
+        exit(0)
         
         # design param 2
         idx = 0
