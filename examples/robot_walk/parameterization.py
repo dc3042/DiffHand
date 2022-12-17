@@ -321,7 +321,7 @@ class Design:
                 self.sub_ndof_p3.append(self.cages[i].contact_id.shape[0] * 3)
                 self.ndof_p6 += 1
 
-        self.n_link = 24
+        self.n_link = 28
         self.ndof_p1 = self.n_link * 12 
         self.ndof_p2 = self.n_link * 12
 
@@ -381,6 +381,22 @@ class Design:
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
                 idx += 1
             elif(symbol == 'j'):
+                # joint parent part
+
+                E = np.matrix([0,0,-1,0],[0,1,0,0],[1,0,0,0],[0,0,0,1]])
+                
+                if(i == 0):
+                    E[:3,3] = [5.00000, 3.000000, 1.500000]
+                elif(i == 5):
+                    E[:3,3] = [5.00000, -3.000000, 1.500000]
+                elif(i == 10):
+                    E[:3,3] = [-5.00000, 3.000000, 1.500000]
+                elif(i == 15):
+                    E[:3,3] = [-5.00000, -3.000000, 1.500000]
+
+                design_params[idx * 12:(idx + 1) * 12] = flatten_E(E)
+                idx += 1
+                # joint child part
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
                 idx += 1
             elif (symbol == 'p'):
@@ -399,14 +415,11 @@ class Design:
             if (symbol == 'p' or symbol == 't'):
                 design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].E_ji())
                 idx += 1
-            elif (symbol == 'j' and i - 1 >= 0 and self.structure[i-1] != 't'):
+            elif (symbol == 'j'):
                 # joint parent part
                 design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].E_ji())
                 idx += 1
                 # joint child part
-                design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].joint_E_ji())
-                idx += 1
-            elif(symbol == 'j'):
                 design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].joint_E_ji())
                 idx += 1
         
