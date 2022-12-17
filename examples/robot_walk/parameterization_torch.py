@@ -420,7 +420,7 @@ class Design:
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].joint_E_jc())
                 idx += 1
             elif (symbol == 't'):
-                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
+                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc()).detach()
                 idx += 1
         
         #print(idx)
