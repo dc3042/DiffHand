@@ -416,7 +416,6 @@ class Design:
                 idx += 1
         
         print(idx)
-        exit(0)
         
         # design param 2
         idx = 0
