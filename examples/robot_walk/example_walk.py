@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
     q_init = sim.get_q_init().copy()
 
-    #print(len(q_init))
+    print(len(q_init))
     
     q_init[-1] = np.pi / 3.
     q_init[-2] = -np.pi / 6.
