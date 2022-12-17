@@ -444,7 +444,6 @@ class Design:
                 param_id += 1
         
         print(param_id - tmp)
-        exit(0)
 
         if generate_mesh:
             meshes = []
