@@ -101,7 +101,9 @@ if __name__ == '__main__':
     design_params, meshes = design_np.parameterize(cage_params, True)
     sim.set_design_params(design_params)
 
-    print(sim.get_variables())
+    variables = sim.get_variables()
+
+    print("variable: ", variables)
 
     print(len(meshes))
     Vs = []
