@@ -448,7 +448,7 @@ class Design:
         for i in range(len(self.cages)):
             symbol = self.structure[i]
             if (symbol == 'p' or symbol == 't'):
-                design_params[param_id:param_id + self.cages[i].contact_id.shape[0] * 3] = self.cages[i].transform_contacts_whole().flat
+                design_params[param_id:param_id + self.cages[i].contact_id.shape[0] * 3] = self.cages[i].transform_contacts_whole().flatten()
                 param_id += self.cages[i].contact_id.shape[0] * 3
 
         #print(param_id - tmp)
