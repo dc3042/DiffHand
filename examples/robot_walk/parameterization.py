@@ -405,24 +405,20 @@ class Design:
                 idx += 1
         
         print(idx)
-        exit(0)
 
         # design param 3
         param_id = ndof_p1 + ndof_p2
+        tmp = param_id
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if i not in [5, 6, 11, 12]: # not consider the contact points in the topper parts of the manipulator which are unneccesary
+            if symbol == 'j': # not consider the contact points in the topper parts of the manipulator which are unneccesary
                 continue
-            if (symbol == 'p' or symbol == 't' or symbol == 'palm'):
+            if (symbol == 'p' or symbol == 't'):
                 design_params[param_id:param_id + self.cages[i].contact_id.shape[0] * 3] = self.cages[i].transform_contacts_whole().flat
                 param_id += self.cages[i].contact_id.shape[0] * 3
-            elif (symbol == 'j' or symbol == 'k'):
-                # joint parent part
-                design_params[param_id:param_id + self.cages[i].contact_id_parent.shape[0] * 3] = self.cages[i].transform_contacts_parent().flat
-                param_id += self.cages[i].contact_id_parent.shape[0] * 3
-                # joint child part
-                design_params[param_id:param_id + self.cages[i].contact_id_child.shape[0] * 3] = self.cages[i].transform_contacts_child().flat
-                param_id += self.cages[i].contact_id_child.shape[0] * 3
+
+        print(param_id - tmp)
+        exit(0)
 
         # design param 4
         idx = 0
