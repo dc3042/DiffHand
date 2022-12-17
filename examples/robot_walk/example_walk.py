@@ -100,6 +100,8 @@ if __name__ == '__main__':
 
     design_params, meshes = design_np.parameterize(cage_params, True)
     sim.set_design_params(design_params)
+
+    print(len(meshes))
     exit(0)
     Vs = []
     for i in range(len(meshes)):

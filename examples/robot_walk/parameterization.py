@@ -452,7 +452,6 @@ class Design:
                 if (symbol == 'p' or symbol == 't'):
                     meshes.append(self.cages[i].transform_mesh_whole())
             
-            print(len(meshes))
             return design_params, meshes
         else:
             return design_params
