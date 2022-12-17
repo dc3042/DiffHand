@@ -321,7 +321,7 @@ class Design:
                 self.sub_ndof_p3.append(self.cages[i].contact_id.shape[0] * 3)
                 self.ndof_p6 += 1
 
-        self.n_link = 20
+        self.n_link = 24
         self.ndof_p1 = self.n_link * 12 
         self.ndof_p2 = self.n_link * 12
 
@@ -380,6 +380,9 @@ class Design:
                 # joint child part
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
                 idx += 1
+            elif(symbol == 'j'):
+                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
+                idx += 1
             elif (symbol == 'p'):
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].joint_E_jc())
                 idx += 1
@@ -401,6 +404,9 @@ class Design:
                 design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].E_ji())
                 idx += 1
                 # joint child part
+                design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].joint_E_ji())
+                idx += 1
+            elif(symbol == 'j'):
                 design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].joint_E_ji())
                 idx += 1
         
@@ -429,6 +435,9 @@ class Design:
                 design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
                 idx += 1
                 # joint child part
+                design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
+                idx += 1
+            elif (symbol == 'j'):
                 design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
                 idx += 1
 
