@@ -158,22 +158,15 @@ if __name__ == '__main__':
 
         # objectives coefficients
         coef_u = 0.
-        coef_box0_pos = 15
         coef_task = 5
-        coef_touch = 1
-        coef_rot = 50.
         
         f_u = 0.
-        f_box0_pos = 0.
         f_task = 0.
-        f_touch = 0.
-        f_rot = 0.
         f_design = 0.
 
         f = 0.
 
         if backward_flag:
-            df_dq = np.zeros(ndof_r * num_steps)
             df_du = np.zeros(ndof_u * num_steps)
             df_dvar = np.zeros(ndof_var * num_steps)
             if optimize_design_flag:
@@ -187,36 +180,36 @@ if __name__ == '__main__':
             sim.set_u(u[i * ndof_u:(i + 1) * ndof_u])
             sim.forward(sub_steps, verbose = args.verbose)
             
-            
+            variables = sim.get_variables()
+
+            box_pos = variables[0:3]
+            target_pos =[15, 0, 1.7]
 
             # compute objective f
-            f_u_i = 0
-            f_touch_i = 0 # subtract the cube size
-            f_box0_pos_i = 0
-            f_task_i = 0
-            f_rot_i = 0
+            f_u_i = np.sum(u[i * ndof_u:(i + 1) * ndof_u] ** 2)
+            f_task_i = np.linalg.norm(variables - target_pos)
 
             f_u += f_u_i * coef_u
-            f_touch += f_touch_i * coef_touch
-            f_box0_pos += f_box0_pos_i * coef_box0_pos
             f_task += f_task_i * coef_task
-            f_rot += f_rot_i * coef_rot
 
-            f += coef_u * f_u_i + coef_touch * f_touch_i + coef_box0_pos * f_box0_pos_i + coef_rot * f_rot_i + coef_task * f_task_i
+            f += coef_u * f_u_i + coef_task * f_task_i
 
             # backward info
             if backward_flag:
-               continue
+                df_du[i * sub_steps * ndof_u:(i * sub_steps + 1) * ndof_u] = \
+                    coef_u * 2. * u[i * ndof_u:(i + 1) * ndof_u]
+                df_dvar[((i + 1) * sub_steps - 1) * ndof_var:(i + 1) * sub_steps * ndof_var] = \
+                    coef_task * (variables - target_pos) / max(1e-5, np.linalg.norm(variables - target_pos)) # L2-norm
 
         if backward_flag:
             sim.backward_info.set_flags(False, False, optimize_design_flag, True)
             sim.backward_info.df_du = df_du
-            sim.backward_info.df_dq = df_dq
+            sim.backward_info.df_dq = np.zeros(ndof_r * num_steps)
             sim.backward_info.df_dvar = df_dvar
             if optimize_design_flag:
                 sim.backward_info.df_dp = df_dp
 
-        return f, {'f_touch': f_touch, 'f_box0_pos': f_box0_pos, 'f_task': f_task, 'f_rot': f_rot}
+        return f, {'f_u': f_u, 'f_task': f_task}
 
     '''compute loss and gradient'''
     def loss_and_grad(params):

@@ -161,7 +161,7 @@
 	</variable>
 
     <virtual>
-		<sphere name="target point" pos="10 0 1.7" radius="0.5" rgba="0 1 0 1"/>
+		<sphere name="target point" pos="15 0 1.7" radius="0.5" rgba="0 1 0 1"/>
 	</virtual>
 
 </redmax>
