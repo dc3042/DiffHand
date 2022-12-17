@@ -101,10 +101,6 @@ if __name__ == '__main__':
     design_params, meshes = design_np.parameterize(cage_params, True)
     sim.set_design_params(design_params)
 
-    variables = sim.get_variables()
-
-    print("variable: ", variables)
-
     print(len(meshes))
     Vs = []
     for i in range(len(meshes)):
@@ -183,7 +179,7 @@ if __name__ == '__main__':
 
             # compute objective f
             f_u_i = np.sum(u[i * ndof_u:(i + 1) * ndof_u] ** 2)
-            f_task_i = np.linalg.norm(variables - target_pos)
+            f_task_i = np.linalg.norm(box_pos - target_pos)
 
             f_u += f_u_i * coef_u
             f_task += f_task_i * coef_task
