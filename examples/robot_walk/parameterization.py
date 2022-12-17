@@ -322,7 +322,7 @@ class Design:
                 self.ndof_p6 += 1
 
         self.n_link = 16
-        self.ndof_p1 = self.n_link * 12 # one extra joint for two end effectors
+        self.ndof_p1 = self.n_link * 12 
         self.ndof_p2 = self.n_link * 12
 
     def parameterize(self, cage_parameters, generate_mesh = False):
@@ -345,7 +345,6 @@ class Design:
         design_params = np.zeros(ndof_p)
 
         # apply cage parameters into cages
-        self.cages[0].scale_length(cage_parameters[0])
         parameter_idx = 1
         for i in range(len(self.cages)):
             symbol = self.structure[i]
