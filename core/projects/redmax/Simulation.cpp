@@ -34,6 +34,7 @@ void Simulation::init(bool verbose) {
     std::cout << "ndof 4: " <<  _ndof_p4 << std::endl;
     std::cout << "ndof 5: " <<  _ndof_p5 << std::endl;
     std::cout << "ndof 6: " <<  _ndof_p6 << std::endl;
+    std::cout << "ndofp : " <<  _ndof_p << std::endl;
 
     _dM_dp = JacobianMatrixVector(_ndof_r, _ndof_r, _ndof_p);
     _df_dp = MatrixX::Zero(_ndof_r, _ndof_p);
