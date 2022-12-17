@@ -380,11 +380,8 @@ class Design:
                 # joint child part
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
                 idx += 1
-            elif (symbol == 'p' and i - 2 >= 0 and self.structure[i - 2] != 't'):
-                if (self.structure[i - 1] == 'j'):
-                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].joint_E_jc())
-                else:
-                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
+            elif (symbol == 'p'):
+                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].joint_E_jc())
                 idx += 1
             elif (symbol == 't'):
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
@@ -396,7 +393,7 @@ class Design:
         idx = 0
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if ((symbol == 'p' or symbol == 't') and i - 2 >= 0 and self.structure[i-2] != 't'):
+            if (symbol == 'p' or symbol == 't'):
                 design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].E_ji())
                 idx += 1
             elif (symbol == 'j' and i - 1 >= 0 and self.structure[i-1] != 't'):
