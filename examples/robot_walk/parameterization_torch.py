@@ -458,7 +458,7 @@ class Design:
         for i in range(len(self.cages)):
             symbol = self.structure[i]
             if (symbol == 'p' or symbol == 't'):
-                design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia()
+                design_params[ndof_p1 + ndof_p2 + ndof_p3 + idx * 4:ndof_p1 + ndof_p2 + ndof_p3 + (idx + 1) * 4] = self.cages[i].inertia().detach()
                 idx += 1
             elif (symbol == 'j'):
                 # joint parent part
