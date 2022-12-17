@@ -100,12 +100,12 @@ if __name__ == '__main__':
 
     design_params, meshes = design_np.parameterize(cage_params, True)
     sim.set_design_params(design_params)
+    exit(0)
     Vs = []
     for i in range(len(meshes)):
         Vs.append(meshes[i].V)
     sim.set_rendering_mesh_vertices(Vs)
 
-    exit(0)
 
     # init control sequence
     sub_steps = 5
