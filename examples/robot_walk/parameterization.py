@@ -435,22 +435,20 @@ class Design:
                 idx += 1
 
         print(idx)
-        exit(0)
 
         # design param 6
         param_id = ndof_p1 + ndof_p2 + ndof_p3 + ndof_p4
+        tmp = param_id
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if i not in [5, 6, 11, 12]: # not consider the contact points in the topper parts of the manipulator which are unneccesary
+            if symbol == 'j': # not consider the contact points in the topper parts of the manipulator which are unneccesary
                 continue
-            if (symbol == 'p' or symbol == 't' or symbol == 'palm'):
+            if (symbol == 'p' or symbol == 't'):
                 design_params[param_id] = self.cages[i].contact_scale()
                 param_id += 1
-            elif (symbol == 'j' or symbol == 'k'):
-                design_params[param_id] = self.cages[i].contact_scale()
-                param_id += 1
-                design_params[param_id] = self.cages[i].contact_scale()
-                param_id += 1
+        
+        print(param_id - tmp)
+        exit(0)
 
         if generate_mesh:
             meshes = []
