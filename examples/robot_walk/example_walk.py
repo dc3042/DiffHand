@@ -167,6 +167,7 @@ if __name__ == '__main__':
         f = 0.
 
         if backward_flag:
+            df_dq = np.zeros(ndof_r * num_steps)
             df_du = np.zeros(ndof_u * num_steps)
             df_dvar = np.zeros(ndof_var * num_steps)
             if optimize_design_flag:
@@ -204,7 +205,7 @@ if __name__ == '__main__':
         if backward_flag:
             sim.backward_info.set_flags(False, False, optimize_design_flag, True)
             sim.backward_info.df_du = df_du
-            sim.backward_info.df_dq = np.zeros(ndof_r * num_steps)
+            sim.backward_info.df_dq = df_dq
             sim.backward_info.df_dvar = df_dvar
             if optimize_design_flag:
                 sim.backward_info.df_dp = df_dp
