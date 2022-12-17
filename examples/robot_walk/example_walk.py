@@ -105,6 +105,8 @@ if __name__ == '__main__':
         Vs.append(meshes[i].V)
     sim.set_rendering_mesh_vertices(Vs)
 
+    exit(0)
+
     # init control sequence
     sub_steps = 5
     assert (num_steps % sub_steps) == 0
