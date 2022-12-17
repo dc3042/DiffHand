@@ -392,7 +392,6 @@ class Design:
                 E[0,3] = 5
                 E[1,3] = 3
                 E[2,3] = 1.5
-                print(E)
                 
                 if(i == 5):
                     E[1,3] *= -1
@@ -401,6 +400,8 @@ class Design:
                 elif(i == 15):
                     E[0,3] *= -1
                     E[1,3] *= -1
+                
+                print(E)
 
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(E)
                 idx += 1
