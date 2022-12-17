@@ -122,6 +122,10 @@
                     </link>
                 </link>
             </link>
+            <link name="endeffector0" design_params="0">
+                <joint name="joint-endeffector0" type="fixed" pos="6 0 0" quat="1. 0. 0. 0."/>
+                <body name="body-endeffector0" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
+            </link>
         </link>
     </robot>
 
@@ -151,5 +155,9 @@
         <ground_contact body="body17b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body18b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
     </contact>
+
+    <variable>
+		<endeffector joint="joint-endeffector0" pos="0 0 0" radius="0.2"/>
+	</variable>
 
 </redmax>
