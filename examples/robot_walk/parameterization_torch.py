@@ -430,7 +430,7 @@ class Design:
         for i in range(len(self.cages)):
             symbol = self.structure[i]
             if (symbol == 'p' or symbol == 't'):
-                design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].E_ji())
+                design_params[ndof_p1 + idx * 12:ndof_p1 + (idx + 1) * 12] = flatten_E(self.cages[i].E_ji()).detach()
                 idx += 1
             elif (symbol == 'j'):
                 # joint parent part
