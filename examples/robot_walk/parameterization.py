@@ -243,7 +243,7 @@ class Cage:
     
     def E_ji(self):
         E = np.eye(4)
-        E[0, 3] = self.length / 2.
+        #E[0, 3] = self.length / 2.
         return E
     
     def E_i_mesh(self):
@@ -262,7 +262,7 @@ class Cage:
 
     def joint_E_ji(self):
         E = np.eye(4)
-        E[0:3, 3] = np.array([self.length / 2., 0., 0.]) - self.joint_axis_origin
+        E[0:3, 3] = - self.joint_axis_origin
         return E
 
     def joint_E_i_mesh(self):
