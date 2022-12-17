@@ -383,7 +383,7 @@ class Design:
             elif(symbol == 'j'):
                 # joint parent part
 
-                E = np.matrix([0,0,-1,5],[0,1,0,3],[1,0,0,1.5],[0,0,0,1])
+                E = np.matrix([[0,0,-1,5],[0,1,0,3],[1,0,0,1.5],[0,0,0,1]])
                 
                 if(i == 5):
                     E[1,3] *= -1
