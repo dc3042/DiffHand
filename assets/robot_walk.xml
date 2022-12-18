@@ -17,7 +17,7 @@
             </link>
 
             <link name="link1" design_params="11">
-                <joint name="joint3" type="fixed" pos="5.00000 -3.000000 -1.500000" quat="0.7071068 0.000000 0.7071068 0.000000"/>
+                <joint name="joint3" type="fixed" pos="5.00000 -3.000000 -1.500000" quat="0.000000 0.7071068 0.000000 0.7071068"/>
                 <body name="body3" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
                 <link name="link4" design_params="11">
                     <joint name="joint4" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
@@ -50,7 +50,7 @@
             </link>
             
             <link name="link10" design_params="11">
-                <joint name="joint12" type="fixed" pos="5.00000 3.000000 -1.500000" quat="0.7071068 0.000000 0.7071068 0.000000"/>
+                <joint name="joint12" type="fixed" pos="5.00000 3.000000 -1.500000" quat="0.000000 0.7071068 0.000000 0.7071068"/>
                 <body name="body12" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
                 <link name="link13" design_params="11">
                     <joint name="joint13" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
@@ -83,7 +83,7 @@
             </link>
             
             <link name="link1b" design_params="11">
-                <joint name="joint3b" type="fixed" pos="-5.00000 -3.000000 -1.500000" quat="0.7071068 0.000000 0.7071068 0.000000"/>
+                <joint name="joint3b" type="fixed" pos="-5.00000 -3.000000 -1.500000" quat="0.000000 0.7071068 0.000000 0.7071068"/>
                 <body name="body3b" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
                 <link name="link4b" design_params="11">
                     <joint name="joint4b" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
@@ -116,7 +116,7 @@
             </link>
             
             <link name="link10b" design_params="11">
-                <joint name="joint12b" type="fixed" pos="-5.0000 3.000000 -1.500000" quat="0.7071068 0.000000 0.7071068 0.000000"/>
+                <joint name="joint12b" type="fixed" pos="-5.0000 3.000000 -1.500000" quat="0.000000 0.7071068 0.000000 0.7071068"/>
                 <body name="body12b" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
                 <link name="link13b" design_params="11">
                     <joint name="joint13b" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>

@@ -392,8 +392,9 @@ class Design:
                 #print(i)
                 
                 E = torch.eye(4)
+                E[1,1] = -1
                 E[0,0] = 0
-                E[2,0] = -1
+                E[2,0] = 1
                 E[2,2] = 0
                 E[0,2] = 1
                 
