@@ -98,8 +98,8 @@ if __name__ == '__main__':
     leftFront_traj = [np.array([5, -3, -9.5]), np.array([5, -3, -9.5]), np.array([10, -3, -9.5]), np.array([10, -3, -9.5]), np.array([15, -3, -9.5]), np.array([15, -3, -9.5])]
     rightFront_traj = [np.array([3.5, 3, -9.5]), np.array([8, 3, -9.5]), np.array([8, 3, -9.5]), np.array([13, 3, -9.5]), np.array([13, 3, -9.5]), np.array([18, 3, -9.5])]
 
-    leftBack_traj = [np.array([5, -3, -9.5]), np.array([5, -3, -9.5]), np.array([10, -3, -9.5]), np.array([10, -3, -9.5]), np.array([15, -3, -9.5]), np.array([15, -3, -9.5])]
-    rightBack_traj = [np.array([3.5, 3, -9.5]), np.array([8, 3, -9.5]), np.array([8, 3, -9.5]), np.array([13, 3, -9.5]), np.array([13, 3, -9.5]), np.array([18, 3, -9.5])]
+    leftBack_traj = [np.array([-6.5, 3, -9.5]), np.array([-2, 3, -9.5]), np.array([-2, 3, -9.5]), np.array([3, 3, -9.5]), np.array([3, 3, -9.5]), np.array([8, 3, -9.5])]
+    rightBack_traj = [np.array([-5, -3, -9.5]), np.array([-5, -3, -9.5]), np.array([0, -3, -9.5]), np.array([0, -3, -9.5]), np.array([5, -3, -9.5]), np.array([5, -3, -9.5])]
 
 
     num_task_steps = num_steps // len(leftFront_traj)
@@ -190,6 +190,8 @@ if __name__ == '__main__':
             #target_pos = target_traj[traj_idx]
             leftFrontTarget_pos = leftFront_traj[traj_idx]
             rightFrontTarget_pos = rightFront_traj[traj_idx]
+            leftBackTarget_pos = leftBack_traj[traj_idx]
+            rightBackTarget_pos = rightBack_traj[traj_idx]
 
             sim.set_u(u[i * ndof_u:(i + 1) * ndof_u])
             sim.forward(sub_steps, verbose = args.verbose)
@@ -199,10 +201,17 @@ if __name__ == '__main__':
             box_pos = variables[0:3]
             leftFront_pos = variables[3:6]
             rightFront_pos = variables[6:9]
+            leftBack_pos = variables[9:12]
+            rightBack_pos = variables[12:15]
 
             # compute objective f
             f_u_i = np.sum(u[i * ndof_u:(i + 1) * ndof_u] ** 2)
-            f_task_i = np.linalg.norm(box_pos - target_pos) + np.linalg.norm(leftFront_pos - leftFrontTarget_pos) + np.linalg.norm(rightFront_pos - rightFrontTarget_pos)
+            f_task_i = np.linalg.norm(box_pos - target_pos) \
+                    + np.linalg.norm(leftFront_pos - leftFrontTarget_pos) \
+                    + np.linalg.norm(rightFront_pos - rightFrontTarget_pos) \
+                    + np.linalg.norm(leftBack_pos - leftBackTarget_pos) \
+                    + np.linalg.norm(rightBack_pos - rightBackTarget_pos) \
+
 
             f_u += f_u_i * coef_u
             f_task += f_task_i * coef_task
@@ -219,6 +228,10 @@ if __name__ == '__main__':
                     coef_task * (leftFront_pos - leftFrontTarget_pos) / max(1e-5, np.linalg.norm(leftFront_pos - leftFrontTarget_pos))
                 df_dvar[((i + 1) * sub_steps - 1) * ndof_var:(i + 1) * sub_steps * ndof_var][6:9] = \
                     coef_task * (rightFront_pos - rightFrontTarget_pos) / max(1e-5, np.linalg.norm(rightFront_pos - rightFrontTarget_pos))
+                df_dvar[((i + 1) * sub_steps - 1) * ndof_var:(i + 1) * sub_steps * ndof_var][9:12] = \
+                    coef_task * (leftBack_pos - leftBackTarget_pos) / max(1e-5, np.linalg.norm(leftBack_pos - leftBackTarget_pos))
+                df_dvar[((i + 1) * sub_steps - 1) * ndof_var:(i + 1) * sub_steps * ndof_var][12:15] = \
+                    coef_task * (rightBack_pos - rightBackTarget_pos) / max(1e-5, np.linalg.norm(rightBack_pos - rightBackTarget_pos))
 
         if backward_flag:
             sim.backward_info.set_flags(False, False, optimize_design_flag, True)
