@@ -81,7 +81,7 @@ if __name__ == '__main__':
     
     sim.set_q_init(q_init)
 
-    num_steps = 1000
+    num_steps = 5000
 
     ndof_u = sim.ndof_u
     ndof_r = sim.ndof_r
