@@ -8,7 +8,7 @@
 
     <robot>
         <link name="link0" design_params="0">
-            <joint name="joint0" type="free3d"  pos="0.000000 0.000000 1.200000" quat="0.000000 1.000000 0.000000 0.000000" damping="1e4"/>
+            <joint name="joint0" type="free3d"  pos="0.000000 0.000000 1.700000" quat="0.000000 1.000000 0.000000 0.000000" damping="1e4"/>
             <body name="body0" type="cuboid"  size="12.000000 7.000000 3.000000" pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" density="1"  rgba="0.700000 0.700000 0.700000 1"/>
             <link name="link1" design_params="11">
                 <joint name="joint3" type="fixed" pos="5.00000 3.000000 1.500000" quat="-0.7071068 0.000000 0.7071068 0.000000"/>
@@ -189,7 +189,7 @@
 
 
    <virtual>
-		<sphere name="target point" pos="15 0 1.2" radius="0.5" rgba="0 1 0 1"/>
+		<sphere name="target point" pos="15 0 1.7" radius="0.5" rgba="0 1 0 1"/>
         
         <sphere name="Front left Foot point 1" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         <sphere name="Front right Foot point 1" pos="5 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
