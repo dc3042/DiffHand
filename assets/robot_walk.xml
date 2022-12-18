@@ -169,12 +169,12 @@
         <ground_contact body="body7b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body8b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body9b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body5b" body_2="body8b" contact1="0" contact2="27" k="50" l="5"/>
+        <spring body_1="body5b" body_2="body8b" contact1="0" contact2="27" k="500" l="5"/>
 
         <ground_contact body="body16b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body17b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body18b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body14b" body_2="body17b" contact1="0" contact2="27" k="50" l="5"/>
+        <spring body_1="body14b" body_2="body17b" contact1="0" contact2="27" k="500" l="5"/>
     </contact>
 
     <variable>
