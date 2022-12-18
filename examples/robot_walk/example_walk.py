@@ -367,7 +367,7 @@ if __name__ == '__main__':
         ax.set_xlabel('#sim')
         ax.set_ylabel('loss')
         ax.plot(f_log[:, 0], f_log[:, 1])
-        plt.show()
+        plt.savefig(args.record_file_name + "_plot.png")
 
         if args.test_derivatives:
             u = params[:ndof_u * num_ctrl_steps]
