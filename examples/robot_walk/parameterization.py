@@ -382,26 +382,32 @@ class Design:
                 idx += 1
             elif(symbol == 'j'):
                 # joint parent part
-                #print(i)
+                print(i)
                 
                 E = np.eye(4)
                 E[0,0] = 0
                 E[2,0] = 1
                 E[2,2] = 0
                 E[0,2] = -1
-                E[0,3] = 5
-                E[1,3] = 3
-                E[2,3] = 1.5
                 
-                if(i == 5):
-                    E[1,3] *= -1
+                if(i == 0):
+                    E[0,3] = 5
+                    E[1,3] = 3
+                    E[2,3] = 1.5
+                elif(i == 5):
+                    E[0,3] = 5
+                    E[1,3] = -3
+                    E[2,3] = 1.5
                 elif(i == 10):
-                    E[0,3] *= -1
+                    E[0,3] = -5
+                    E[1,3] = 3
+                    E[2,3] = 1.5
                 elif(i == 15):
-                    E[0,3] *= -1
-                    E[1,3] *= -1
+                    E[0,3] = -5
+                    E[1,3] = -3
+                    E[2,3] = 1.5
                 
-                #print(E)
+                print(E)
 
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(E)
                 idx += 1
