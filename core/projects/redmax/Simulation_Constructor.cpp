@@ -243,12 +243,6 @@ Joint* Simulation::parse_from_xml_file(pugi::xml_node root, pugi::xml_node node,
                         dtype k = (dtype)(child.attribute("k").as_float());
                         dtype l = (dtype)(child.attribute("l").as_float());
 
-                        auto it4 = _body_map.find(child.attribute("body_2_contact_id").value());
-                        if (it4 == _body_map.end()) {
-                            std::string error_msg = "Spring contact body name error: " + (std::string)(child.attribute("body_2_contact_id").value());
-                            throw_error(error_msg);
-                        }
-
                         ForceSpring* force = new ForceSpring(this, it1->second, it2->second, body_1_contact_id, body_2_contact_id, k, l);
                         robot->add_force(force);
                     }
