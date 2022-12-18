@@ -80,6 +80,9 @@ if __name__ == '__main__':
     q_init[-8] = -np.pi / 6.
     
     sim.set_q_init(q_init)
+    variables = sim.get_variables()
+
+    print("variable: ", variables)
 
     num_steps = 500
 
