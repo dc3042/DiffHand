@@ -10,6 +10,12 @@
         <link name="link0" design_params="0">
             <joint name="joint0" type="free3d"  pos="0.000000 0.000000 1.700000" quat="0.000000 1.000000 0.000000 0.000000" damping="1e4"/>
             <body name="body0" type="cuboid"  size="12.000000 7.000000 3.000000" pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" density="1"  rgba="0.700000 0.700000 0.700000 1"/>
+            
+            <link name="endeffector0" design_params="0">
+                <joint name="joint-endeffector0" type="fixed" pos="6 0 0" quat="1. 0. 0. 0."/>
+                <body name="body-endeffector0" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
+            </link>
+
             <link name="link1" design_params="11">
                 <joint name="joint3" type="fixed" pos="5.00000 3.000000 1.500000" quat="-0.7071068 0.000000 0.7071068 0.000000"/>
                 <body name="body3" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
@@ -42,6 +48,7 @@
                     </link>
                 </link>
             </link>
+            
             <link name="link10" design_params="11">
                 <joint name="joint12" type="fixed" pos="5.00000 -3.000000 1.500000" quat="-0.7071068 0.000000 0.7071068 0.000000"/>
                 <body name="body12" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
@@ -74,6 +81,7 @@
                     </link>
                 </link>
             </link>
+            
             <link name="link1b" design_params="11">
                 <joint name="joint3b" type="fixed" pos="-5.00000 3.000000 1.500000" quat="-0.7071068 0.000000 0.7071068 0.000000"/>
                 <body name="body3b" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
@@ -106,6 +114,7 @@
                     </link>
                 </link>
             </link>
+            
             <link name="link10b" design_params="11">
                 <joint name="joint12b" type="fixed" pos="-5.0000 =-3.000000 1.500000" quat="-0.7071068 0.000000 0.7071068 0.000000"/>
                 <body name="body12b" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.600000 0.600000 0.600000 1"/>
@@ -137,10 +146,6 @@
                         </link>
                     </link>
                 </link>
-            </link>
-            <link name="endeffector0" design_params="0">
-                <joint name="joint-endeffector0" type="fixed" pos="6 0 0" quat="1. 0. 0. 0."/>
-                <body name="body-endeffector0" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
             </link>
         </link>
     </robot>
@@ -185,50 +190,48 @@
         <endeffector joint="joint-endeffector_leftBack" pos="0 0 0" radius="0.2"/>
 	</variable>
 
-[np.array([-6.5, 3, -9.5]), np.array([-2, 3, -9.5]), np.array([-2, 3, -9.5]), np.array([3, 3, -9.5]), np.array([3, 3, -9.5]), np.array([8, 3, -9.5])]
-[np.array([-5, -3, -9.5]), np.array([-5, -3, -9.5]), np.array([0, -3, -9.5]), np.array([0, -3, -9.5]), np.array([5, -3, -9.5]), np.array([5, -3, -9.5])]
 
    <virtual>
 		<sphere name="target point" pos="15 0 1.7" radius="0.5" rgba="0 1 0 1"/>
         
-        <sphere name="Front left Foot point 1" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-        <sphere name="Front right Foot point 1" pos="3.5 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front right Foot point 1" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front left Foot point 1" pos="3.5 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         
-        <sphere name="Front left Foot point 2" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-        <sphere name="Front right Foot point 2" pos="8 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front right Foot point 2" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front left Foot point 2" pos="8 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         
-        <sphere name="Front left Foot point 3" pos="10 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-        <sphere name="Front right Foot point 3" pos="8 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front right Foot point 3" pos="10 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front left Foot point 3" pos="8 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Front left Foot point 4" pos="10 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-        <sphere name="Front right Foot point 4" pos="13 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front right Foot point 4" pos="10 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front left Foot point 4" pos="13 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Front left Foot point 5" pos="15 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-        <sphere name="Front right Foot point 5" pos="13 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front right Foot point 5" pos="15 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front left Foot point 5" pos="13 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Front left Foot point 6" pos="15 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-        <sphere name="Front right Foot point 6" pos="18 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-
-
+        <sphere name="Front right Foot point 6" pos="15 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front left Foot point 6" pos="18 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
 
-        <sphere name="Back left Foot point 1" pos="-6.5 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+
+
         <sphere name="Back right Foot point 1" pos="-5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back left Foot point 1" pos="-6.5 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         
-        <sphere name="Back left Foot point 2" pos="-2 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         <sphere name="Back right Foot point 2" pos="-5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back left Foot point 2" pos="-2 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         
-        <sphere name="Back left Foot point 3" pos="-2 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         <sphere name="Back right Foot point 3" pos="0 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back left Foot point 3" pos="-2 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Back left Foot point 4" pos="3 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         <sphere name="Back right Foot point 4" pos="0 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-
-        <sphere name="Back left Foot point 5" pos="3 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back left Foot point 4" pos="3 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        
         <sphere name="Back right Foot point 5" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back left Foot point 5" pos="3 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Back left Foot point 6" pos="8 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         <sphere name="Back right Foot point 6" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back left Foot point 6" pos="8 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 	</virtual>
 
 </redmax>

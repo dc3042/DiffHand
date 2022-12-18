@@ -81,7 +81,7 @@ if __name__ == '__main__':
     
     sim.set_q_init(q_init)
 
-    num_steps = 500
+    num_steps = 600
 
     ndof_u = sim.ndof_u
     ndof_r = sim.ndof_r
@@ -115,9 +115,9 @@ if __name__ == '__main__':
 
     variables = sim.get_variables()
 
-    print("variable: ", variables)
+    #print("variable: ", variables)
 
-    print(len(meshes))
+    #print(len(meshes))
     Vs = []
     for i in range(len(meshes)):
         Vs.append(meshes[i].V)

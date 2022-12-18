@@ -322,7 +322,7 @@ class Design:
                 self.ndof_p6 += 1
 
         self.n_link = 28
-        self.ndof_p1 = (self.n_link + 4) * 12 # 4 for for tip end effectors
+        self.ndof_p1 = (self.n_link + 4) * 12 # 4 more for tip end effectors
         self.ndof_p2 = self.n_link * 12
 
     def parameterize(self, cage_parameters, generate_mesh = False):
