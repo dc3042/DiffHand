@@ -246,7 +246,7 @@ if __name__ == '__main__':
             if optimize_design_flag:
                 sim.backward_info.df_dp = df_dp
 
-        return f, {'f_u': f_u, 'f_task': f_task}
+        return f, {'f_u': f_u, 'f_task_goal': f_task_goal, 'f_task_step': f_task_step}
 
     '''compute loss and gradient'''
     def loss_and_grad(params):
