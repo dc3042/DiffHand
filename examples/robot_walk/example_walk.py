@@ -96,7 +96,7 @@ if __name__ == '__main__':
     target_pos =[15, 0, 1.7]
 
     rightFront_traj = [np.array([5, -3, -9.5]), np.array([5, -3, -9.5]), np.array([10, -3, -9.5]), np.array([10, -3, -9.5]), np.array([15, -3, -9.5]), np.array([15, -3, -9.5])]
-    rightFront_traj = [np.array([3.5, 3, -9.5]), np.array([8, 3, -9.5]), np.array([8, 3, -9.5]), np.array([13, 3, -9.5]), np.array([13, 3, -9.5]), np.array([18, 3, -9.5])]
+    leftFront_traj = [np.array([3.5, 3, -9.5]), np.array([8, 3, -9.5]), np.array([8, 3, -9.5]), np.array([13, 3, -9.5]), np.array([13, 3, -9.5]), np.array([18, 3, -9.5])]
 
     rightBack_traj = [np.array([-5, -3, -9.5]), np.array([-5, -3, -9.5]), np.array([0, -3, -9.5]), np.array([0, -3, -9.5]), np.array([5, -3, -9.5]), np.array([5, -3, -9.5])]
     leftBack_traj = [np.array([-6.5, 3, -9.5]), np.array([-2, 3, -9.5]), np.array([-2, 3, -9.5]), np.array([3, 3, -9.5]), np.array([3, 3, -9.5]), np.array([8, 3, -9.5])]
@@ -190,10 +190,11 @@ if __name__ == '__main__':
 
             traj_idx = i * sub_steps // num_task_steps
             #target_pos = target_traj[traj_idx]
-            leftFrontTarget_pos = leftFront_traj[traj_idx]
+
             rightFrontTarget_pos = rightFront_traj[traj_idx]
-            leftBackTarget_pos = leftBack_traj[traj_idx]
+            leftFrontTarget_pos = leftFront_traj[traj_idx]
             rightBackTarget_pos = rightBack_traj[traj_idx]
+            leftBackTarget_pos = leftBack_traj[traj_idx]
 
             sim.set_u(u[i * ndof_u:(i + 1) * ndof_u])
             sim.forward(sub_steps, verbose = args.verbose)
@@ -201,10 +202,10 @@ if __name__ == '__main__':
             variables = sim.get_variables()
 
             box_pos = variables[0:3]
-            leftFront_pos = variables[3:6]
-            rightFront_pos = variables[6:9]
-            leftBack_pos = variables[9:12]
-            rightBack_pos = variables[12:15]
+            rightFront_pos = variables[3:6]
+            leftFront_pos = variables[6:9]
+            rightBack_pos = variables[9:12]
+            leftBack_pos = variables[12:15]
 
             # compute objective f
             f_u_i = np.sum(u[i * ndof_u:(i + 1) * ndof_u] ** 2)
