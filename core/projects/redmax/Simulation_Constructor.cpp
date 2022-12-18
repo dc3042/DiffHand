@@ -249,7 +249,7 @@ Joint* Simulation::parse_from_xml_file(pugi::xml_node root, pugi::xml_node node,
                             throw_error(error_msg);
                         }
 
-                        ForceSpring* force = new ForceSpring(this, it1->second, it2->second, body_1_contact_id, body_2_contact_id, k. l);
+                        ForceSpring* force = new ForceSpring(this, it1->second, it2->second, body_1_contact_id, body_2_contact_id, k, l);
                         robot->add_force(force);
                     }
                 }
