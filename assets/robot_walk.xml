@@ -161,74 +161,74 @@
         <ground_contact body="body7" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body8" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body9" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <!--<spring body_1="body5" body_2="body8" contact1="0" contact2="27" k="500" l="5"/>-->
 
         <ground_contact body="body16" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body17" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body18" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <!--<spring body_1="body14" body_2="body17" contact1="0" contact2="27" k="500" l="5"/>-->
 
         <ground_contact body="body7b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body8b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body9b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <!--<spring body_1="body5b" body_2="body8b" contact1="0" contact2="27" k="500" l="5"/>-->
+        <spring body_1="body5b" body_2="body8b" contact1="0" contact2="27" k="50" l="1.2"/>
 
         <ground_contact body="body16b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body17b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body18b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <!--<spring body_1="body14b" body_2="body17b" contact1="0" contact2="27" k="500" l="5"/>-->
+        <spring body_1="body14b" body_2="body17b" contact1="0" contact2="27" k="50" l="1.2"/>
     </contact>
 
     <variable>
 		<endeffector joint="joint-endeffector0" pos="0 0 0" radius="0.2"/>
-        <endeffector joint="joint-endeffector_rightFront" pos="0 0 0" radius="0.2"/>
         <endeffector joint="joint-endeffector_leftFront" pos="0 0 0" radius="0.2"/>
-        <endeffector joint="joint-endeffector_rightBack" pos="0 0 0" radius="0.2"/>
+        <endeffector joint="joint-endeffector_rightFront" pos="0 0 0" radius="0.2"/>
         <endeffector joint="joint-endeffector_leftBack" pos="0 0 0" radius="0.2"/>
+        <endeffector joint="joint-endeffector_rightBack" pos="0 0 0" radius="0.2"/>
 	</variable>
 
+[np.array([-6.5, 3, -9.5]), np.array([-2, 3, -9.5]), np.array([-2, 3, -9.5]), np.array([3, 3, -9.5]), np.array([3, 3, -9.5]), np.array([8, 3, -9.5])]
+[np.array([-5, -3, -9.5]), np.array([-5, -3, -9.5]), np.array([0, -3, -9.5]), np.array([0, -3, -9.5]), np.array([5, -3, -9.5]), np.array([5, -3, -9.5])]
 
    <virtual>
 		<sphere name="target point" pos="15 0 1.7" radius="0.5" rgba="0 1 0 1"/>
         
-        <sphere name="Front right Foot point 1" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-        <sphere name="Front left Foot point 1" pos="5 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front left Foot point 1" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front right Foot point 1" pos="3.5 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         
-        <sphere name="Front right Foot point 2" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-        <sphere name="Front left Foot point 2" pos="5 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front left Foot point 2" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front right Foot point 2" pos="8 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         
-        <sphere name="Front right Foot point 3" pos="10 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-        <sphere name="Front left Foot point 3" pos="10 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front left Foot point 3" pos="10 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front right Foot point 3" pos="8 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Front right Foot point 4" pos="10 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-        <sphere name="Front left Foot point 4" pos="10 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front left Foot point 4" pos="10 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front right Foot point 4" pos="13 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Front right Foot point 5" pos="15 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-        <sphere name="Front left Foot point 5" pos="15 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front left Foot point 5" pos="15 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front right Foot point 5" pos="13 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Front right Foot point 6" pos="15 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-        <sphere name="Front left Foot point 6" pos="15 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-
-
+        <sphere name="Front left Foot point 6" pos="15 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Front right Foot point 6" pos="18 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
 
-        <sphere name="Back right Foot point 1" pos="-6.5 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-        <sphere name="Back left Foot point 1" pos="-6.5 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
+
+
+        <sphere name="Back left Foot point 1" pos="-6.5 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back right Foot point 1" pos="-5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         
-        <sphere name="Back right Foot point 2" pos="-2 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-        <sphere name="Back left Foot point 2" pos="-2 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
+        <sphere name="Back left Foot point 2" pos="-2 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back right Foot point 2" pos="-5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         
-        <sphere name="Back right Foot point 3" pos="-2 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-        <sphere name="Back left Foot point 3" pos="-2 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
+        <sphere name="Back left Foot point 3" pos="-2 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back right Foot point 3" pos="0 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Back right Foot point 4" pos="3 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-        <sphere name="Back left Foot point 4" pos="3 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
+        <sphere name="Back left Foot point 4" pos="3 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back right Foot point 4" pos="0 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Back right Foot point 5" pos="3 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-        <sphere name="Back left Foot point 5" pos="3 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
+        <sphere name="Back left Foot point 5" pos="3 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back right Foot point 5" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Back right Foot point 6" pos="8 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-        <sphere name="Back left Foot point 6" pos="8 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
+        <sphere name="Back left Foot point 6" pos="8 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back right Foot point 6" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 	</virtual>
 
 </redmax>
