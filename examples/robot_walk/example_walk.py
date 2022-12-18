@@ -81,7 +81,7 @@ if __name__ == '__main__':
     
     sim.set_q_init(q_init)
 
-    num_steps = 3000
+    num_steps = 600
 
     ndof_u = sim.ndof_u
     ndof_r = sim.ndof_r
@@ -153,7 +153,7 @@ if __name__ == '__main__':
     # objectives coefficients
     coef_u = 1
     coef_task_goal = 50
-    coef_task_step = 20
+    coef_task_step = 30
     
 
     '''compute the objectives by forward pass'''
