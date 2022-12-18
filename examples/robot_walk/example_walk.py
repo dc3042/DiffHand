@@ -81,7 +81,7 @@ if __name__ == '__main__':
     
     sim.set_q_init(q_init)
 
-    num_steps = 5000
+    num_steps = 3000
 
     ndof_u = sim.ndof_u
     ndof_r = sim.ndof_r
@@ -96,10 +96,10 @@ if __name__ == '__main__':
     target_pos =[15, 0, 1.7]
 
     leftFront_traj = [np.array([5, -3, -9.5]), np.array([5, -3, -9.5]), np.array([10, -3, -9.5]), np.array([10, -3, -9.5]), np.array([15, -3, -9.5]), np.array([15, -3, -9.5])]
-    rightFront_traj = [np.array([3.5, 3, -9.5]), np.array([8, 3, -9.5]), np.array([8, 3, -9.5]), np.array([13, 3, -9.5]), np.array([13, 3, -9.5]), np.array([18, 3, -9.5])]
+    rightFront_traj = [np.array([5, 3, -9.5]), np.array([5, 3, -9.5]), np.array([10, 3, -9.5]), np.array([10, 3, -9.5]), np.array([15, 3, -9.5]), np.array([15, 3, -9.5])]
 
     leftBack_traj = [np.array([-6.5, 3, -9.5]), np.array([-2, 3, -9.5]), np.array([-2, 3, -9.5]), np.array([3, 3, -9.5]), np.array([3, 3, -9.5]), np.array([8, 3, -9.5])]
-    rightBack_traj = [np.array([-5, -3, -9.5]), np.array([-5, -3, -9.5]), np.array([0, -3, -9.5]), np.array([0, -3, -9.5]), np.array([5, -3, -9.5]), np.array([5, -3, -9.5])]
+    rightBack_traj = [np.array([-6.5, -3, -9.5]), np.array([-2, -3, -9.5]), np.array([-2, -3, -9.5]), np.array([3, -3, -9.5]), np.array([3, -3, -9.5]), np.array([8, -3, -9.5])]
 
 
     num_task_steps = num_steps // len(leftFront_traj)
