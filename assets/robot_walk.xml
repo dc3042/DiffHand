@@ -178,8 +178,28 @@
         <endeffector joint="joint-endeffector_rightFront" pos="0 0 0" radius="0.2"/>
 	</variable>
 
+[np.array([5, -3, -9.5]), np.array([5, -3, -9.5]), np.array([10, -3, -9.5]), np.array([10, -3, -9.5]), np.array([15, -3, -9.5]), np.array([15, -3, -9.5])]
+[np.array([3.5, 3, -9.5]), np.array([8, 3, -9.5]), np.array([8, 3, -9.5]), np.array([13, 3, -9.5]), np.array([13, 3, -9.5]), np.array([18, 3, -9.5])]
     <virtual>
 		<sphere name="target point" pos="15 0 1.7" radius="0.5" rgba="0 1 0 1"/>
+        
+        <sphere name="left Foot point 1" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="right Foot point 1" pos="3.5 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        
+        <sphere name="left Foot point 2" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="right Foot point 2" pos="8 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        
+        <sphere name="left Foot point 3" pos="10 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="right Foot point 3" pos="8 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+
+        <sphere name="left Foot point 4" pos="10 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="right Foot point 4" pos="13 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+
+        <sphere name="left Foot point 5" pos="15 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="right Foot point 5" pos="13 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+
+        <sphere name="left Foot point 6" pos="15 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="right Foot point 6" pos="18 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 	</virtual>
 
 </redmax>
