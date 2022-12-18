@@ -279,8 +279,8 @@ class Cage:
     def endeffector_E_pj(self):
         h = (self.side_parent.height + self.side_child.height) / 2.
         E = torch.eye(4)
-        E[0, 3] = self.length / 2.
-        E[2, 3] = h / 2.
+        E[0, 3] = self.length
+        E[2, 3] = 0
         return E
 
     def inertia(self):

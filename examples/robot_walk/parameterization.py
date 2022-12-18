@@ -272,7 +272,7 @@ class Cage:
     def endeffector_E_pj(self):
         h = (self.side_parent.height + self.side_child.height) / 2.
         E = np.eye(4)
-        E[0:3, 3] = np.array([self.length / 2., 0., h / 2.])
+        E[0:3, 3] = np.array([self.length., 0., 0])
         return E
 
     def inertia(self):
