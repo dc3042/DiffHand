@@ -115,7 +115,7 @@ if __name__ == '__main__':
 
     variables = sim.get_variables()
 
-    #print("variable: ", variables)
+    print("variable: ", variables)
 
     #print(len(meshes))
     Vs = []
