@@ -176,8 +176,6 @@
 		<endeffector joint="joint-endeffector0" pos="0 0 0" radius="0.2"/>
         <endeffector joint="joint-endeffector_leftFront" pos="0 0 0" radius="0.2"/>
         <endeffector joint="joint-endeffector_rightFront" pos="0 0 0" radius="0.2"/>
-        <endeffector joint="joint-endeffector_leftBack" pos="0 0 0" radius="0.2"/>
-        <endeffector joint="joint-endeffector_rightBack" pos="0 0 0" radius="0.2"/>
 	</variable>
 
     <virtual>
