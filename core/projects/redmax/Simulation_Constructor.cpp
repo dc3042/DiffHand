@@ -20,6 +20,7 @@
 #include "Force/ForceGroundContact.h"
 #include "Force/ForceCuboidCuboidContact.h"
 #include "Force/ForceGeneralPrimitiveContact.h"
+#include "Force/ForceSpring.h"
 #include "Actuator/Actuator.h"
 #include "Actuator/ActuatorMotor.h"
 #include "EndEffector/EndEffector.h"
@@ -172,6 +173,7 @@ Joint* Simulation::parse_from_xml_file(pugi::xml_node root, pugi::xml_node node,
                 }
             }
 
+
         // parse contact
         for (auto contact : node.children()) 
             if ((std::string)(contact.name()) == "contact") {
@@ -221,6 +223,33 @@ Joint* Simulation::parse_from_xml_file(pugi::xml_node root, pugi::xml_node node,
                         }
                         ForceGeneralPrimitiveContact* force = new ForceGeneralPrimitiveContact(this, it1->second, it2->second, kn, kt, mu, damping);
                         robot->add_force(force);
+                    }
+                    else if((std::string)(child.name()) == "spring") {
+                        auto it1 = _body_map.find(child.attribute("body_1").value());
+                        if (it1 == _body_map.end()) {
+                            std::string error_msg = "Spring contact body name error: " + (std::string)(child.attribute("body_1").value());
+                            throw_error(error_msg);
+                        }
+
+                        auto it2 = _body_map.find(child.attribute("body_2").value());
+                        if (it2 == _body_map.end()) {
+                            std::string error_msg = "Spring contact body name error: " + (std::string)(child.attribute("body_2").value());
+                            throw_error(error_msg);
+                        }
+
+                        dtype body_1_contact_id = (dtype)(child.attribute("contact1").as_int());
+                        dtype body_2_contact_id = (dtype)(child.attribute("contact2").as_int());
+
+                        dtype k = (dtype)(child.attribute("k").as_float());
+                        dtype l = (dtype)(child.attribute("l").as_float());
+
+                        auto it4 = _body_map.find(child.attribute("body_2_contact_id").value());
+                        if (it4 == _body_map.end()) {
+                            std::string error_msg = "Spring contact body name error: " + (std::string)(child.attribute("body_2_contact_id").value());
+                            throw_error(error_msg);
+                        }
+
+                        ForceSpring* force = new ForceSpring(this, it1->second, it2->second, body_1_contact_id, body_2_contact_id, k. l);
                     }
                 }
             }
