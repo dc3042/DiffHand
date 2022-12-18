@@ -330,7 +330,7 @@ class Design:
                 self.ndof_p6 += 1
 
         self.n_link = 28
-        self.ndof_p1 = (self.n_link + 2) * 12 
+        self.ndof_p1 = self.n_link * 12 
         self.ndof_p2 = self.n_link * 12
 
     def parameterize(self, cage_parameters, generate_mesh = False):
@@ -421,8 +421,7 @@ class Design:
             elif (symbol == 't'):
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
                 idx += 1
-                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].endeffector_E_pj())
-                idx += 1
+                
         
         #print(idx)
         
