@@ -86,11 +86,11 @@ void ForceSpring::computeForceWithDerivative(
     fm.segment(_body1->_index[0], 6) +=  f/l * G1.transpose() * R1.transpose() * dx;
     fm.segment(_body2->_index[0], 6) -=  f/l * G2.transpose() * R2.transpose() * dx;
 
-    std::cout << "xw1 " << xw1 << std::endl;
-    std::cout << "xw2 " << xw2 << std::endl;
-    std::cout << "length " << l << std::endl;
-    std::cout << "_l " << _l << std::endl;
-    std::cout << "force " << f << std::endl;
+    //std::cout << "xw1 " << xw1 << std::endl;
+    //std::cout << "xw2 " << xw2 << std::endl;
+    //std::cout << "length " << l << std::endl;
+    //std::cout << "_l " << _l << std::endl;
+    //std::cout << "force " << f << std::endl;
 
     /**
     K1
