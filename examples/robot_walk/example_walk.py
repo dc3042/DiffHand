@@ -189,7 +189,7 @@ if __name__ == '__main__':
         for i in range(num_ctrl_steps):
 
             traj_idx = i * sub_steps // num_task_steps
-            print(traj_idx)
+            #print(traj_idx)
             #target_pos = target_traj[traj_idx]
 
             rightFrontTarget_pos = rightFront_traj[traj_idx]
