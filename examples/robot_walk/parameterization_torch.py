@@ -324,7 +324,10 @@ class Design:
             elif (symbol == 't'):
                 self.cages.append(deepcopy(tip_cage))
         
-        print(len(self.cages))
+        for i in range(len(self.cages)):
+            symbol = self.structure[i]
+            print(symbol)
+            
         self.ndof_p3 = 0
         self.ndof_p6 = 0
         self.sub_ndof_p3 = []
