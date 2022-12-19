@@ -83,7 +83,7 @@ if __name__ == '__main__':
     q_init[-11] = -np.pi / 2.
     q_init[-12] = 0
     
-    sim.set_q_init(q_init)
+    #sim.set_q_init(q_init)
 
     num_steps = 500
 
