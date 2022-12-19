@@ -422,6 +422,7 @@ class Design:
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
                 idx += 1
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].endeffector_E_pj())
+                print(design_params[idx * 12:(idx + 1) * 12])
                 idx += 1
         
         #print(idx)
