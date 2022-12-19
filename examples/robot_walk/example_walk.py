@@ -151,8 +151,8 @@ if __name__ == '__main__':
 
     # objectives coefficients
     coef_u = 1
-    coef_task_goal = 50
-    coef_task_step = 30
+    coef_task_goal = 1000
+    coef_task_step = 10
     
 
     '''compute the objectives by forward pass'''
@@ -213,7 +213,9 @@ if __name__ == '__main__':
             # compute objective f
             f_u_i = np.sum(u[i * ndof_u:(i + 1) * ndof_u] ** 2)
             
-            f_task_goal_i = np.linalg.norm(box_pos - target_pos) 
+            f_task_goal_i = 0
+            if i == num_ctrl_steps - 1:
+                f_task_goal_i = np.linalg.norm(box_pos - target_pos) 
             
             f_task_step_i = np.linalg.norm(rightFront_pos - rightFrontTarget_pos) \
                     + np.linalg.norm(leftFront_pos - leftFrontTarget_pos) \
@@ -234,8 +236,9 @@ if __name__ == '__main__':
                 df_du[i * sub_steps * ndof_u:(i * sub_steps + 1) * ndof_u] = \
                     coef_u * 2. * u[i * ndof_u:(i + 1) * ndof_u]
                 
-                df_dvar[((i + 1) * sub_steps - 1) * ndof_var:(i + 1) * sub_steps * ndof_var][0:3] = \
-                    coef_task_goal * (box_pos - target_pos) / max(1e-5, np.linalg.norm(box_pos - target_pos))
+                if i == num_ctrl_steps - 1:
+                    df_dvar[((i + 1) * sub_steps - 1) * ndof_var:(i + 1) * sub_steps * ndof_var][0:3] = \
+                        coef_task_goal * (box_pos - target_pos) / max(1e-5, np.linalg.norm(box_pos - target_pos))
                 
                 df_dvar[((i + 1) * sub_steps - 1) * ndof_var:(i + 1) * sub_steps * ndof_var][3:6] = \
                     coef_task_step * (rightFront_pos - rightFrontTarget_pos) / max(1e-5, np.linalg.norm(rightFront_pos - rightFrontTarget_pos))
