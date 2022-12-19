@@ -189,6 +189,7 @@ if __name__ == '__main__':
         for i in range(num_ctrl_steps):
 
             traj_idx = i * sub_steps // num_task_steps
+            print(traj_idx)
             #target_pos = target_traj[traj_idx]
 
             rightFrontTarget_pos = rightFront_traj[traj_idx]
@@ -209,7 +210,9 @@ if __name__ == '__main__':
 
             # compute objective f
             f_u_i = np.sum(u[i * ndof_u:(i + 1) * ndof_u] ** 2)
+            
             f_task_goal_i = np.linalg.norm(box_pos - target_pos) 
+            
             f_task_step_i = np.linalg.norm(leftFront_pos - leftFrontTarget_pos) \
                     + np.linalg.norm(rightFront_pos - rightFrontTarget_pos) \
                     + np.linalg.norm(leftBack_pos - leftBackTarget_pos) \
@@ -217,7 +220,9 @@ if __name__ == '__main__':
 
 
             f_u += f_u_i * coef_u
+            
             f_task_goal += f_task_goal_i * coef_task_goal
+            
             f_task_step += f_task_step_i * coef_task_step
 
             f += coef_u * f_u_i + f_task_goal_i * coef_task_goal + f_task_step_i * coef_task_step
