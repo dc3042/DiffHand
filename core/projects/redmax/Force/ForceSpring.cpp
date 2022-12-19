@@ -51,7 +51,7 @@ void ForceSpring::computeForce(VectorX& fm, VectorX& fr, bool verbose) {
     //std::cout << "xw2 " << xw2 << std::endl;
     //std::cout << "length " << l << std::endl;
     //std::cout << "_l " << _l << std::endl;
-    //std::cout << "force direction" << f.dot(dx) << std::endl;
+    //std::cout << "force " << f << std::endl;
     //exit(0);
 
 }
@@ -88,9 +88,10 @@ void ForceSpring::computeForceWithDerivative(
 
     //std::cout << "xw1 " << xw1 << std::endl;
     //std::cout << "xw2 " << xw2 << std::endl;
-    //std::cout << "length " << l << std::endl;
+    std::cout << "length " << l << std::endl;
     //std::cout << "_l " << _l << std::endl;
-    //std::cout << "force " << f << std::endl;
+    std::cout << "force " << f << std::endl;
+    //exit(0);
 
     /**
     K1
