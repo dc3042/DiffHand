@@ -9,7 +9,7 @@
     <robot>
         <link name="link0" design_params="0">
             <joint name="joint0" type="free3d"  pos="0.000000 0.000000 1.700000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e4"/>
-            <body name="body0" type="cuboid"  size="12.000000 7.000000 3.000000" pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" density="1"  rgba="0.700000 0.700000 0.700000 1"/>
+            <body name="body0" type="cuboid"  size="12.000000 7.000000 3.000000" pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" density="0.5"  rgba="0.700000 0.700000 0.700000 1"/>
             
             <link name="endeffector0" design_params="0">
                 <joint name="joint-endeffector0" type="fixed" pos="6 0 0" quat="1. 0. 0. 0."/>
@@ -166,22 +166,22 @@
         <ground_contact body="body7" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body8" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body9" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body5" body_2="body8" contact1="0" contact2="27" k="500" l="5"/>
+        <spring body_1="body5" body_2="body8" contact1="0" contact2="27" k="1000" l="5"/>
 
         <ground_contact body="body16" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body17" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body18" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body14" body_2="body17" contact1="0" contact2="27" k="500" l="5"/>
+        <spring body_1="body14" body_2="body17" contact1="0" contact2="27" k="1000" l="5"/>
 
         <ground_contact body="body7b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body8b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body9b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body5b" body_2="body8b" contact1="0" contact2="27" k="500" l="5"/>
+        <spring body_1="body5b" body_2="body8b" contact1="0" contact2="27" k="1000" l="5"/>
 
         <ground_contact body="body16b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body17b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body18b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body14b" body_2="body17b" contact1="0" contact2="27" k="500" l="5"/>
+        <spring body_1="body14b" body_2="body17b" contact1="0" contact2="27" k="1000" l="5"/>
     </contact>
 
     <variable>
