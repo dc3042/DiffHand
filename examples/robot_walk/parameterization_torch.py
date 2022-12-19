@@ -302,35 +302,41 @@ class Cage:
                 + (self.side_parent.width + self.side_parent.height + self.side_child.width + self.side_child.height) * self.length
         return new_S / old_S
 
+knuckle_cage = Cage(1.6, 3.24, 2.6, 2.6, 2.75, True, 'knuckle_parent', 'knuckle_child', joint_axis_origin = np.array([1.15, 0., 0.]))
 joint_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.06, True, 'joint_parent', 'joint_child', joint_axis_origin = torch.tensor([1.08, 0., 0.]))
 phalanx_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.34, False, 'phalanx')
 tip_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.21, False, 'tip')
 
 class Design:
     def __init__(self):
-        self.structure = ['j', 'p', 'j', 'p', 't', 'j', 'p', 'j', 'p', 't', 'j', 'p', 'j', 'p', 't', 'j', 'p', 'j', 'p', 't']
+        self.structure = ['k' 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't']
         
         # build cages
         self.cages = []
         for symbol in self.structure:
-            if (symbol == 'j'):
+            if (symbol == 'k'):
+                self.cages.append(deepcopy(knuckle_cage))
+            elif (symbol == 'j'):
                 self.cages.append(deepcopy(joint_cage))
             elif (symbol == 'p'):
                 self.cages.append(deepcopy(phalanx_cage))
             elif (symbol == 't'):
                 self.cages.append(deepcopy(tip_cage))
+        
+        print(len(self.cages))
         self.ndof_p3 = 0
         self.ndof_p6 = 0
         self.sub_ndof_p3 = []
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if symbol == 'p' or symbol == 't':
+            if symbol == 'p' or symbol == 't' and self.structure[i-2] != 'k':
+                print(i, " ", symbol)
                 self.ndof_p3 += self.cages[i].contact_id.shape[0] * 3
                 self.sub_ndof_p3.append(self.cages[i].contact_id.shape[0] * 3)
                 self.ndof_p6 += 1
 
-        self.n_link = 28
-        self.ndof_p1 = (self.n_link + 4) * 12 # 4 for for tip end effectors
+        self.n_link = 36
+        self.ndof_p1 = (self.n_link + 4) * 12 # 4 more for tip end effectors
         self.ndof_p2 = self.n_link * 12
 
     def parameterize(self, cage_parameters, generate_mesh = False):
