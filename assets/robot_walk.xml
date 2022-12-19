@@ -196,42 +196,42 @@
 		<sphere name="target point" pos="15 0 1.7" radius="0.5" rgba="0 1 0 1"/>
         
         <sphere name="Front right Foot point 1" pos="5 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-        <sphere name="Front left Foot point 1" pos="3.5 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
+        <sphere name="Front left Foot point 1" pos="5 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
         
         <sphere name="Front right Foot point 2" pos="5 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-        <sphere name="Front left Foot point 2" pos="8 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
+        <sphere name="Front left Foot point 2" pos="5 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
         
         <sphere name="Front right Foot point 3" pos="10 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-        <sphere name="Front left Foot point 3" pos="8 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
+        <sphere name="Front left Foot point 3" pos="10 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
 
         <sphere name="Front right Foot point 4" pos="10 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-        <sphere name="Front left Foot point 4" pos="13 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
+        <sphere name="Front left Foot point 4" pos="10 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
 
         <sphere name="Front right Foot point 5" pos="15 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-        <sphere name="Front left Foot point 5" pos="13 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
+        <sphere name="Front left Foot point 5" pos="15 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
 
         <sphere name="Front right Foot point 6" pos="15 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-        <sphere name="Front left Foot point 6" pos="18 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
+        <sphere name="Front left Foot point 6" pos="15 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
 
 
 
 
-        <sphere name="Back right Foot point 1" pos="-5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back right Foot point 1" pos="-6.5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         <sphere name="Back left Foot point 1" pos="-6.5 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         
-        <sphere name="Back right Foot point 2" pos="-5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back right Foot point 2" pos="-2 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         <sphere name="Back left Foot point 2" pos="-2 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         
-        <sphere name="Back right Foot point 3" pos="0 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back right Foot point 3" pos="-2 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         <sphere name="Back left Foot point 3" pos="-2 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Back right Foot point 4" pos="0 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back right Foot point 4" pos="3 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         <sphere name="Back left Foot point 4" pos="3 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         
-        <sphere name="Back right Foot point 5" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back right Foot point 5" pos="3 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         <sphere name="Back left Foot point 5" pos="3 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Back right Foot point 6" pos="5 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
+        <sphere name="Back right Foot point 6" pos="8 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         <sphere name="Back left Foot point 6" pos="8 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 	</virtual>
 
