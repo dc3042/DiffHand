@@ -197,7 +197,7 @@
         <general_primitive_contact general_body="body13b" primitive_body="body0"/>
 
 
-
+        <ground_contact body="body0" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
 
         <ground_contact body="body7" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body8" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
