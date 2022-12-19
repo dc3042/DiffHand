@@ -5,13 +5,13 @@ input: cage parameters
 output: simulation related design parameters (joint transformation, body transformation, contact points, mass inertia, contact scale)
 
 cage layout:
-  ---p0-j1-p1-tip0  -- front right
+  ---k0-j0-p0-j1-p1-tip0  -- front right
   |
-  ---p2-j2-p3-tip1 -- front left
+  ---k1-j2-p2-j3-p3-tip1 -- front left
   |
-  ---p4-j3-p5-tip2 -- back right
+  ---k2-j4-p4-j5-p5-tip2 -- back right
   |
-  ---p6-j4-p7-tip3 -- back left
+  ---k3-j6-p6-j7-p7-tip3 -- back left
 
 
 cage parameters:
@@ -306,10 +306,10 @@ class Design:
         # build cages
         self.cages = []
         for symbol in self.structure:
-            if (symbol == 'j'):
-                self.cages.append(deepcopy(joint_cage))
-            elif (symbol == 'k'):
+            if (symbol == 'k'):
                 self.cages.append(deepcopy(knuckle_cage))
+            elif (symbol == 'k'):
+                self.cages.append(deepcopy(joing_cage))
             elif (symbol == 'p'):
                 self.cages.append(deepcopy(phalanx_cage))
             elif (symbol == 't'):
@@ -389,15 +389,9 @@ class Design:
                 
                 E = np.eye(4)
 
-                if i <=  10:
+                if i > 10:
                     E[0,0] = -1
                     E[1,1] = -1.
-                else:
-                    E[1,1] = -1.
-                    E[0,0] = 0.
-                    E[2,0] = -1.
-                    E[2,2] = 0.
-                    E[0,2] = -1.
                 
                 if(i == 0):
                     E[0,3] = 5.5
