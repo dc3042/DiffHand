@@ -319,6 +319,7 @@ class Design:
         self.sub_ndof_p3 = []
         for i in range(len(self.cages)):
             symbol = self.structure[i]
+            print(symbol)
             if symbol == 'p' or symbol == 't' and self.structure[i-2] != 'k':
                 self.ndof_p3 += self.cages[i].contact_id.shape[0] * 3
                 self.sub_ndof_p3.append(self.cages[i].contact_id.shape[0] * 3)
