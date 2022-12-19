@@ -202,22 +202,22 @@
         <ground_contact body="body7" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body8" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body9" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body0" body_2="body9" contact1="4" contact2="52" k="10000" l="10"/>
+        <spring body_1="body0" body_2="body9" contact1="4" contact2="52" k="5000" l="10"/>
 
         <ground_contact body="body16" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body17" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body18" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body0" body_2="body18" contact1="6" contact2="53" k="10000" l="10"/>
+        <spring body_1="body0" body_2="body18" contact1="6" contact2="53" k="5000" l="10"/>
 
         <ground_contact body="body7b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body8b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body9b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body0" body_2="body9b" contact1="0" contact2="52" k="10000" l="10"/>
+        <spring body_1="body0" body_2="body9b" contact1="0" contact2="52" k="5000" l="10"/>
 
         <ground_contact body="body16b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body17b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body18b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body0" body_2="body18b" contact1="2" contact2="53" k="10000" l="10"/>
+        <spring body_1="body0" body_2="body18b" contact1="2" contact2="53" k="5000" l="10"/>
     </contact>
 
     <variable>
