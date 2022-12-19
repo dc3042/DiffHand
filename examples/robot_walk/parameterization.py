@@ -308,8 +308,8 @@ class Design:
         for symbol in self.structure:
             if (symbol == 'k'):
                 self.cages.append(deepcopy(knuckle_cage))
-            elif (symbol == 'k'):
-                self.cages.append(deepcopy(joing_cage))
+            elif (symbol == 'j'):
+                self.cages.append(deepcopy(joint_cage))
             elif (symbol == 'p'):
                 self.cages.append(deepcopy(phalanx_cage))
             elif (symbol == 't'):
