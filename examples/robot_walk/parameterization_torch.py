@@ -310,7 +310,7 @@ tip_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.21, False, 'tip')
 
 class Design:
     def __init__(self):
-        self.structure = ['k' 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't']
+        self.structure = ['k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't', 'k', 'j', 'p', 'j', 'p', 't']
         
         # build cages
         self.cages = []
@@ -327,7 +327,7 @@ class Design:
         for i in range(len(self.cages)):
             symbol = self.structure[i]
             print(symbol)
-            
+
         self.ndof_p3 = 0
         self.ndof_p6 = 0
         self.sub_ndof_p3 = []
