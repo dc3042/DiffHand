@@ -92,10 +92,10 @@ void ForceSpring::computeForceWithDerivative(
 
     //std::cout << "xw1 " << xw1 << std::endl;
     //std::cout << "xw2 " << xw2 << std::endl;
-    std::cout << "length " << l << std::endl;
+    //std::cout << "length " << l << std::endl;
     //std::cout << "_l " << _l << std::endl;
-    std::cout << "force " << f << std::endl;
-    std::cout << "force direction: " << f * dx.normalized() << std::endl;
+    //std::cout << "force " << f << std::endl;
+    //std::cout << "force direction: " << f * dx.normalized() << std::endl;
     //exit(0);
 
     /**
