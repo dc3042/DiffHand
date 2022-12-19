@@ -102,7 +102,7 @@ void ForceSpring::computeForceWithDerivative(
     K1
     */
 
-    dtype df_dl = -_k;
+    dtype df_dl = _k;
 
     VectorX dl_dq = VectorX::Zero(12);
     dl_dq.segment(0, 6) = - dx.transpose()/ l * R1 * G1;
