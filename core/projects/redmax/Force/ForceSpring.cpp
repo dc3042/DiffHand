@@ -81,7 +81,7 @@ void ForceSpring::computeForceWithDerivative(
     Vector3 dx = xw2 - xw1;
     dtype l = dx.norm();
 
-    dtype f =  _k * (l - _l); // No dependence on l_dot
+    dtype f = _k * (l - _l); // No dependence on l_dot
 
     fm.segment(_body1->_index[0], 6) +=  f/l * G1.transpose() * R1.transpose() * dx;
     fm.segment(_body2->_index[0], 6) -=  f/l * G2.transpose() * R2.transpose() * dx;

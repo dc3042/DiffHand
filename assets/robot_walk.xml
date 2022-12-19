@@ -39,7 +39,7 @@
                                         <body name="body9" type="abstract"  mesh="finger/meshes/tip.obj"  contacts="finger/contacts/tip.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
                                         <link name="endeffector0" design_params="1">
                                             <joint name="joint-endeffector_rightFront" type="fixed" pos="0.9 0.0 1.5" quat="1. 0. 0. 0."/>
-                                            <body name="body-endeffector0" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
+                                            <body name="body-endeffector_rightFront" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
                                         </link>
                                     </link>
                                 </link>
@@ -72,7 +72,7 @@
                                         <body name="body18" type="abstract"  mesh="finger/meshes/tip.obj"  contacts="finger/contacts/tip.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
                                         <link name="endeffector1" design_params="1">
                                             <joint name="joint-endeffector_leftFront" type="fixed" pos="1.105 0.0 1.3" quat="1. 0. 0. 0."/>
-                                            <body name="body-endeffector1" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
+                                            <body name="body-endeffector_leftFront" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
                                         </link>
                                     </link>
                                 </link>
@@ -105,7 +105,7 @@
                                         <body name="body9b" type="abstract"  mesh="finger/meshes/tip.obj"  contacts="finger/contacts/tip.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
                                         <link name="endeffector2" design_params="1">
                                             <joint name="joint-endeffector_rightBack" type="fixed" pos="1.105 0.0 1.3" quat="1. 0. 0. 0."/>
-                                            <body name="body-endeffector2" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
+                                            <body name="body-endeffector_rightBack" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
                                         </link>
                                     </link>
                                 </link>
@@ -138,7 +138,7 @@
                                         <body name="body18b" type="abstract"  mesh="finger/meshes/tip.obj"  contacts="finger/contacts/tip.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
                                         <link name="endeffector3" design_params="1">
                                             <joint name="joint-endeffector_leftBack" type="fixed" pos="1.105 0.0 1.3" quat="1. 0. 0. 0."/>
-                                            <body name="body-endeffector3" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
+                                            <body name="body-endeffector_leftBack" type="cuboid" pos="0 0 0" quat="1 0 0 0" size="0.1 0.1 0.1" density="0.1"/>
                                         </link>
                                     </link>
                                 </link>
@@ -202,22 +202,22 @@
         <ground_contact body="body7" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body8" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body9" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body5" body_2="body8" contact1="0" contact2="27" k="1000" l="5"/>
+        <spring body_1="body0" body_2="body9" contact1="4" contact2="0" k="1000" l="10"/>
 
         <ground_contact body="body16" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body17" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body18" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body14" body_2="body17" contact1="0" contact2="27" k="1000" l="5"/>
+        <spring body_1="body0" body_2="body18" contact1="6" contact2="0" k="1000" l="10"/>
 
         <ground_contact body="body7b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body8b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body9b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body5b" body_2="body8b" contact1="0" contact2="27" k="1000" l="5"/>
+        <spring body_1="body0" body_2="body9b" contact1="0" contact2="0" k="1000" l="10"/>
 
         <ground_contact body="body16b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body17b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body18b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body14b" body_2="body17b" contact1="0" contact2="27" k="1000" l="5"/>
+        <spring body_1="body0" body_2="body18b" contact1="2" contact2="0" k="1000" l="10"/>
     </contact>
 
     <variable>
