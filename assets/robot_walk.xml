@@ -210,9 +210,6 @@
         <sphere name="Front right Foot point 5" pos="18 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
         <sphere name="Front left Foot point 5" pos="18 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
 
-        <sphere name="Front right Foot point 6" pos="18 -3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-        <sphere name="Front left Foot point 6" pos="18 3 -9.5" radius="0.5" rgba="0 1 0 1"/>
-
 
 
 
@@ -231,8 +228,6 @@
         <sphere name="Back right Foot point 5" pos="6 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
         <sphere name="Back left Foot point 5" pos="6 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 
-        <sphere name="Back right Foot point 6" pos="11 -3 -9.5" radius="0.5" rgba="0 0 1 1"/>
-        <sphere name="Back left Foot point 6" pos="11 3 -9.5" radius="0.5" rgba="0 0 1 1"/>
 	</virtual>
 
 </redmax>
