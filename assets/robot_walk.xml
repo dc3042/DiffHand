@@ -163,18 +163,24 @@
 
 
     <contact>
+        <general_primitive_contact general_body="body3" primitive_body="body0"/>
+        <general_primitive_contact general_body="body4" primitive_body="body0"/>
         <general_primitive_contact general_body="body5" primitive_body="body0"/>
 		<general_primitive_contact general_body="body6" primitive_body="body0"/>
 		<general_primitive_contact general_body="body7" primitive_body="body0"/>
         <general_primitive_contact general_body="body8" primitive_body="body0"/>
 		<general_primitive_contact general_body="body9" primitive_body="body0"/>
 
+        <general_primitive_contact general_body="body12" primitive_body="body0"/>
+        <general_primitive_contact general_body="body13" primitive_body="body0"/>
         <general_primitive_contact general_body="body14" primitive_body="body0"/>
 		<general_primitive_contact general_body="body15" primitive_body="body0"/>
 		<general_primitive_contact general_body="body16" primitive_body="body0"/>
         <general_primitive_contact general_body="body17" primitive_body="body0"/>
 		<general_primitive_contact general_body="body18" primitive_body="body0"/>
 
+        <general_primitive_contact general_body="body3b" primitive_body="body0"/>
+        <general_primitive_contact general_body="body4b" primitive_body="body0"/>
         <general_primitive_contact general_body="body5b" primitive_body="body0"/>
 		<general_primitive_contact general_body="body6b" primitive_body="body0"/>
 		<general_primitive_contact general_body="body7b" primitive_body="body0"/>
@@ -186,6 +192,8 @@
 		<general_primitive_contact general_body="body16b" primitive_body="body0"/>
         <general_primitive_contact general_body="body17b" primitive_body="body0"/>
 		<general_primitive_contact general_body="body18b" primitive_body="body0"/>
+        <general_primitive_contact general_body="body12b" primitive_body="body0"/>
+        <general_primitive_contact general_body="body13b" primitive_body="body0"/>
 
 
 
