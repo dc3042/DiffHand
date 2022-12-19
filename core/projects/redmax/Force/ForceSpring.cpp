@@ -68,10 +68,13 @@ void ForceSpring::computeForceWithDerivative(
     Vector3 p2 = E2.topRightCorner(3, 1);
 
     Vector3 xl1 = _body1->get_contact_points()[_contact1];
+    std::cout << "body1 equals body" << _body1->get_contact_points().size() == 8 << std::endl;
     Vector3 xl2 = _body1->get_contact_points()[_contact2];
 
     Vector3 xw1 = R1 * xl1 + p1;
+    std::cout << "xw1 " << l << std::endl;
     Vector3 xw2 = R2 * xl2 + p2;
+    std::cout << "xw2 " << l << std::endl;
 
     MatrixX G1 = math::gamma(xl1);
     MatrixX G2 = math::gamma(xl2);
