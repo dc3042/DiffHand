@@ -381,7 +381,10 @@ class Design:
             symbol = self.structure[i]
             if (symbol == 'j'):
                 # joint parent part
-                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
+                if (self.structure[i - 1] == 'k'):
+                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].joint_E_jc())
+                else:
+                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
                 idx += 1
                 # joint child part
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
@@ -489,7 +492,7 @@ class Design:
                 symbol = self.structure[i]
                 if (symbol == 'p' or symbol == 't'):
                     meshes.append(self.cages[i].transform_mesh_whole())
-                elif (symbol == 'j'):
+                elif (symbol == 'j' or symbol == 'k'):
                     # joint parent part
                     meshes.append(self.cages[i].transform_mesh_parent())
                     # joint child part

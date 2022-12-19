@@ -390,40 +390,37 @@ class Design:
         idx = 0
         for i in range(len(self.cages)):
             symbol = self.structure[i]
-            if (symbol == 'j' and i - 1 >= 0 and self.structure[i-1] != 't'):
+            if (symbol == 'j'):
                 # joint parent part
-                design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
+                if (self.structure[i - 1] == 'k'):
+                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].joint_E_jc())
+                else:
+                    design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i - 1].E_jc())
                 idx += 1
                 # joint child part
                 design_params[idx * 12:(idx + 1) * 12] = flatten_E(self.cages[i].joint_E_pj())
                 idx += 1
-            elif(symbol == 'j'):
+            elif(symbol == 'k'):
                 # joint parent part
                 #print(i)
                 
                 E = torch.eye(4)
-                E[1,1] = -1.
-                E[0,0] = 0.
-                E[2,0] = -1.
-                E[2,2] = 0.
-                E[0,2] = -1.
+                if i > 10:
+                    E[0,0] = -1
+                    E[1,1] = -1.
                 
                 if(i == 0):
-                    E[0,3] = 5.
-                    E[1,3] = -3.
-                    E[2,3] = -1.5
+                    E[0,3] = 5.5
+                    E[1,3] = 3.
                 elif(i == 5):
-                    E[0,3] = 5.
-                    E[1,3] = 3.
-                    E[2,3] = -1.5
-                elif(i == 10):
-                    E[0,3] = -5.
+                    E[0,3] = 5.5
                     E[1,3] = -3.
-                    E[2,3] = -1.5
-                elif(i == 15):
-                    E[0,3] = -5.
+                elif(i == 10):
+                    E[0,3] = -5.5
                     E[1,3] = 3.
-                    E[2,3] = -1.5
+                elif(i == 15):
+                    E[0,3] = -5.5
+                    E[1,3] = -3.
                 
                 #print(E)
 
