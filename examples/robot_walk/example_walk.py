@@ -98,8 +98,8 @@ if __name__ == '__main__':
     rightFront_traj = [np.array([8, -3, -9.5]), np.array([8, -3, -9.5]), np.array([13, -3, -9.5]), np.array([13, -3, -9.5]), np.array([18, -3, -9.5])]
     leftFront_traj = [np.array([8, 3, -9.5]), np.array([8, 3, -9.5]), np.array([13, 3, -9.5]), np.array([13, 3, -9.5]), np.array([18, 3, -9.5])]
 
-    rightBack_traj = [np.array([-3.5, -3, -9.5]), np.array([1, -3, -9.5]), np.array([1, -3, -9.5]), np.array([6, -3, -9.5]), np.array([6, -3, -9.5])]
-    leftBack_traj = [np.array([-3.5, 3, -9.5]), np.array([1, 3, -9.5]), np.array([1, 3, -9.5]), np.array([6, 3, -9.5]), np.array([6, 3, -9.5])]
+    rightBack_traj = [np.array([-3.7, -3, -9.5]), np.array([1, -3, -9.5]), np.array([1, -3, -9.5]), np.array([6, -3, -9.5]), np.array([6, -3, -9.5])]
+    leftBack_traj = [np.array([-3.7, 3, -9.5]), np.array([1, 3, -9.5]), np.array([1, 3, -9.5]), np.array([6, 3, -9.5]), np.array([6, 3, -9.5])]
 
 
     num_task_steps = num_steps // len(leftFront_traj)
