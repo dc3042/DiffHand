@@ -29,7 +29,7 @@
                             <joint name="joint6" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
                             <body name="body6" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.500000 0.500000 0.500000 1"/>
                             <link name="link7" design_params="11">
-                                <joint name="joint7" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
+                                <joint name="joint7" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e2"/>
                                 <body name="body7" type="abstract"  mesh="finger/meshes/joint_child.obj"  contacts="finger/contacts/joint_child.txt"  pos="-1.080000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
                                 <link name="link8" design_params="47">
                                     <joint name="joint8" type="fixed" pos="0.980000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
@@ -62,7 +62,7 @@
                             <joint name="joint15" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
                             <body name="body15" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.500000 0.500000 0.500000 1"/>
                             <link name="link16" design_params="11">
-                                <joint name="joint16" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
+                                <joint name="joint16" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e2"/>
                                 <body name="body16" type="abstract"  mesh="finger/meshes/joint_child.obj"  contacts="finger/contacts/joint_child.txt"  pos="-1.080000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
                                 <link name="link17" design_params="47">
                                     <joint name="joint17" type="fixed" pos="0.980000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
@@ -95,7 +95,7 @@
                             <joint name="joint6b" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
                             <body name="body6b" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.500000 0.500000 0.500000 1"/>
                             <link name="link7b" design_params="11">
-                                <joint name="joint7b" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
+                                <joint name="joint7b" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e2"/>
                                 <body name="body7b" type="abstract"  mesh="finger/meshes/joint_child.obj"  contacts="finger/contacts/joint_child.txt"  pos="-1.080000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
                                 <link name="link8b" design_params="47">
                                     <joint name="joint8b" type="fixed" pos="0.980000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
@@ -128,7 +128,7 @@
                             <joint name="joint15b" type="fixed" pos="2.340000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
                             <body name="body15b" type="abstract"  mesh="finger/meshes/joint_parent.obj"  contacts="finger/contacts/joint_parent.txt"  pos="-0.000000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.500000 0.500000 0.500000 1"/>
                             <link name="link16b" design_params="11">
-                                <joint name="joint16b" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e5"/>
+                                <joint name="joint16b" type="revolute" axis="0.000000 1.000000 0.000000" pos="1.080000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000" damping="1e2"/>
                                 <body name="body16b" type="abstract"  mesh="finger/meshes/joint_child.obj"  contacts="finger/contacts/joint_child.txt"  pos="-1.080000 -0.000000 -0.000000" quat="1.000000 0.000000 0.000000 0.000000" mass="1"  inertia="1. 1. 1."  rgba="0.400000 0.400000 0.400000 1"/>
                                 <link name="link17b" design_params="47">
                                     <joint name="joint17b" type="fixed" pos="0.980000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000"/>
@@ -202,22 +202,22 @@
         <ground_contact body="body7" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body8" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body9" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body0" body_2="body9" contact1="4" contact2="52" k="10000" l="9"/>
+        <spring body_1="body5" body_2="body9" contact1="0" contact2="52" k="10000" l="8"/>
 
         <ground_contact body="body16" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body17" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body18" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body0" body_2="body18" contact1="6" contact2="53" k="10000" l="9"/>
+        <spring body_1="body14" body_2="body18" contact1="0" contact2="53" k="10000" l="8"/>
 
         <ground_contact body="body7b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body8b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body9b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body0" body_2="body9b" contact1="0" contact2="52" k="10000" l="9"/>
+        <spring body_1="body5b" body_2="body9b" contact1="0" contact2="52" k="10000" l="8"/>
 
         <ground_contact body="body16b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body17b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
         <ground_contact body="body18b" kn="1e6" kt="5e3" mu="1.5" damping="3e1"/>
-        <spring body_1="body0" body_2="body18b" contact1="2" contact2="53" k="10000" l="9"/>
+        <spring body_1="body14b" body_2="body18b" contact1="0" contact2="53" k="10000" l="8"/>
     </contact>
 
     <variable>
