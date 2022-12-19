@@ -39,7 +39,6 @@ if __name__ == '__main__':
     parser.add_argument('--visualize', type=str, default='True', help = 'whether visualize the simulation')
     parser.add_argument('--load-dir', type = str, default = None, help = 'load optimized parameters')
     parser.add_argument('--verbose', default = False, action = 'store_true', help = 'verbose output')
-    parser.add_argument('--continuation', default = False, action = 'store_true')
     parser.add_argument('--test-derivatives', default = False, action = 'store_true')
 
     asset_folder = os.path.abspath(os.path.join(example_base_dir, '..', 'assets'))
@@ -320,29 +319,12 @@ if __name__ == '__main__':
         # set bounds for optimization variables
         bounds = []
         for i in range(num_ctrl_steps * ndof_u):
-            bounds.append((-1., 1.))
+            bounds.append((-0.5, 0.5))
         if optimize_design_flag:
             for i in range(ndof_cage):
-                bounds.append((0.5, 3.))
+                bounds.append((0.5, 1.5))
 
-        if args.continuation:
-            print_ok('start scale = 0.01')
-            sim.set_contact_scale(0.01)
-            res = scipy.optimize.minimize(loss_and_grad, np.copy(params), method = "L-BFGS-B", jac = True, callback = callback_func, bounds = bounds, options={'maxiter': 100})
-            
-            params = np.copy(res.x)
-            
-            print_ok('start scale = 0.1')
-            sim.set_contact_scale(0.1)
-            res = scipy.optimize.minimize(loss_and_grad, np.copy(params), method = "L-BFGS-B", jac = True, callback = callback_func, bounds = bounds, options={'maxiter': 100})
-            
-            params = np.copy(res.x)
-
-            print_ok('start scale = 1')
-            sim.set_contact_scale(1)
-            res = scipy.optimize.minimize(loss_and_grad, np.copy(params), method = "L-BFGS-B", jac = True, callback = callback_func, bounds = bounds, options={'maxiter': 100})
-        else:
-            res = scipy.optimize.minimize(loss_and_grad, np.copy(params), method = "L-BFGS-B", jac = True, callback = callback_func, bounds = bounds, options={'maxiter': 100})
+        res = scipy.optimize.minimize(loss_and_grad, np.copy(params), method = "L-BFGS-B", jac = True, callback = callback_func, bounds = bounds, options={'maxiter': 100})
 
         params = np.copy(res.x)
 
