@@ -303,6 +303,7 @@ class Cage:
         return new_S / old_S
 
 knuckle_cage = Cage(1.6, 3.24, 2.6, 2.6, 2.75, True, 'knuckle_parent', 'knuckle_child', joint_axis_origin = np.array([1.15, 0., 0.]))
+
 joint_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.06, True, 'joint_parent', 'joint_child', joint_axis_origin = torch.tensor([1.08, 0., 0.]))
 phalanx_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.34, False, 'phalanx')
 tip_cage = Cage(2.6, 2.6, 2.6, 2.6, 2.21, False, 'tip')
@@ -323,7 +324,7 @@ class Design:
             elif (symbol == 't'):
                 self.cages.append(deepcopy(tip_cage))
         
-        print(len(self.cages))
+        print(self.cages)
         self.ndof_p3 = 0
         self.ndof_p6 = 0
         self.sub_ndof_p3 = []
